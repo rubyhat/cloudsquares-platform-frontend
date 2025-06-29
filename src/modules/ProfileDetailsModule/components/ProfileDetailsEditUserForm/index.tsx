@@ -1,0 +1,1 @@
+export { ProfileDetailsEditUserForm } from "./ProfileDetailsEditUserForm";

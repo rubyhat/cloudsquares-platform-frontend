@@ -1,7 +1,8 @@
 {
-  "login": "Вход / Регистрация",
+  "login": "Вход / Создать аккаунт",
   "request_demo": "Запросить демо",
   "select_language_placeholder": "Выберите язык",
+  "version": "Версия платформы:",
   "footer": {
     "made_with": "Сделано с ❤️ в"
   },

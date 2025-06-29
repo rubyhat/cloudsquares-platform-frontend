@@ -1,0 +1,1 @@
+export { ProfileFavoritesLinks } from "./ProfileFavoritesLinks";

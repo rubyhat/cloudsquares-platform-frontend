@@ -1,0 +1,1 @@
+export { ProfileDetailsModule } from "./ProfileDetailsModule";

@@ -10,12 +10,12 @@ import {
 } from "@mui/material";
 import { useUserProfile } from "../../../../shared/permissions/hooks";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const HeaderProfile = () => {
   const { t } = useTranslation();
   const profile = useUserProfile();
-  const navigate = useNavigate("");
+  const navigate = useNavigate();
 
   const settings = [
     {

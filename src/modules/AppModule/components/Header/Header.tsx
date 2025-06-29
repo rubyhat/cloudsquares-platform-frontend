@@ -17,7 +17,11 @@ export const Header = () => {
   const isAuthenticated = useIsAuthenticated();
 
   return (
-    <Box component="header" data-testid="header">
+    <Box
+      component="header"
+      data-testid="header"
+      sx={{ display: { xs: "none", lg: "block" } }}
+    >
       <Box sx={headerContentStyles}>
         <Box sx={logoWrapperStyles}>
           <HeaderLogotype />
