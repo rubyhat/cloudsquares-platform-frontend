@@ -1,0 +1,1 @@
+export { HeaderLogotype } from "./HeaderLogotype";
