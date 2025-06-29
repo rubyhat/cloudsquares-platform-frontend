@@ -8,8 +8,13 @@ import {
   Typography,
 } from "@mui/material";
 import { MdMenu } from "react-icons/md";
+import {
+  menuButtonWrapperStyles,
+  mobileMenuStyles,
+  navigationListStyles,
+} from "./styles";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = ["Продукт", "Тарифы", "Контакты"];
 
 export const HeaderNavigation = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -25,7 +30,7 @@ export const HeaderNavigation = () => {
   };
   return (
     <React.Fragment>
-      <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+      <Box sx={menuButtonWrapperStyles}>
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -44,7 +49,7 @@ export const HeaderNavigation = () => {
           transformOrigin={{ vertical: "top", horizontal: "left" }}
           open={Boolean(anchorElNav)}
           onClose={handleCloseNavMenu}
-          sx={{ display: { xs: "block", md: "none" } }}
+          sx={mobileMenuStyles}
         >
           {pages.map((page) => (
             <MenuItem key={page} onClick={handleCloseNavMenu}>
@@ -53,12 +58,14 @@ export const HeaderNavigation = () => {
           ))}
         </Menu>
       </Box>
-      <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+      <Box sx={navigationListStyles}>
         {pages.map((page) => (
           <Button
             key={page}
             onClick={handleCloseNavMenu}
-            sx={{ my: 2, color: "white", display: "block" }}
+            sx={{ display: "block" }}
+            size="small"
+            variant="text"
           >
             {page}
           </Button>

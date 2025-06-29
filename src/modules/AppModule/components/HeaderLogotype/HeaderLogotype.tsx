@@ -6,11 +6,11 @@ export const HeaderLogotype = () => {
     <Typography
       variant="h6"
       noWrap
-      sx={{ display: { xs: "none", md: "flex" } }}
       component={Link}
       to="/"
+      sx={{ color: "#252525" }}
     >
-      LOGO
+      CloudSquares
     </Typography>
   );
 };

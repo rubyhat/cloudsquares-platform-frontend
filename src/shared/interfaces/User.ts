@@ -1,4 +1,5 @@
 import { UserRole } from "../permissions/roles";
+import { Agency } from "./Agency";
 import { CountryCode } from "./Country";
 
 export interface User {
@@ -11,6 +12,7 @@ export interface User {
   first_name: string;
   last_name: string | null;
   middle_name: string | null;
+  agency: Agency | null;
 }
 
 export interface PostNewUserResponseData {

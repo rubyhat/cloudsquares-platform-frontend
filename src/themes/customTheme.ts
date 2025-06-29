@@ -103,7 +103,7 @@ export const customTheme = createTheme(
       },
     },
     typography: {
-      fontFamily: `"SF Pro", "SF Pro Display", "Helvetica", "Roboto", sans-serif`,
+      fontFamily: `"SF Pro", "SF Pro Display", "Helvetica", "Inter", "Roboto", sans-serif`,
       // Titles
       titleLargeRegular: {
         ...titleLarge,
@@ -193,17 +193,17 @@ export const customTheme = createTheme(
     },
     palette: {
       primary: {
-        main: "#1c1c1c",
-        contrastText: "#fff",
+        main: "#252525",
+        contrastText: "#f8f8f8",
       },
 
       secondary: {
-        main: "#fff",
-        contrastText: "#000",
+        main: "#f8f8f8",
+        contrastText: "#252525",
       },
 
       customColors: {
-        colorsWhite: "#fff",
+        colorsWhite: "#f8f8f8",
         colorsWhiteDark: "#EDEDED",
         colorsGrey: "#848484",
         colorsGreyLight: "hsla(240, 6%, 25%, 0.18)",

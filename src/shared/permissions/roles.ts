@@ -1,13 +1,19 @@
 /**
  * Перечисление ролей пользователей
  * @enum {string} user - Пользователь
- * @enum {string} superadmin - Админ
- * @enum {string} supermanager - Менеджер
+ * @enum {string} admin - Админ
+ * @enum {string} admin_manager - Менеджер админа
+ * @enum {string} agent - Агент недвижимости
+ * @enum {string} agent_admin - Админ агентства недвижимости
+ * @enum {string} agent_manager - Менеджер агентства недвижимости
  */
 export enum UserRole {
   user = "user",
-  superadmin = "superadmin",
-  supermanager = "supermanager",
+  admin = "admin",
+  admin_manager = "admin_manager",
+  agent = "agent",
+  agent_admin = "agent_admin",
+  agent_manager = "agent_manager",
 }
 
 /**
@@ -18,8 +24,11 @@ export enum UserRole {
  */
 export enum UserRoleDisplayText {
   user = "Пользователь",
-  superadmin = "Админ",
-  supermanager = "Менеджер",
+  admin = "Админ",
+  admin_manager = "Менеджер",
+  agent = "Агент недвижимости",
+  agent_admin = "Администратор агентства недвижимости",
+  agent_manager = "Менеджер агентства недвижимости",
 }
 
 /**
@@ -30,6 +39,9 @@ export enum UserRoleDisplayText {
  */
 export enum UserRoleColor {
   user = "default",
-  superadmin = "error",
-  supermanager = "warning",
+  admin = "error",
+  admin_manager = "warning",
+  agent = "info",
+  agent_admin = "secondary",
+  agent_manager = "er",
 }

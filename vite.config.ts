@@ -22,6 +22,7 @@ export default defineConfig({
   ],
   server: {
     open: true,
+    port: 7777,
   },
   build: {
     sourcemap: true,
