@@ -13,7 +13,7 @@ export const ProfileFavoritesLinks = () => {
   return (
     <Box sx={profileFavoritesLinksStyles}>
       <Box component={Paper} sx={profileFavoritesLinkItemStyles}>
-        <Box component={Link} to="/orders">
+        <Box component={Link} to="/properties">
           <FaHome size={20} color="#1c1c1c" />
           <Typography
             component="p"
@@ -25,7 +25,7 @@ export const ProfileFavoritesLinks = () => {
         </Box>
       </Box>
       <Box component={Paper} sx={profileFavoritesLinkItemStyles}>
-        <Box component={Link} to="/seller">
+        <Box component={Link} to="/requests">
           <IoDocuments size={20} color="#1c1c1c" />
           <Typography
             component="p"

@@ -5,7 +5,8 @@ export const bottomNavigationMenuStyles = {
   borderColor: "customColors.colorsGreyLight",
   position: "fixed",
   bottom: 0,
-  display: "grid",
+  zIndex: 2,
+  display: { xs: "grid", md: "none" },
   gridTemplateColumns: "repeat(4, 1fr)",
   backgroundColor: "#fff",
 };

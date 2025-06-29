@@ -21,9 +21,9 @@ export const HeaderNavigation = () => {
   const { t } = useTranslation();
 
   const pages = [
-    { title: t("header.navigation.product"), link: "#product" },
-    { title: t("header.navigation.tariffs"), link: "#tariffs" },
-    { title: t("header.navigation.contacts"), link: "#contacts" },
+    { title: t("header.navigation.properties"), link: "/properties" },
+    { title: t("header.navigation.requests"), link: "/requests" },
+    { title: t("header.navigation.analytics"), link: "/analytics" },
   ];
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(

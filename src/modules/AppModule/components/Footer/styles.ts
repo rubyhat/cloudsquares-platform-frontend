@@ -1,8 +1,9 @@
 export const languageStyles = {
   display: "flex",
-  justifyContent: "flex-end",
+  justifyContent: { xs: "flex-start", md: "flex-end" },
   alignItems: "center",
   height: 1,
+  pt: { xs: 2, md: 0 },
 };
 
 export const selectLanguageWrapperStyles = {

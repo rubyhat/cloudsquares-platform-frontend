@@ -8,9 +8,9 @@
   },
   "header": {
     "navigation": {
-      "product": "Продукт",
-      "tariffs": "Тарифы",
-      "contacts": "Контакты"
+      "properties": "Недвижимость",
+      "requests": "Заявки",
+      "analytics": "Аналитика"
     },
     "profile_menu": {
       "tooltip_title": "Открыть настройки",

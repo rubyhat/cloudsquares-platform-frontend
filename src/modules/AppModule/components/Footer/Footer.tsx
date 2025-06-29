@@ -16,11 +16,16 @@ export const Footer = () => {
     <Box
       component="footer"
       data-testid="footer"
-      sx={{ borderTop: "1px solid", borderColor: "#ccc", py: 2 }}
+      sx={{
+        borderTop: "1px solid",
+        borderColor: "#ccc",
+        py: 2,
+        display: { xs: "none", md: "block" },
+      }}
     >
       <Container maxWidth="xl">
         <Grid container>
-          <Grid size={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Box>
               <Typography component="h6" variant="h6">
                 CloudSquares
@@ -40,7 +45,7 @@ export const Footer = () => {
               </Box>
             </Box>
           </Grid>
-          <Grid size={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Box sx={languageStyles}>
               <Box sx={selectLanguageWrapperStyles}>
                 <SelectLanguage />

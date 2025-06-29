@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
-import { FaUserAlt, FaHome, FaSearch, FaShoppingBasket } from "react-icons/fa";
+import { FaUserAlt, FaHome, FaSearch } from "react-icons/fa";
+import { IoDocuments } from "react-icons/io5";
 
 import {
   bottomNavigationMenuStyles,
@@ -49,16 +50,13 @@ export const BottomNavigationMenu = () => {
       </Box>
 
       <Box sx={menuItemStyles} component={Link} to="/cart">
-        <FaShoppingBasket
-          size={16}
-          style={menuItemIconStyles(isActive("/cart"))}
-        />
+        <IoDocuments size={16} style={menuItemIconStyles(isActive("/cart"))} />
         <Typography
           component="p"
           variant="body1"
           sx={menuItemTextStyles(isActive("/cart"))}
         >
-          Корзина
+          Заявки
         </Typography>
       </Box>
 

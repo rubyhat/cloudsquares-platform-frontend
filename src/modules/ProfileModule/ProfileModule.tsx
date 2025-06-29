@@ -9,6 +9,7 @@ import { BasicPageHeader } from "../../shared/components/Mobile/BasicPageHeader"
 import { BasicNavListToPage } from "../../shared/components/BasicNavListToPage";
 import { ProfileInfoCard } from "./components/ProfileInfoCard";
 import { ProfileFavoritesLinks } from "./components/ProfileFavoritesLinks";
+import { SelectLanguage } from "../../shared/components/SelectLanguage";
 
 const list = [
   { label: "Центр поддержки", link: "/help" },
@@ -38,13 +39,20 @@ export const ProfileModule = () => {
               </Box>
               <Box sx={{ width: 1 }}>
                 <BasicNavListToPage list={list} />
-                <Typography component="p" variant="body2" mt={1} color="#aaa">
-                  {t("version")} {version}
-                </Typography>
               </Box>
             </Grid>
           </Grid>
         )}
+        <Grid container spacing={2}>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Box sx={{ pt: 2 }}>
+              <SelectLanguage />
+            </Box>
+            <Typography component="p" variant="body2" mt={1} color="#aaa">
+              {t("version")} {version}
+            </Typography>
+          </Grid>
+        </Grid>
       </Container>
     </React.Fragment>
   );

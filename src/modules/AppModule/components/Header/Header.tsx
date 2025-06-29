@@ -25,7 +25,7 @@ export const Header = () => {
       <Box sx={headerContentStyles}>
         <Box sx={logoWrapperStyles}>
           <HeaderLogotype />
-          {!isAuthenticated && <HeaderNavigation />}
+          <HeaderNavigation />
         </Box>
         {!isAuthenticated && (
           <Box sx={loginWrapperStyles}>
