@@ -1,7 +1,12 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
-import { SelectLanguage } from "../../../../shared/components/SelectLanguage";
-import { languageStyles, selectLanguageWrapperStyles } from "./styles";
 import { useTranslation } from "react-i18next";
+import { Box, Container, Grid, Typography } from "@mui/material";
+
+import { SelectLanguage } from "../../../../shared/components/SelectLanguage";
+import {
+  languageStyles,
+  linkStyles,
+  selectLanguageWrapperStyles,
+} from "./styles";
 
 const currentYear = new Date().getFullYear();
 
@@ -25,11 +30,7 @@ export const Footer = () => {
                   © {currentYear}. {t("footer.made_with")}
                 </Typography>
                 <Box
-                  sx={{
-                    color: "customColors.colorsAccent",
-                    textDecoration: "underline",
-                    fontWeight: 700,
-                  }}
+                  sx={linkStyles}
                   component="a"
                   target="_blank"
                   href="https://whitedog.kz"

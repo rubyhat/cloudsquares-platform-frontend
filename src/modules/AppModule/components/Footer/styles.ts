@@ -8,3 +8,9 @@ export const languageStyles = {
 export const selectLanguageWrapperStyles = {
   maxWidth: 200,
 };
+
+export const linkStyles = {
+  color: "customColors.colorsAccent",
+  textDecoration: "underline",
+  fontWeight: 700,
+};

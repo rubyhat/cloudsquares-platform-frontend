@@ -1,9 +1,22 @@
 {
   "login": "Вход / Регистрация",
-  "logout": "Выйти",
   "request_demo": "Запросить демо",
   "select_language_placeholder": "Выберите язык",
   "footer": {
     "made_with": "Сделано с ❤️ в"
+  },
+  "header": {
+    "navigation": {
+      "product": "Продукт",
+      "tariffs": "Тарифы",
+      "contacts": "Контакты"
+    },
+    "profile_menu": {
+      "tooltip_title": "Открыть настройки",
+      "profile": "Профиль",
+      "estates": "Недвижимость",
+      "requests": "Заявки",
+      "logout": "Выйти"
+    }
   }
 }

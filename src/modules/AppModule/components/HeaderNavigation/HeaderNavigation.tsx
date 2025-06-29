@@ -8,15 +8,24 @@ import {
   Typography,
 } from "@mui/material";
 import { MdMenu } from "react-icons/md";
+import { useTranslation } from "react-i18next";
+
 import {
   menuButtonWrapperStyles,
   mobileMenuStyles,
   navigationListStyles,
 } from "./styles";
 
-const pages = ["Продукт", "Тарифы", "Контакты"];
-
+// TODO: решить нужен ли бургер меню на мобилке или все ссылки будут в профиле
 export const HeaderNavigation = () => {
+  const { t } = useTranslation();
+
+  const pages = [
+    { title: t("header.navigation.product"), link: "#product" },
+    { title: t("header.navigation.tariffs"), link: "#tariffs" },
+    { title: t("header.navigation.contacts"), link: "#contacts" },
+  ];
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
@@ -28,6 +37,7 @@ export const HeaderNavigation = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
   return (
     <React.Fragment>
       <Box sx={menuButtonWrapperStyles}>
@@ -51,23 +61,23 @@ export const HeaderNavigation = () => {
           onClose={handleCloseNavMenu}
           sx={mobileMenuStyles}
         >
-          {pages.map((page) => (
-            <MenuItem key={page} onClick={handleCloseNavMenu}>
-              <Typography sx={{ textAlign: "center" }}>{page}</Typography>
+          {pages.map(({ title }, index) => (
+            <MenuItem key={index} onClick={handleCloseNavMenu}>
+              <Typography sx={{ textAlign: "center" }}>{title}</Typography>
             </MenuItem>
           ))}
         </Menu>
       </Box>
       <Box sx={navigationListStyles}>
-        {pages.map((page) => (
+        {pages.map(({ title }, index) => (
           <Button
-            key={page}
+            key={index}
             onClick={handleCloseNavMenu}
             sx={{ display: "block" }}
             size="small"
             variant="text"
           >
-            {page}
+            {title}
           </Button>
         ))}
       </Box>
