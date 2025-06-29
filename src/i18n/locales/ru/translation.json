@@ -1,0 +1,9 @@
+{
+  "login": "Вход / Регистрация",
+  "logout": "Выйти",
+  "request_demo": "Запросить демо",
+  "select_language_placeholder": "Выберите язык",
+  "footer": {
+    "made_with": "Сделано с ❤️ в"
+  }
+}

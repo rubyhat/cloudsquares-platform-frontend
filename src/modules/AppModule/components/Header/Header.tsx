@@ -1,4 +1,6 @@
 import { Box, Button } from "@mui/material";
+import { useTranslation } from "react-i18next";
+
 import { HeaderNavigation } from "../HeaderNavigation";
 import { HeaderLogotype } from "../HeaderLogotype";
 import {
@@ -8,6 +10,7 @@ import {
 } from "./styles";
 
 export const Header = () => {
+  const { t } = useTranslation();
   return (
     <Box component="header" data-testid="header">
       <Box sx={headerContentStyles}>
@@ -17,10 +20,10 @@ export const Header = () => {
         </Box>
         <Box sx={loginWrapperStyles}>
           <Button variant="text" size="small">
-            Запросить демо
+            {t("request_demo")}
           </Button>
           <Button variant="contained" size="small">
-            Вход / Регистрация
+            {t("login")}
           </Button>
         </Box>
       </Box>

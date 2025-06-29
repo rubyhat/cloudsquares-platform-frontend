@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 
 import { AppModule } from "./modules/AppModule";
 import "./assets/global.scss";
+import "./i18n";
 
 /**
  * @file main.tsx
