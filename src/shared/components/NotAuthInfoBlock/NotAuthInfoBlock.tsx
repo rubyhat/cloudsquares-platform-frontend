@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 
-import { version } from "../../../../package.json";
-
 export const NotAuthInfoBlock = () => {
   const { t } = useTranslation();
   return (
@@ -15,7 +13,7 @@ export const NotAuthInfoBlock = () => {
               Упс, Вы не авторизованы ;(
             </Typography>
             <Typography component="p" variant="body1">
-              Создавайте магазины, продавайте и покупайте товары и услуги!
+              Управляйте объектами недвижимости и заявками!
             </Typography>
             <Typography component="p" variant="body1" mt={1} mb={2}>
               Для этого необходимо войти в систему или создать аккаунт :)
@@ -30,9 +28,6 @@ export const NotAuthInfoBlock = () => {
               {t("login")}
             </Button>
           </Box>
-          <Typography component="p" variant="body2" mt={1} color="#aaa">
-            {t("version")} {version}
-          </Typography>
         </Box>
       </Grid>
     </Grid>

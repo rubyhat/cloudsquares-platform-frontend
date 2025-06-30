@@ -17,17 +17,7 @@ export const RouteList = () => {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
 
-      <Route
-        path="/profile"
-        element={
-          <RequirePermission
-            permission="viewProfileDetails"
-            fallback={<Navigate to="/access-denied" replace />}
-          >
-            <Profile />
-          </RequirePermission>
-        }
-      />
+      <Route path="/profile" element={<Profile />} />
       <Route
         path="/profile/details"
         element={
