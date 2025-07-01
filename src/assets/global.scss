@@ -71,10 +71,10 @@ h6 {
 
 .section {
   padding: 32px 0;
-  @media (max-width: 768px) {
-    padding: 24px 0;
+  @media (max-width: 1200px) {
+    padding: 0 0 24px;
   }
   @media (max-width: 600px) {
-    padding: 16px 0;
+    padding: 0 0 16px;
   }
 }

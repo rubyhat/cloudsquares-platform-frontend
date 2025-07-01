@@ -1,5 +1,5 @@
 export const basicPageHeaderStyles = {
-  display: "flex",
+  display: { xs: "flex", lg: "none" },
   alignItems: "center",
   width: 1,
   p: 2,

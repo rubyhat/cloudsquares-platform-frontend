@@ -19,7 +19,7 @@ export interface AgencySlim {
   id: string;
   title: string;
   slug: string;
-  custom_domain: string;
+  custom_domain?: string;
 }
 
 export interface AgencySetting {
