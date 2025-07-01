@@ -1,0 +1,1 @@
+export { PropertiesModule } from "./PropertiesModule";

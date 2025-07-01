@@ -5,8 +5,11 @@ import { RequirePermission } from "../shared/permissions/guards/RequirePermissio
 
 const Login = React.lazy(() => import("../pages/Login"));
 const Home = React.lazy(() => import("../pages/Home"));
+
 const Profile = React.lazy(() => import("../pages/Profile"));
 const ProfileDetails = React.lazy(() => import("../pages/ProfileDetails"));
+
+const Properties = React.lazy(() => import("../pages/Properties"));
 
 const AccessDenied = React.lazy(() => import("../pages/System/AccessDenied"));
 const PageNotFound = React.lazy(() => import("../pages/System/PageNotFound"));
@@ -26,6 +29,17 @@ export const RouteList = () => {
             fallback={<Navigate to="/access-denied" replace />}
           >
             <ProfileDetails />
+          </RequirePermission>
+        }
+      />
+      <Route
+        path="/properties"
+        element={
+          <RequirePermission
+            permission="viewPropertyList"
+            fallback={<Navigate to="/access-denied" replace />}
+          >
+            <Properties />
           </RequirePermission>
         }
       />

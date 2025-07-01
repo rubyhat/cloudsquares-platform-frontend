@@ -18,8 +18,8 @@ export const HomeModule = () => {
     { label: "Сотрудники", onClick: () => navigate("/agency/users") },
   ];
   const propertiesLinks: BasicNavListToPageItem[] = [
-    { label: "Каталог недвижимости", link: "/" },
-    { label: "Добавить новую", link: "/" },
+    { label: "Каталог недвижимости", link: "/properties" },
+    { label: "Добавить новую", link: "/properties/create" },
   ];
   const requestsLinks: BasicNavListToPageItem[] = [
     { label: "Заявки на покупку", link: "/" },

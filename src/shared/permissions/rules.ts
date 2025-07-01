@@ -5,7 +5,7 @@ import { UserRole } from "./roles";
  * Ключ — действие, значение — список разрешённых ролей.
  */
 
-const allRoles = [
+export const allRoles = [
   UserRole.user,
   UserRole.admin_manager,
   UserRole.admin,
@@ -14,9 +14,20 @@ const allRoles = [
   UserRole.agent_manager,
 ];
 
+export const sameAgency = [
+  UserRole.agent,
+  UserRole.agent_admin,
+  UserRole.agent_manager,
+];
+
+export const admins = [UserRole.admin, UserRole.admin_manager];
+
+export const sameAgencyAndAdmins = [...sameAgency, ...admins];
+
 export const accessRules = {
-  viewAnalytics: [UserRole.admin, UserRole.admin_manager],
+  viewAnalytics: admins, // TODO: change access policy
   manageUsers: [UserRole.admin],
-  viewProfile: allRoles,
-  viewProfileDetails: allRoles,
+  viewProfile: sameAgencyAndAdmins,
+  viewProfileDetails: sameAgencyAndAdmins,
+  viewPropertyList: sameAgencyAndAdmins,
 };
