@@ -29,7 +29,7 @@ export const PropertiesList = () => {
         propertiesIsSuccess &&
         properties.map((property) => (
           <Grid size={{ xs: 12, md: 6, lg: 4 }} key={property.id}>
-            <PropertiesListItem />
+            <PropertiesListItem property={property} />
           </Grid>
         ))}
     </React.Fragment>

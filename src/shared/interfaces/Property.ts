@@ -12,9 +12,26 @@ export enum ListingTypeText {
   rent = "Аренда",
 }
 
+export enum PropertyStatus {
+  pending = "pending",
+  active = "active",
+  sold = "sold",
+  rented = "rented",
+  cancelled = "cancelled",
+}
+
+export enum PropertyStatusText {
+  pending = "На проверке",
+  active = "Активно",
+  sold = "Продано",
+  rented = "Сдано в аренду",
+  cancelled = "Отменено",
+}
+
 export interface Property {
   id: string;
   title: string;
+  status: PropertyStatus;
   description: string;
   discount: number;
   is_active: boolean;
