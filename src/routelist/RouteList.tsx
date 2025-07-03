@@ -10,6 +10,7 @@ const Profile = React.lazy(() => import("../pages/Profile"));
 const ProfileDetails = React.lazy(() => import("../pages/ProfileDetails"));
 
 const Properties = React.lazy(() => import("../pages/Properties"));
+const PropertyDetails = React.lazy(() => import("../pages/PropertyDetails"));
 
 const AccessDenied = React.lazy(() => import("../pages/System/AccessDenied"));
 const PageNotFound = React.lazy(() => import("../pages/System/PageNotFound"));
@@ -40,6 +41,17 @@ export const RouteList = () => {
             fallback={<Navigate to="/access-denied" replace />}
           >
             <Properties />
+          </RequirePermission>
+        }
+      />
+      <Route
+        path="/properties/:id"
+        element={
+          <RequirePermission
+            permission="viewPropertyDetails"
+            fallback={<Navigate to="/access-denied" replace />}
+          >
+            <PropertyDetails />
           </RequirePermission>
         }
       />
