@@ -31,4 +31,5 @@ export const accessRules = {
   viewProfileDetails: sameAgencyAndAdmins,
   viewPropertyList: sameAgencyAndAdmins,
   viewPropertyDetails: sameAgencyAndAdmins,
+  viewAgencyUsers: sameAgencyAndAdmins,
 };

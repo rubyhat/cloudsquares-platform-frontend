@@ -56,7 +56,7 @@ export const BasicPageHeader = ({
           <IoArrowBackSharp size={16} color="#1c1c1c" />
         </IconButton>
       )}
-      <Typography component="h6" variant="h6">
+      <Typography component="h6" variant="h5">
         {title}
       </Typography>
     </Box>
