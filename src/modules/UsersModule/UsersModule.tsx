@@ -1,6 +1,8 @@
 import React from "react";
-import { BasicPageHeader } from "../../shared/components/Mobile/BasicPageHeader";
 import { Container, Grid } from "@mui/material";
+
+import { UsersList } from "./components/UsersList";
+import { BasicPageHeader } from "../../shared/components/Mobile/BasicPageHeader";
 
 export const UsersModule = () => {
   return (
@@ -8,7 +10,7 @@ export const UsersModule = () => {
       <BasicPageHeader title="Сотрудники" shownBackArrowButton />
       <Container>
         <Grid container spacing={2}>
-          <Grid size={12}></Grid>
+          <UsersList />
         </Grid>
       </Container>
     </React.Fragment>
