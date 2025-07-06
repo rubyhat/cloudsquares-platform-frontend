@@ -6,7 +6,7 @@ export const AccessDenied = () => {
   return (
     <Box component="section" className="section" data-testid="pageAccessDenied">
       <Container>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} pt={2}>
           <Grid size={12}>
             <Box marginBottom={1.5}>
               <Typography component="h1" variant="h4">

@@ -38,12 +38,15 @@ export const BottomNavigationMenu = () => {
         </Typography>
       </Box>
 
-      <Box sx={menuItemStyles} component={Link} to="/catalog">
-        <FaSearch size={16} style={menuItemIconStyles(isActive("/catalog"))} />
+      <Box sx={menuItemStyles} component={Link} to="/properties">
+        <FaSearch
+          size={16}
+          style={menuItemIconStyles(isActive("/properties"))}
+        />
         <Typography
           component="p"
           variant="body1"
-          sx={menuItemTextStyles(isActive("/catalog"))}
+          sx={menuItemTextStyles(isActive("/properties"))}
         >
           Каталог
         </Typography>
