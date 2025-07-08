@@ -15,10 +15,12 @@ import {
   mobileMenuStyles,
   navigationListStyles,
 } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 // TODO: решить нужен ли бургер меню на мобилке или все ссылки будут в профиле
 export const HeaderNavigation = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const pages = [
     { title: t("header.navigation.properties"), link: "/properties" },
@@ -36,6 +38,11 @@ export const HeaderNavigation = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const handleClickMenuItem = (link: string) => {
+    handleCloseNavMenu();
+    navigate(link);
   };
 
   return (
@@ -69,10 +76,10 @@ export const HeaderNavigation = () => {
         </Menu>
       </Box>
       <Box sx={navigationListStyles}>
-        {pages.map(({ title }, index) => (
+        {pages.map(({ title, link }, index) => (
           <Button
             key={index}
-            onClick={handleCloseNavMenu}
+            onClick={() => handleClickMenuItem(link)}
             sx={{ display: "block" }}
             size="small"
             variant="text"
