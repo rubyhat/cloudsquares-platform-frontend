@@ -4,6 +4,7 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 
 import { BasicPageHeader } from "../../shared/components/Mobile/BasicPageHeader";
 import { useGetPropertyDetailsQuery } from "./hooks";
+import { PropertyDetailsToolsBar } from "./components/PropertyDetailsToolsBar";
 
 export const PropertyDetailsModule = () => {
   const { id } = useParams();
@@ -19,6 +20,7 @@ export const PropertyDetailsModule = () => {
                 <Typography component="h1" variant="h4">
                   {data.title}
                 </Typography>
+                <PropertyDetailsToolsBar />
               </Box>
             )}
           </Grid>

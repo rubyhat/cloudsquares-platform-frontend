@@ -1,0 +1,1 @@
+export { PropertyDetailsPropertySettings } from "./PropertyDetailsPropertySettings";
