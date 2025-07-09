@@ -1,0 +1,1 @@
+export { PropertyUpdateModule } from "./PropertyUpdateModule";
