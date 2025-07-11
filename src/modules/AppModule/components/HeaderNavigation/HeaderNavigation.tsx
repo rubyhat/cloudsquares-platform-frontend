@@ -9,13 +9,13 @@ import {
 } from "@mui/material";
 import { MdMenu } from "react-icons/md";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import {
   menuButtonWrapperStyles,
   mobileMenuStyles,
   navigationListStyles,
 } from "./styles";
-import { useNavigate } from "react-router-dom";
 
 // TODO: решить нужен ли бургер меню на мобилке или все ссылки будут в профиле
 export const HeaderNavigation = () => {
@@ -26,6 +26,7 @@ export const HeaderNavigation = () => {
     { title: t("header.navigation.properties"), link: "/properties" },
     { title: t("header.navigation.requests"), link: "/requests" },
     { title: t("header.navigation.analytics"), link: "/analytics" },
+    { title: t("header.navigation.customers"), link: "/agency/customers" },
   ];
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(

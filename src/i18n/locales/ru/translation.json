@@ -10,7 +10,8 @@
     "navigation": {
       "properties": "Недвижимость",
       "requests": "Заявки",
-      "analytics": "Аналитика"
+      "analytics": "Аналитика",
+      "customers": "База клиентов"
     },
     "profile_menu": {
       "tooltip_title": "Открыть настройки",
