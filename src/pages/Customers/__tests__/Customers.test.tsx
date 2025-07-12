@@ -5,7 +5,7 @@ describe("Page Customers", () => {
   it("renders the Customers page", () => {
     render(<Customers />);
 
-    const rootElement = screen.getByTestId("pageHCustomers");
+    const rootElement = screen.getByTestId("pageCustomers");
     expect(rootElement).toBeInTheDocument();
   });
 });
