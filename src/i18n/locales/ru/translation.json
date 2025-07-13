@@ -20,5 +20,21 @@
       "requests": "Заявки",
       "logout": "Выйти"
     }
+  },
+  "customers": {
+    "table": {
+      "head": {
+        "id": "ID",
+        "fio": "ФИО",
+        "phone": "Телефон",
+        "email": "Почта",
+        "service_type": "Тип услуги",
+        "comment": "Комментарий",
+        "relations": "Связи"
+      },
+      "body": {
+        "show_relations": "Показать свзяи"
+      }
+    }
   }
 }

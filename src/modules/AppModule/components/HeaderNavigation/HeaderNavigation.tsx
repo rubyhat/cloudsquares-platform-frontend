@@ -25,7 +25,7 @@ export const HeaderNavigation = () => {
   const pages = [
     { title: t("header.navigation.properties"), link: "/properties" },
     { title: t("header.navigation.requests"), link: "/requests" },
-    { title: t("header.navigation.analytics"), link: "/analytics" },
+    { title: t("header.navigation.analytics"), link: "/agency/dashboards" },
     { title: t("header.navigation.customers"), link: "/agency/customers" },
   ];
 

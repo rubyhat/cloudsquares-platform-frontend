@@ -1,0 +1,1 @@
+export { CustomersTableHead } from "./CustomersTableHead";

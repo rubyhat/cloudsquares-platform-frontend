@@ -25,7 +25,7 @@ export const admins = [UserRole.admin, UserRole.admin_manager];
 export const sameAgencyAndAdmins = [...sameAgency, ...admins];
 
 export const accessRules = {
-  viewAnalytics: admins, // TODO: change access policy
+  viewAnalytics: sameAgencyAndAdmins, // TODO: change access policy
   manageUsers: [UserRole.admin],
   viewProfile: sameAgencyAndAdmins,
   viewProfileDetails: sameAgencyAndAdmins,

@@ -1,0 +1,1 @@
+export { CustomersTableBody } from "./CustomersTableBody";
