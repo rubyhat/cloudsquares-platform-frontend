@@ -1,0 +1,1 @@
+export { PropertiesFilter } from "./PropertiesFilter";

@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Grid } from "@mui/material";
 
-import { PropertiesSearchWrapper } from "./components/PropertiesSearchWrapper";
-import { BasicPageHeader } from "../../shared/components/Mobile/BasicPageHeader";
 import { PropertiesList } from "./components/PropertiesList";
+import { PropertiesHeader } from "./components/PropertiesHeader";
+import { BasicPageHeader } from "../../shared/components/Mobile/BasicPageHeader";
 
 export const PropertiesModule = () => {
   return (
@@ -16,7 +16,7 @@ export const PropertiesModule = () => {
       <Container>
         <Grid container spacing={2}>
           <Grid size={12}>
-            <PropertiesSearchWrapper />
+            <PropertiesHeader />
           </Grid>
           <PropertiesList />
         </Grid>
