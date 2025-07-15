@@ -1,0 +1,1 @@
+export { PropertyDetailsPhotoBlock } from "./PropertyDetailsPhotoBlock";

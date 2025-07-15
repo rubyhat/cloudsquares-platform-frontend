@@ -7,6 +7,7 @@ import { useGetPropertyDetailsQuery } from "./hooks";
 import { PropertyDetailsToolsBar } from "./components/PropertyDetailsToolsBar";
 import { PropertyDetailsPriceBlock } from "./components/PropertyDetailsPriceBlock";
 import { AxiosErrorAlertMessage } from "../../shared/components/AxiosErrorAlertMessage";
+import { PropertyDetailsPhotoBlock } from "./components/PropertyDetailsPhotoBlock";
 
 export const PropertyDetailsModule = () => {
   const { id } = useParams();
@@ -15,7 +16,7 @@ export const PropertyDetailsModule = () => {
   return (
     <React.Fragment>
       <BasicPageHeader title="Детали недвижимости" shownBackArrowButton />
-      <Container maxWidth={false}>
+      <Container maxWidth={false} sx={{ pb: { xs: "100px", md: 0 } }}>
         <Grid container spacing={2}>
           {error && !isLoading && (
             <Grid size={{ xs: 12, md: 6, lg: 4 }}>
@@ -33,7 +34,9 @@ export const PropertyDetailsModule = () => {
                   <PropertyDetailsToolsBar />
                 </Box>
               </Grid>
-              <Grid size={12}></Grid>
+              <Grid size={{ xs: 12, md: 8 }}>
+                <PropertyDetailsPhotoBlock photos={data.property_photos} />
+              </Grid>
               <PropertyDetailsPriceBlock property={data} />
             </React.Fragment>
           )}

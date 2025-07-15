@@ -1,6 +1,6 @@
 export const tempAvatarStyles = {
-  width: "4rem",
-  height: "4rem",
+  width: { xs: "3rem", md: "4rem" },
+  height: { xs: "3rem", md: "4rem" },
   borderRadius: "50%",
   display: "flex",
   alignItems: "center",
