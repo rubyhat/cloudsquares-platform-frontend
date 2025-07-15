@@ -20,7 +20,7 @@ export const PropertyDetailsPropertySettings = () => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
         variant="contained"
-        size="small"
+        size="medium"
       >
         Настройки
       </Button>

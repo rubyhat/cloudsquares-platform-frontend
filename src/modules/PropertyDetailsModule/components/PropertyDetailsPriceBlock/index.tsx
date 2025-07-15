@@ -1,0 +1,1 @@
+export { PropertyDetailsPriceBlock } from "./PropertyDetailsPriceBlock";

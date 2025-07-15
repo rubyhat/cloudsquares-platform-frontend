@@ -1,42 +1,19 @@
 import { Box, Typography } from "@mui/material";
 import { Property } from "../../interfaces/Property";
-import {
-  calculateDiscountInPercent,
-  calculatePricePerMeter,
-} from "../../utils";
+import { calculatePricePerMeter } from "../../utils";
+import { DiscountLabel } from "../../DiscountLabel";
 
 interface PropertyPriceInfoProps {
   property: Property;
 }
 
+// TODO: Проверить, точно ли нужен этот компонент в shared?
 export const PropertyPriceInfo = ({ property }: PropertyPriceInfoProps) => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 0.5 }}>
-      <Box
-        sx={{
-          display: property.discount ? "flex" : "none",
-          alignItems: "center",
-          gap: 1,
-        }}
-      >
-        <Typography
-          component="p"
-          variant="subtitle1"
-          color="customColors.success"
-        >
-          -{calculateDiscountInPercent(property.price, property.discount)}%
-        </Typography>
-        <Typography
-          component="p"
-          variant="subtitle1"
-          color="customColors.grey400"
-          sx={{ textDecoration: "line-through" }}
-        >
-          {(property.price - property.discount).toLocaleString("ru")}₽
-        </Typography>
-      </Box>
+      <DiscountLabel price={property.price} discount={property.discount} />
       <Typography component="h6" variant="h4">
-        {property.price.toLocaleString("ru")}₽
+        {(property.price - property.discount).toLocaleString("ru")}₽
       </Typography>
       <Typography component="p" variant="body1">
         {calculatePricePerMeter(property.price, 42)}₽ за м²

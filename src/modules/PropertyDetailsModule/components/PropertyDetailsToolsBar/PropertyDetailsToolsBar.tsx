@@ -8,7 +8,7 @@ export const PropertyDetailsToolsBar = () => {
     <Box sx={{ py: 1, display: "flex", alignItems: "center", gap: 2 }}>
       <Button
         variant="contained"
-        size="small"
+        size="medium"
         onClick={() => navigate("/requests/buy/id")}
       >
         Заявки на покупку

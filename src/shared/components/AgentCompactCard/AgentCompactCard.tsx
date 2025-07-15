@@ -1,5 +1,7 @@
+import { MdStar } from "react-icons/md";
 import { Box, Typography } from "@mui/material";
 import { UserSlim } from "../../interfaces";
+import { tempAvatarStyles } from "./styles";
 
 interface AgentCompactCardProps {
   agent: UserSlim;
@@ -8,17 +10,7 @@ interface AgentCompactCardProps {
 export const AgentCompactCard = ({ agent }: AgentCompactCardProps) => {
   return (
     <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1 }}>
-      <Box
-        sx={{
-          width: 64,
-          height: 64,
-          borderRadius: "50%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "customColors.primary",
-        }}
-      >
+      <Box sx={tempAvatarStyles}>
         <Typography component="p" variant="h4" color="secondary">
           {agent.first_name[0]}
         </Typography>
@@ -30,9 +22,12 @@ export const AgentCompactCard = ({ agent }: AgentCompactCardProps) => {
         <Typography component="p" variant="caption1">
           Специалист по недвижимости
         </Typography>
-        <Typography component="p" variant="caption1">
-          Рейтинг 5.0
-        </Typography>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+          <Typography component="p" variant="caption1">
+            Рейтинг <strong>5.0</strong>
+          </Typography>
+          <MdStar color="#FACC15" />
+        </Box>
       </Box>
     </Box>
   );

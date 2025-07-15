@@ -3,37 +3,35 @@ interface DisplayUserNameProps {
   last_name?: string | null;
   middle_name?: string | null;
 }
-
+/**
+ * Формирует короткое и полное представление имени пользователя.
+ *
+ * - Полное имя (`fullName`) → "Фамилия Имя Отчество"
+ * - Краткое имя (`shortName`) → "Фамилия Имя" (отчество опускается)
+ * - Если отсутствуют все данные, возвращается "-"/"-"
+ *
+ * @param {DisplayUserNameProps} params - Объект с полями ФИО
+ * @param {string | null | undefined} params.first_name - Имя
+ * @param {string | null | undefined} params.last_name - Фамилия
+ * @param {string | null | undefined} params.middle_name - Отчество
+ * @returns {{ shortName: string; fullName: string }} Объект с полным и кратким именем
+ */
 export const displayUserName = ({
   first_name,
   last_name,
   middle_name,
 }: DisplayUserNameProps): { shortName: string; fullName: string } => {
-  let shortName = "";
-  let fullName = "";
+  const hasAnyName = first_name || last_name || middle_name;
 
-  if (first_name) {
-    shortName = first_name;
-    fullName = first_name;
+  if (!hasAnyName) {
+    return { shortName: "-", fullName: "-" };
   }
 
-  if (last_name) {
-    shortName += " " + last_name.slice(0, 1) + ".";
-    fullName += " " + last_name;
-  }
-
-  if (middle_name) {
-    shortName += " " + middle_name.slice(0, 1) + ".";
-    fullName += " " + middle_name;
-  }
-
-  if (shortName.length === 0) {
-    shortName = "-";
-    fullName = "-";
-  }
+  const fullNameParts = [last_name, first_name, middle_name].filter(Boolean);
+  const shortNameParts = [last_name, first_name].filter(Boolean);
 
   return {
-    shortName,
-    fullName,
+    fullName: fullNameParts.join(" "),
+    shortName: shortNameParts.join(" "),
   };
 };
