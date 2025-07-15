@@ -11,7 +11,7 @@ export const selectLanguageWrapperStyles = {
 };
 
 export const linkStyles = {
-  color: "customColors.colorsAccent",
+  color: "customColors.primary",
   textDecoration: "underline",
   fontWeight: 700,
 };

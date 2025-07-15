@@ -8,6 +8,10 @@ export * from "./formatDateTime";
 
 // Basic text
 export * from "./displayUserName";
+export * from "./propertyTitle";
+export * from "./propertyAddress";
+export * from "./calculatePricePerMeter";
+export * from "./calculateDiscountInPercent";
 
 // Basic api's
 export * from "./showApiError";

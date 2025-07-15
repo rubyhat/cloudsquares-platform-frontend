@@ -11,7 +11,7 @@ export const PropertyDetailsModule = () => {
   const { data, isSuccess } = useGetPropertyDetailsQuery(id);
   return (
     <React.Fragment>
-      <BasicPageHeader title="Детали недвижимости" />
+      <BasicPageHeader title="Детали недвижимости" shownBackArrowButton />
       <Container>
         <Grid container spacing={2}>
           <Grid size={12}>

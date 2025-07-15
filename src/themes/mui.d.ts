@@ -56,30 +56,27 @@ declare module "@mui/material/styles" {
     customColors?: PaletteCustomColors;
   }
   interface PaletteCustomColors {
-    colorsWhite: string;
-    colorsWhiteDark: string;
-    colorsGrey: string;
-    colorsGreyLight: string;
-    colorsGreyDark: string;
-    colorsBlue: string;
+    primary: string;
+    white: string;
 
-    colorsAccent: string;
-    colorsAccentActive: string;
-    colorsAccentHover: string;
+    grey50: string;
+    grey100: string;
+    grey200: string;
+    grey300: string;
+    grey400: string;
+    grey500: string;
+    grey600: string;
+    grey700: string;
+    grey800: string;
+    grey900: string;
 
-    colorsAccentDark: string;
-    colorsAccentActiveDark: string;
-    colorsAccentHoverDark: string;
-
-    colorsAccentLight: string;
-    colorsAccentActiveLight: string;
-    colorsAccentHoverLight: string;
-
-    colorsAccentSecondary;
+    accent: string;
+    accentActive: string;
+    accentHover: string;
 
     // todo: заменить цвета в теме MUI
-    colorsSuccess: string;
-    colorsError: string;
+    success: string;
+    error: string;
 
     labelsPrimary: string;
     labelsSecondary: string;

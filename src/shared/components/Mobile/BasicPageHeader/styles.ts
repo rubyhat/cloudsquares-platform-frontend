@@ -4,6 +4,6 @@ export const basicPageHeaderStyles = {
   width: 1,
   p: 2,
   borderBottom: "1px solid",
-  borderColor: "customColors.colorsGreyLight",
-  backgroundColor: "customColors.colorsWhite",
+  borderColor: "customColors.grey300",
+  backgroundColor: "customColors.white",
 };

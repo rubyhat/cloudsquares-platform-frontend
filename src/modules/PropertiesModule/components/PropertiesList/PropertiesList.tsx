@@ -28,7 +28,7 @@ export const PropertiesList = () => {
       {properties &&
         propertiesIsSuccess &&
         properties.map((property) => (
-          <Grid size={{ xs: 12, md: 6, lg: 4 }} key={property.id}>
+          <Grid size={12} key={property.id}>
             <PropertiesListItem property={property} />
           </Grid>
         ))}

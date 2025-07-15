@@ -8,7 +8,7 @@ export const PropertiesSearchWrapper = () => {
     toast.error("Поиск в разработке");
   };
   return (
-    <Box>
+    <Box sx={{ width: 1 }}>
       <SearchInputForm sendRequest={sendRequest} />
     </Box>
   );

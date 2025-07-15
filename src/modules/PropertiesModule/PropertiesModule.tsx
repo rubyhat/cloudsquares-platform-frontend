@@ -13,7 +13,7 @@ export const PropertiesModule = () => {
         shownBackArrowButton
         backButtonLink="/"
       />
-      <Container>
+      <Container maxWidth={false}>
         <Grid container spacing={2}>
           <Grid size={12}>
             <PropertiesHeader />

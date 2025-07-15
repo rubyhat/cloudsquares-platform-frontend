@@ -70,7 +70,7 @@ export const BasicSearchInputField = ({
           label={label}
           variant="outlined"
           placeholder={placeholder}
-          sx={{ minWidth: 250, width: 1 }}
+          sx={{ minWidth: 150, width: 1 }}
           helperText={errors[name]?.message as string}
           error={!!errors[name]}
           onChange={(e) => {
