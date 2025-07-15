@@ -1,79 +1,16 @@
 import { createTheme } from "@mui/material/styles";
 import { ruRU } from "@mui/material/locale";
 
-const titleLarge = {
-  fontFeatureSettings: "'clig' off, 'liga' off",
-  fontSize: "32px",
-  fontStyle: "normal",
-  lineHeight: "normal",
-};
-
-const titleFirst = {
-  fontFeatureSettings: "'clig' off, 'liga' off",
-  fontSize: "28px",
-  fontStyle: "normal",
-  lineHeight: "34px" /* 121.429% */,
-  letterSpacing: "-0.4px",
-};
-
-const titleSecond = {
-  fontFeatureSettings: "'clig' off, 'liga' off",
-  fontSize: "22px",
-  fontStyle: "normal",
-  lineHeight: "28px" /* 127.273% */,
-  letterSpacing: "-0.4px",
-};
-
-const titleThird = {
-  fontFeatureSettings: "'clig' off, 'liga' off",
-  fontSize: "20px",
-  fontStyle: "normal",
-  lineHeight: "25px" /* 125% */,
-  letterSpacing: "-0.4px",
-};
-
-const textBody = {
-  fontSize: "24px",
-  fontStyle: "normal",
-  lineHeight: "normal",
-};
-
-const textCallout = {
-  fontFeatureSettings: "'clig' off, 'liga' off",
-  fontSize: "16px",
-  fontStyle: "normal",
-  lineHeight: "21px" /* 131.25% */,
-  letterSpacing: "-0.4px",
-};
-
-const textSubheadline = {
-  fontFeatureSettings: "'clig' off, 'liga' off",
-  fontSize: "15px",
-  fontStyle: "normal",
-  lineHeight: "20px",
-  letterSpacing: "-0.4px",
-};
-
-const textFootnote = {
-  fontFeatureSettings: "'clig' off, 'liga' off",
-  fontSize: "13px",
-  fontStyle: "normal",
-  lineHeight: "18px",
-  letterSpacing: "-0.4px",
-};
-
-const captionFirst = {
-  fontSize: "20px",
-  fontStyle: "normal",
-  lineHeight: "normal",
-};
-
-const captionSecond = {
-  fontFeatureSettings: "'clig' off, 'liga' off",
-  fontSize: "11px",
-  fontStyle: "normal",
-  lineHeight: "13px",
-  letterSpacing: "-0.4px",
+const createTextStyles = (
+  fontSize: string,
+  lineHeight: string,
+  fontWeight: number,
+) => {
+  return {
+    fontSize,
+    lineHeight,
+    fontWeight,
+  };
 };
 
 export const customTheme = createTheme(
@@ -82,20 +19,23 @@ export const customTheme = createTheme(
       MuiButton: {
         styleOverrides: {
           sizeSmall: {
-            padding: "4px 16px",
+            padding: "4px 10px",
             fontSize: "14px",
+            lineHeight: "16px",
             textTransform: "none",
             borderRadius: 8,
           },
           sizeMedium: {
-            padding: "8px 16px",
-            fontSize: "15px",
+            padding: "6px 16px",
+            fontSize: "16px",
+            lineHeight: "20px",
             textTransform: "none",
             borderRadius: 8,
           },
           sizeLarge: {
-            padding: "12px 16px",
-            fontSize: "16px",
+            padding: "8px 22px",
+            fontSize: "18px",
+            lineHeight: "24px",
             textTransform: "none",
             borderRadius: 8,
           },
@@ -103,93 +43,22 @@ export const customTheme = createTheme(
       },
     },
     typography: {
-      fontFamily: `"SF Pro", "SF Pro Display", "Helvetica", "Inter", "Roboto", sans-serif`,
-      // Titles
-      titleLargeRegular: {
-        ...titleLarge,
-        fontWeight: 400,
-      },
-      titleLargeEmphasized: {
-        ...titleLarge,
-        fontWeight: 700,
-      },
-      titleFirstRegular: {
-        ...titleFirst,
-        fontWeight: 400,
-      },
-      titleFirstEmphasized: {
-        ...titleFirst,
-        fontWeight: 700,
-      },
-      titleSecondRegular: {
-        ...titleSecond,
-        fontWeight: 400,
-      },
-      titleSecondEmphasized: {
-        ...titleSecond,
-        fontWeight: 700,
-      },
-      titleThirdRegular: {
-        ...titleThird,
-        fontWeight: 400,
-      },
-      titleThirdEmphasized: {
-        ...titleThird,
-        fontWeight: 600,
-      },
-      // Text
-      textBodyRegular: {
-        ...textBody,
-        fontWeight: 600,
-      },
-      textBodyMiddlesized: {
-        ...textBody,
-        fontWeight: 700,
-      },
-      textBodyEmphasized: {
-        ...textBody,
-        fontWeight: 800,
-      },
-      textCalloutRegular: {
-        ...textCallout,
-        fontWeight: 400,
-      },
-      textCalloutEmphasized: {
-        ...textCallout,
-        fontWeight: 600,
-      },
-      textSubheadlineRegular: {
-        ...textSubheadline,
-        fontWeight: 400,
-      },
-      textSubheadlineEmphasized: {
-        ...textSubheadline,
-        fontWeight: 600,
-      },
-      textFootnoteRegular: {
-        ...textFootnote,
-        fontWeight: 400,
-      },
-      textFootnoteEmphasized: {
-        ...textFootnote,
-        fontWeight: 600,
-      },
-      captionFirstRegular: {
-        ...captionFirst,
-        fontWeight: 600,
-      },
-      captionFirstEmphasized: {
-        ...captionFirst,
-        fontWeight: 800,
-      },
-      captionSecondRegular: {
-        ...captionSecond,
-        fontWeight: 400,
-      },
-      captionSecondEmphasized: {
-        ...captionSecond,
-        fontWeight: 500,
-      },
+      fontFamily: `"Inter", "SF Pro", "SF Pro Display", "Helvetica", "Inter", "Roboto", sans-serif`,
+      h1: createTextStyles("48px", "58px", 600),
+      h2: createTextStyles("40px", "48px", 600),
+      h3: createTextStyles("32px", "38px", 600),
+      h4: createTextStyles("28px", "34px", 600),
+      h5: createTextStyles("24px", "28px", 600),
+      h6: createTextStyles("20px", "24px", 600),
+      subtitle1: createTextStyles("18px", "28px", 600),
+      subtitle2: createTextStyles("16px", "24px", 600),
+      body1: createTextStyles("16px", "24px", 400),
+      body2: createTextStyles("16px", "24px", 500),
+      body3: createTextStyles("14px", "20px", 400),
+      body4: createTextStyles("14px", "20px", 500),
+      caption1: createTextStyles("12px", "16px", 400),
+      caption2: createTextStyles("12px", "16px", 500),
+      caption3: createTextStyles("10px", "14px", 500),
     },
     palette: {
       primary: {

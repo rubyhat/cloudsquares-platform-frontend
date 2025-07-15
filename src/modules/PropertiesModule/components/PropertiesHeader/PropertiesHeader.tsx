@@ -4,8 +4,14 @@ import { PropertiesFilter } from "../PropertiesFilter";
 
 export const PropertiesHeader = () => {
   return (
-    <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-      <Typography component="h1" variant="h4">
+    <Box
+      sx={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        alignItems: "center",
+      }}
+    >
+      <Typography component="h1" variant="h3">
         Каталог недвижимости
       </Typography>
       <Box
@@ -13,6 +19,7 @@ export const PropertiesHeader = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
+          gap: 2,
         }}
       >
         <PropertiesSearchWrapper />

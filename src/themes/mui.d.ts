@@ -10,111 +10,43 @@ declare module "@mui/material/Button" {
 
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
-    titleLargeRegular: true;
-    titleLargeEmphasized: true;
-    titleFirstRegular: true;
-    titleFirstEmphasized: true;
-    titleSecondRegular: true;
-    titleSecondEmphasized: true;
-    titleThirdRegular: true;
-    titleThirdEmphasized: true;
+    body3: true;
+    body4: true;
 
-    textBodyRegular: true;
-    textBodyMiddlesized: true;
-    textBodyEmphasized: true;
-    textCalloutRegular: true;
-    textCalloutEmphasized: true;
-    textSubheadlineRegular: true;
-    textSubheadlineEmphasized: true;
-    textFootnoteRegular: true;
-    textFootnoteEmphasized: true;
-
-    captionFirstRegular: true;
-    captionFirstEmphasized: true;
-    captionSecondRegular: true;
-    captionSecondEmphasized: true;
+    caption1: true;
+    caption2: true;
+    caption3: true;
   }
 }
 declare module "@mui/material/styles/createTypography" {
   interface Typography {
-    titleLargeRegular: React.CSSProperties;
-    titleLargeEmphasized: React.CSSProperties;
-    titleFirstRegular: React.CSSProperties;
-    titleFirstEmphasized: React.CSSProperties;
-    titleSecondRegular: React.CSSProperties;
-    titleSecondEmphasized: React.CSSProperties;
-    titleThirdRegular: React.CSSProperties;
-    titleThirdEmphasized: React.CSSProperties;
+    body3: React.CSSProperties;
+    body4: React.CSSProperties;
 
-    textBodyRegular: React.CSSProperties;
-    textBodyMiddlesized: React.CSSProperties;
-    textBodyEmphasized: React.CSSProperties;
-    textCalloutRegular: React.CSSProperties;
-    textCalloutEmphasized: React.CSSProperties;
-    textSubheadlineRegular: React.CSSProperties;
-    textSubheadlineEmphasized: React.CSSProperties;
-    textFootnoteRegular: React.CSSProperties;
-    textFootnoteEmphasized: React.CSSProperties;
-
-    captionFirstRegular: React.CSSProperties;
-    captionFirstEmphasized: React.CSSProperties;
-    captionSecondRegular: React.CSSProperties;
-    captionSecondEmphasized: React.CSSProperties;
+    caption1: React.CSSProperties;
+    caption2: React.CSSProperties;
+    caption3: React.CSSProperties;
   }
 }
 
 declare module "@mui/material/styles" {
   // Шрифты
   interface TypographyVariants {
-    titleLargeRegular: React.CSSProperties;
-    titleLargeEmphasized: React.CSSProperties;
-    titleFirstRegular: React.CSSProperties;
-    titleFirstEmphasized: React.CSSProperties;
-    titleSecondRegular: React.CSSProperties;
-    titleSecondEmphasized: React.CSSProperties;
-    titleThirdRegular: React.CSSProperties;
-    titleThirdEmphasized: React.CSSProperties;
+    body3: React.CSSProperties;
+    body4: React.CSSProperties;
 
-    textBodyRegular: React.CSSProperties;
-    textBodyMiddlesized: React.CSSProperties;
-    textBodyEmphasized: React.CSSProperties;
-    textCalloutRegular: React.CSSProperties;
-    textCalloutEmphasized: React.CSSProperties;
-    textSubheadlineRegular: React.CSSProperties;
-    textSubheadlineEmphasized: React.CSSProperties;
-    textFootnoteRegular: React.CSSProperties;
-    textFootnoteEmphasized: React.CSSProperties;
-
-    captionFirstRegular: React.CSSProperties;
-    captionFirstEmphasized: React.CSSProperties;
-    captionSecondRegular: React.CSSProperties;
-    captionSecondEmphasized: React.CSSProperties;
+    caption1: React.CSSProperties;
+    caption2: React.CSSProperties;
+    caption3: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
-    titleLargeRegular?: React.CSSProperties;
-    titleLargeEmphasized?: React.CSSProperties;
-    titleFirstRegular?: React.CSSProperties;
-    titleFirstEmphasized?: React.CSSProperties;
-    titleSecondRegular?: React.CSSProperties;
-    titleSecondEmphasized?: React.CSSProperties;
-    titleThirdRegular?: React.CSSProperties;
-    titleThirdEmphasized?: React.CSSProperties;
+    body3: React.CSSProperties;
+    body4: React.CSSProperties;
 
-    textBodyRegular?: React.CSSProperties;
-    textBodyMiddlesized: React.CSSProperties;
-    textBodyEmphasized?: React.CSSProperties;
-    textCalloutRegular?: React.CSSProperties;
-    textCalloutEmphasized?: React.CSSProperties;
-    textSubheadlineRegular?: React.CSSProperties;
-    textSubheadlineEmphasized?: React.CSSProperties;
-    textFootnoteRegular?: React.CSSProperties;
-    textFootnoteEmphasized?: React.CSSProperties;
-
-    captionFirstRegular?: React.CSSProperties;
-    captionFirstEmphasized?: React.CSSProperties;
-    captionSecondRegular?: React.CSSProperties;
-    captionSecondEmphasized?: React.CSSProperties;
+    caption1: React.CSSProperties;
+    caption2: React.CSSProperties;
+    caption3: React.CSSProperties;
   }
   // Цвета
   interface Palette {
