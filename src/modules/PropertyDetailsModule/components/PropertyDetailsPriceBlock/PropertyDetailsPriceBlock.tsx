@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
-import { MdPerson, MdEdit } from "react-icons/md";
+import { MdPerson, MdEdit, MdDelete } from "react-icons/md";
 import { IoMdDocument } from "react-icons/io";
 
 import {
@@ -48,7 +48,10 @@ export const PropertyDetailsPriceBlock = () => {
             <AgentCompactCard agent={currentProperty.agent} />
           </Box>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-            <Button variant="contained" size="large" startIcon={<MdPerson />}>
+            <Button variant="contained" size="large" startIcon={<MdEdit />}>
+              Редактировать
+            </Button>
+            <Button variant="outlined" size="large" startIcon={<MdPerson />}>
               Данные владельца
             </Button>
             <Button
@@ -58,8 +61,13 @@ export const PropertyDetailsPriceBlock = () => {
             >
               Заявки на покупку
             </Button>
-            <Button variant="outlined" size="large" startIcon={<MdEdit />}>
-              Управление объектом
+            <Button
+              variant="outlined"
+              color="error"
+              size="large"
+              startIcon={<MdDelete />}
+            >
+              Удалить
             </Button>
           </Box>
         </Box>

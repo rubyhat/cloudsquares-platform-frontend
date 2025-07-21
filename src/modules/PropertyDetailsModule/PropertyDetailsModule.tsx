@@ -4,7 +4,6 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 
 import { BasicPageHeader } from "../../shared/components/Mobile/BasicPageHeader";
 import { useGetPropertyDetailsQuery } from "./hooks";
-import { PropertyDetailsToolsBar } from "./components/PropertyDetailsToolsBar";
 import { PropertyDetailsPriceBlock } from "./components/PropertyDetailsPriceBlock";
 import { AxiosErrorAlertMessage } from "../../shared/components/AxiosErrorAlertMessage";
 import { PropertyDetailsPhotoBlock } from "./components/PropertyDetailsPhotoBlock";
@@ -12,6 +11,8 @@ import { PropertyDetailsSlimInfo } from "./components/PropertyDetailsSlimInfo";
 import { PropertyDetailsApartmentInfo } from "./components/PropertyDetailsApartmentInfo";
 import { propertyDetailsStore } from "./store";
 import { PropertyDetailsApartmentHouseInfo } from "./components/PropertyDetailsApartmentHouseInfo";
+import { PropertyDetailsAdditionalOptions } from "./components/PropertyDetailsAdditionalOptions";
+import { PropertyDetailsDescriptionInfo } from "./components/PropertyDetailsDescriptionInfo";
 
 export const PropertyDetailsModule = () => {
   const { id } = useParams();
@@ -42,30 +43,30 @@ export const PropertyDetailsModule = () => {
           {isLoading && <React.Fragment>loading..</React.Fragment>}
           {currentProperty && (
             <React.Fragment>
-              <Grid size={12}>
-                <Box py={2}>
-                  <Typography component="h1" variant="h4">
-                    {currentProperty.title}
-                  </Typography>
-                  <PropertyDetailsToolsBar />
-                </Box>
-              </Grid>
               <Grid size={{ xs: 12, md: 8 }}>
                 <PropertyDetailsPhotoBlock
                   photos={currentProperty.property_photos}
                 />
-
                 <Grid size={12}>
                   <Box py={2.5}>
                     <PropertyDetailsSlimInfo />
                   </Box>
+                  <Box pb={2.5}>
+                    <Typography component="h1" variant="h4">
+                      {currentProperty.title}
+                    </Typography>
+                  </Box>
                 </Grid>
                 <Grid container spacing={2}>
-                  <Grid size={6}>
+                  <Grid size={{ xs: 12, md: 6 }}>
                     <PropertyDetailsApartmentInfo />
                   </Grid>
-                  <Grid size={6}>
+                  <Grid size={{ xs: 12, md: 6 }}>
                     <PropertyDetailsApartmentHouseInfo />
+                  </Grid>
+                  <PropertyDetailsAdditionalOptions />
+                  <Grid size={12}>
+                    <PropertyDetailsDescriptionInfo />
                   </Grid>
                 </Grid>
               </Grid>
