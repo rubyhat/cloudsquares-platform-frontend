@@ -3,24 +3,24 @@ import { User } from "../../../../shared/interfaces";
 import { displayUserName } from "../../../../shared/utils";
 import { UserRoleDisplayText } from "../../../../shared/permissions/roles";
 import { MdDelete, MdEdit } from "react-icons/md";
+import { useUsersStore } from "../../store";
+import { BasicDrawerMode } from "../../../../shared/interfaces/Shared";
+import { titleWrapperStyles } from "./styles";
 
-interface UserListItemProps {
+interface UsersListItemProps {
   user: User;
 }
 
 // TODO: Добавить информацию о последнем входе в систему, дату и время
-export const UserListItem = ({ user }: UserListItemProps) => {
+export const UsersListItem = ({ user }: UsersListItemProps) => {
+  const openDrawerWithMode = useUsersStore((state) => state.openDrawerWithMode);
+
   const { first_name, last_name, middle_name } = user;
   const { shortName } = displayUserName({ first_name, last_name, middle_name });
+
   return (
     <Box component={Paper} p={2}>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+      <Box sx={titleWrapperStyles}>
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           <Typography component="h6" variant="h6">
             {shortName}
@@ -33,10 +33,18 @@ export const UserListItem = ({ user }: UserListItemProps) => {
           />
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-          <IconButton size="small" color="info">
+          <IconButton
+            size="small"
+            color="info"
+            onClick={() => openDrawerWithMode(BasicDrawerMode.edit)}
+          >
             <MdEdit />
           </IconButton>
-          <IconButton size="small" color="error">
+          <IconButton
+            size="small"
+            color="error"
+            onClick={() => openDrawerWithMode(BasicDrawerMode.delete)}
+          >
             <MdDelete />
           </IconButton>
         </Box>
