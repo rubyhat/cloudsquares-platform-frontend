@@ -1,0 +1,1 @@
+export { PropertyDetailsSlimInfo } from "./PropertyDetailsSlimInfo";

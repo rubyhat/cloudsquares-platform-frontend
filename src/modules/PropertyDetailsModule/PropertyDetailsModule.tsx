@@ -8,6 +8,7 @@ import { PropertyDetailsToolsBar } from "./components/PropertyDetailsToolsBar";
 import { PropertyDetailsPriceBlock } from "./components/PropertyDetailsPriceBlock";
 import { AxiosErrorAlertMessage } from "../../shared/components/AxiosErrorAlertMessage";
 import { PropertyDetailsPhotoBlock } from "./components/PropertyDetailsPhotoBlock";
+import { PropertyDetailsSlimInfo } from "./components/PropertyDetailsSlimInfo";
 
 export const PropertyDetailsModule = () => {
   const { id } = useParams();
@@ -39,6 +40,18 @@ export const PropertyDetailsModule = () => {
               </Grid>
               <PropertyDetailsPriceBlock property={data} />
             </React.Fragment>
+          )}
+        </Grid>
+      </Container>
+      <Container maxWidth={false}>
+        <Grid container spacing={2}>
+          {isLoading && <React.Fragment>loading..</React.Fragment>}
+          {isSuccess && data && (
+            <Grid size={8}>
+              <Box py={2.5}>
+                <PropertyDetailsSlimInfo property={data} />
+              </Box>
+            </Grid>
           )}
         </Grid>
       </Container>
