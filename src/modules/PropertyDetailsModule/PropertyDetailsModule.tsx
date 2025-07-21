@@ -9,10 +9,25 @@ import { PropertyDetailsPriceBlock } from "./components/PropertyDetailsPriceBloc
 import { AxiosErrorAlertMessage } from "../../shared/components/AxiosErrorAlertMessage";
 import { PropertyDetailsPhotoBlock } from "./components/PropertyDetailsPhotoBlock";
 import { PropertyDetailsSlimInfo } from "./components/PropertyDetailsSlimInfo";
+import { PropertyDetailsApartmentInfo } from "./components/PropertyDetailsApartmentInfo";
+import { propertyDetailsStore } from "./store";
+import { PropertyDetailsApartmentHouseInfo } from "./components/PropertyDetailsApartmentHouseInfo";
 
 export const PropertyDetailsModule = () => {
   const { id } = useParams();
+  const currentProperty = propertyDetailsStore(
+    (state) => state.currentProperty,
+  );
+  const setCurrentProperty = propertyDetailsStore(
+    (state) => state.setCurrentProperty,
+  );
   const { data, isSuccess, isLoading, error } = useGetPropertyDetailsQuery(id);
+
+  React.useEffect(() => {
+    if (isSuccess && data) {
+      setCurrentProperty(data);
+    }
+  }, [data, isSuccess, setCurrentProperty]);
 
   return (
     <React.Fragment>
@@ -25,33 +40,37 @@ export const PropertyDetailsModule = () => {
             </Grid>
           )}
           {isLoading && <React.Fragment>loading..</React.Fragment>}
-          {data && isSuccess && (
+          {currentProperty && (
             <React.Fragment>
               <Grid size={12}>
                 <Box py={2}>
                   <Typography component="h1" variant="h4">
-                    {data.title}
+                    {currentProperty.title}
                   </Typography>
                   <PropertyDetailsToolsBar />
                 </Box>
               </Grid>
               <Grid size={{ xs: 12, md: 8 }}>
-                <PropertyDetailsPhotoBlock photos={data.property_photos} />
+                <PropertyDetailsPhotoBlock
+                  photos={currentProperty.property_photos}
+                />
+
+                <Grid size={12}>
+                  <Box py={2.5}>
+                    <PropertyDetailsSlimInfo />
+                  </Box>
+                </Grid>
+                <Grid container spacing={2}>
+                  <Grid size={6}>
+                    <PropertyDetailsApartmentInfo />
+                  </Grid>
+                  <Grid size={6}>
+                    <PropertyDetailsApartmentHouseInfo />
+                  </Grid>
+                </Grid>
               </Grid>
-              <PropertyDetailsPriceBlock property={data} />
+              <PropertyDetailsPriceBlock />
             </React.Fragment>
-          )}
-        </Grid>
-      </Container>
-      <Container maxWidth={false}>
-        <Grid container spacing={2}>
-          {isLoading && <React.Fragment>loading..</React.Fragment>}
-          {isSuccess && data && (
-            <Grid size={8}>
-              <Box py={2.5}>
-                <PropertyDetailsSlimInfo property={data} />
-              </Box>
-            </Grid>
           )}
         </Grid>
       </Container>

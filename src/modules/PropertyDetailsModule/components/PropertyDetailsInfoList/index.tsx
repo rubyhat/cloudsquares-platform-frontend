@@ -1,0 +1,1 @@
+export { PropertyDetailsInfoList } from "./PropertyDetailsInfoList";

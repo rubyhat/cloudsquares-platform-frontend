@@ -1,0 +1,1 @@
+export { PropertyDetailsApartmentHouseInfo } from "./PropertyDetailsApartmentHouseInfo";
