@@ -1,14 +1,17 @@
-import { axiosBaseWrap } from "../../../configs/api";
+import { apiSharedUsers } from "../../../shared/api";
 import { PostNewUserResponseData } from "../../../shared/interfaces";
 import { RegistrationFormData } from "../validations";
 
+/**
+ * API-модуль для регистрации нового пользователя (публичная часть)
+ */
 export const apiRegistrationModule = {
+  /**
+   * Регистрация нового пользователя
+   * @param data - Данные формы регистрации
+   * @returns Ответ с данными нового пользователя
+   */
   postNewUser(data: RegistrationFormData): Promise<PostNewUserResponseData> {
-    return axiosBaseWrap
-      .post("/users", { user: data })
-      .then((response) => response.data)
-      .catch((error) => {
-        throw error;
-      });
+    return apiSharedUsers.postNewUser(data);
   },
 };

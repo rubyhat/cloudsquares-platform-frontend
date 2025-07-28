@@ -3,7 +3,7 @@ import { UsersModule } from "../../modules/UsersModule";
 
 export const Users = () => {
   return (
-    <Box component="section" data-testid="pageUsers">
+    <Box component="section" className="section" data-testid="pageUsers">
       <UsersModule />
     </Box>
   );

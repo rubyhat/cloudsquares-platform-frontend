@@ -2,7 +2,7 @@ export const bottomNavigationMenuStyles = {
   width: 1,
   p: 2,
   borderTop: "1px solid",
-  borderColor: "customColors.colorsGreyLight",
+  borderColor: "customColors.grey300",
   position: "fixed",
   bottom: 0,
   zIndex: 2,

@@ -82,7 +82,7 @@ export const HeaderNavigation = () => {
             key={index}
             onClick={() => handleClickMenuItem(link)}
             sx={{ display: "block" }}
-            size="small"
+            size="medium"
             variant="text"
           >
             {title}

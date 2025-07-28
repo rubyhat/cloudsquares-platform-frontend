@@ -14,7 +14,7 @@ export const UsersModule = () => {
     <React.Fragment>
       <BasicPageHeader title="Сотрудники" shownBackArrowButton />
       <Container maxWidth={false}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} pt={2}>
           <Grid size={12}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
               <Typography component="h1" variant="h2">

@@ -29,11 +29,11 @@ export const Header = () => {
         </Box>
         {!isAuthenticated && (
           <Box sx={loginWrapperStyles}>
-            <Button variant="text" size="small">
+            <Button variant="text" size="medium">
               {t("request_demo")}
             </Button>
             <Link to="/login">
-              <Button variant="contained" size="small">
+              <Button variant="contained" size="medium">
                 {t("login")}
               </Button>
             </Link>

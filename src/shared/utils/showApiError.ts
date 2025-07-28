@@ -29,7 +29,7 @@ export const showApiError = (
     allMessages.forEach((msg) => toast.error(`${label}: ${msg}`));
   } else {
     toast.error(`${label}: ${message || "Неизвестная ошибка"}`, {
-      duration: 5000,
+      duration: 10000,
     });
   }
 };

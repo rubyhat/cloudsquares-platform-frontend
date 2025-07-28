@@ -1,13 +1,15 @@
 import { z } from "zod";
-import { phoneRegex } from "../../../shared/constants";
 
-export const useRegistrationFormValidationSchema = z
+/**
+ * Регулярное выражение для проверки номера телефона:
+ * - начинается с +7
+ * - допускает 10 цифр после +7 (всего 12 символов)
+ * - без пробелов, дефисов и скобок
+ */
+const phoneRegex = /^\+7\d{10}$/;
+
+export const usersFormValidationsSchema = z
   .object({
-    country_code: z
-      .string()
-      .min(1, { message: "Укажите страну" })
-      .max(255, { message: "Слишком длинное значение" }),
-
     phone: z
       .string()
       .regex(phoneRegex, {
@@ -17,8 +19,9 @@ export const useRegistrationFormValidationSchema = z
 
     first_name: z
       .string()
-      .min(1, { message: "Введите имя" })
-      .max(255, { message: "Слишком длинное значение" }),
+      .max(255, { message: "Слишком длинное значение" })
+      .optional()
+      .or(z.literal("")),
 
     last_name: z
       .string()
@@ -32,12 +35,20 @@ export const useRegistrationFormValidationSchema = z
       .optional()
       .or(z.literal("")),
 
-    role: z.string(), // TODO: роль зависит от места и способы регистрации, обновить это в будущем
-
     email: z
       .string()
       .max(255, { message: "Слишком длинное значение" })
       .email({ message: "Некорректный формат email" }),
+
+    country_code: z
+      .string()
+      .min(1, { message: "Укажите страну" })
+      .max(255, { message: "Слишком длинное значение" }),
+
+    role: z
+      .string()
+      .min(1, { message: "Укажите роль" })
+      .max(255, { message: "Слишком длинное значение" }),
 
     password: z
       .string()
@@ -76,6 +87,4 @@ export const useRegistrationFormValidationSchema = z
     }
   });
 
-export type RegistrationFormData = z.infer<
-  typeof useRegistrationFormValidationSchema
->;
+export type UsersFormData = z.infer<typeof usersFormValidationsSchema>;

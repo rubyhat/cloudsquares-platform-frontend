@@ -29,7 +29,7 @@ interface BasicFormSelectFieldProps {
   data: { value: string; label: string }[];
 
   /** Флаг блокировки выбора (`true` - поле заблокировано) */
-  disabled: boolean;
+  disabled?: boolean;
 
   /** Опции для кнопки в селекте, если переданы, то будет отображена кнопка с заданным текстом и вызовом переданной функции */
   buttonOptions?: {

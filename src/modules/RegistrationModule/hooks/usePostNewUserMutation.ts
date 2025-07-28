@@ -8,6 +8,7 @@ import { useLoginStore } from "../../LoginModule/store";
 import { useUserStore } from "../../UserModule/store";
 import { showApiError } from "../../../shared/utils";
 
+// TODO: нарушена архитектура, зависимость от других модулей, нужно исправить позже
 export const usePostNewUserMutation = () => {
   const navigate = useNavigate();
   const setShowRegistrationDrawer = useRegistrationStore(

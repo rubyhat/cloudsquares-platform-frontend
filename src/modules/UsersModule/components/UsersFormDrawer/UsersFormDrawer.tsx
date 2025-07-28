@@ -1,11 +1,11 @@
 import { useUsersStore } from "../../store";
 import { UsersDeleteForm } from "../UsersDeleteForm";
-import { UsersForm } from "../UsersForm/UsersForm";
 import { BasicDrawer } from "../../../../shared/components/BasicDrawer";
 import {
   BasicDrawerMode,
   DisplayTextBasicDrawerMode,
 } from "../../../../shared/interfaces/Shared";
+import { UsersFormModule } from "../../../UsersFormModule";
 
 export const UsersFormDrawer = () => {
   const formMode = useUsersStore((state) => state.mode);
@@ -16,12 +16,18 @@ export const UsersFormDrawer = () => {
 
   return (
     <BasicDrawer
-      title={DisplayTextBasicDrawerMode[formMode] + " пользователя"}
+      title={DisplayTextBasicDrawerMode[formMode] + " сотрудника"}
       isOpen={showUserFormDrawer}
       setIsOpen={setShowUserFormDrawer}
     >
-      {formMode === BasicDrawerMode.create && <UsersForm mode={formMode} />}
-      {formMode === BasicDrawerMode.edit && <UsersForm mode={formMode} />}
+      {formMode === BasicDrawerMode.create && (
+        <UsersFormModule
+          mode={formMode}
+          onSuccess={() => setShowUserFormDrawer(false)}
+          onDecline={() => setShowUserFormDrawer(false)}
+        />
+      )}
+      {formMode === BasicDrawerMode.edit && <UsersFormModule mode={formMode} />}
       {formMode === BasicDrawerMode.delete && <UsersDeleteForm />}
     </BasicDrawer>
   );

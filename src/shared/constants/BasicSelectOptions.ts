@@ -1,4 +1,5 @@
 import { CountryCode, CountryCodeDisplayText } from "../interfaces/Country";
+import { UserRole, UserRoleDisplayText } from "../permissions/roles";
 
 export const countrySelectOptions = (): {
   value: CountryCode;
@@ -16,4 +17,22 @@ export const countrySelectOptions = (): {
   ];
 
   return countryList;
+};
+
+export const userRoleSelectOptions = (): {
+  value: UserRole;
+  label: UserRoleDisplayText;
+}[] => {
+  const userRoleList = [
+    {
+      value: UserRole.agent_manager,
+      label: UserRoleDisplayText[UserRole.agent_manager],
+    },
+    {
+      value: UserRole.agent,
+      label: UserRoleDisplayText[UserRole.agent],
+    },
+  ];
+
+  return userRoleList;
 };

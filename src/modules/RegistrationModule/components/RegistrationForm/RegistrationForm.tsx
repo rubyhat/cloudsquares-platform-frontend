@@ -28,6 +28,7 @@ export const RegistrationForm = () => {
       first_name: "",
       phone: "+7",
       email: "",
+      role: "agent_admin",
     },
   });
 
