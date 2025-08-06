@@ -36,9 +36,8 @@ export const usersFormValidationsSchema = z
       .or(z.literal("")),
 
     email: z
-      .string()
-      .max(255, { message: "Слишком длинное значение" })
-      .email({ message: "Некорректный формат email" }),
+      .email({ message: "Некорректный формат email" })
+      .max(255, { message: "Слишком длинное значение" }),
 
     country_code: z
       .string()
@@ -68,10 +67,11 @@ export const usersFormValidationsSchema = z
       }),
 
     password_confirmation: z
-      .string({
-        required_error: "Подтвердите пароль",
-        invalid_type_error: "Подтвердите пароль",
-      })
+      // .string({
+      //   required_error: "Подтвердите пароль",
+      //   invalid_type_error: "Подтвердите пароль",
+      // })
+      .string()
       .min(1, { message: "Подтвердите пароль" }),
   })
   .superRefine((data, ctx) => {

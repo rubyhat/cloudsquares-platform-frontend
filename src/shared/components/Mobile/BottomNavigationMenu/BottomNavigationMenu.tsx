@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { FaUserAlt, FaHome, FaSearch } from "react-icons/fa";
 import { IoDocuments } from "react-icons/io5";
 
@@ -27,7 +27,12 @@ export const BottomNavigationMenu = () => {
 
   return (
     <Box sx={bottomNavigationMenuStyles}>
-      <Box sx={menuItemStyles} component={Link} to="/">
+      <Box
+        sx={menuItemStyles}
+        component={NavLink}
+        to="/"
+        data-testid="nav-item-home"
+      >
         <FaHome size={16} style={menuItemIconStyles(isActive("/"))} />
         <Typography
           component="p"
@@ -38,7 +43,12 @@ export const BottomNavigationMenu = () => {
         </Typography>
       </Box>
 
-      <Box sx={menuItemStyles} component={Link} to="/properties">
+      <Box
+        sx={menuItemStyles}
+        component={NavLink}
+        to="/properties"
+        data-testid="nav-item-properties"
+      >
         <FaSearch
           size={16}
           style={menuItemIconStyles(isActive("/properties"))}
@@ -52,7 +62,12 @@ export const BottomNavigationMenu = () => {
         </Typography>
       </Box>
 
-      <Box sx={menuItemStyles} component={Link} to="/cart">
+      <Box
+        sx={menuItemStyles}
+        component={NavLink}
+        to="/cart"
+        data-testid="nav-item-cart"
+      >
         <IoDocuments size={16} style={menuItemIconStyles(isActive("/cart"))} />
         <Typography
           component="p"
@@ -63,7 +78,12 @@ export const BottomNavigationMenu = () => {
         </Typography>
       </Box>
 
-      <Box sx={menuItemStyles} component={Link} to="/profile">
+      <Box
+        sx={menuItemStyles}
+        component={NavLink}
+        to="/profile"
+        data-testid="nav-item-profile"
+      >
         <FaUserAlt size={16} style={menuItemIconStyles(isActive("/profile"))} />
         <Typography
           component="p"

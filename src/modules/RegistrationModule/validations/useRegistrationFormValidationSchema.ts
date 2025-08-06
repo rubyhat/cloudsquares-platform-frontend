@@ -57,10 +57,11 @@ export const useRegistrationFormValidationSchema = z
       }),
 
     password_confirmation: z
-      .string({
-        required_error: "Подтвердите пароль",
-        invalid_type_error: "Подтвердите пароль",
-      })
+      // .string({
+      //   required_error: "Подтвердите пароль",
+      //   invalid_type_error: "Подтвердите пароль",
+      // })
+      .string()
       .min(1, { message: "Подтвердите пароль" }),
   })
   .superRefine((data, ctx) => {

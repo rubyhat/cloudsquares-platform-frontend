@@ -42,6 +42,6 @@ export enum UserRoleColor {
   admin = "error",
   admin_manager = "warning",
   agent = "info",
-  agent_admin = "secondary",
-  agent_manager = "er",
+  agent_admin = "success",
+  agent_manager = "secondary",
 }

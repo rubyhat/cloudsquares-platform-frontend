@@ -26,7 +26,7 @@ export const BasicNavListToDrawer = ({ list }: BasicNavListToDrawerProps) => {
             <Box
               sx={{ ml: "auto", mr: 1, display: "flex", alignItems: "center" }}
             >
-              <FaAngleRight size={16} color="#1c1c1c" />
+              <FaAngleRight data-testid="fa-icon" size={16} color="#1c1c1c" />
             </Box>
           </Box>
         ))}

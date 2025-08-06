@@ -30,7 +30,7 @@ export const BasicNavListToPage = ({ list }: BasicNavListToPageProps) => {
                 {label}
               </Typography>
               <Box sx={iconWrapperStyles}>
-                <FaAngleRight size={16} color="#1c1c1c" />
+                <FaAngleRight data-testid="fa-icon" size={16} color="#1c1c1c" />
               </Box>
             </Box>
           </Box>

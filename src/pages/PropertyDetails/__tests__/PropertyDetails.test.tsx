@@ -1,14 +1,13 @@
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
-
 import { PropertyDetails } from "../PropertyDetails";
+import { TestProviders } from "../../../providers";
 
 describe("Page PropertyDetails", () => {
   it("renders the PropertyDetails page", () => {
     render(
-      <MemoryRouter>
+      <TestProviders>
         <PropertyDetails />
-      </MemoryRouter>,
+      </TestProviders>,
     );
 
     const rootElement = screen.getByTestId("pagePropertyDetails");

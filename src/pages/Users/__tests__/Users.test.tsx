@@ -1,14 +1,13 @@
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
-
 import { Users } from "../Users";
+import { TestProviders } from "../../../providers";
 
 describe("Page Users", () => {
   it("renders the Users page", () => {
     render(
-      <MemoryRouter>
+      <TestProviders>
         <Users />
-      </MemoryRouter>,
+      </TestProviders>,
     );
 
     const rootElement = screen.getByTestId("pageUsers");

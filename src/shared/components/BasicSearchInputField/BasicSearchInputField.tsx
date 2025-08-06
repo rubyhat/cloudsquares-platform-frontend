@@ -81,7 +81,7 @@ export const BasicSearchInputField = ({
             input: {
               startAdornment: (
                 <InputAdornment position="start">
-                  <MdSearch size={16} />
+                  <MdSearch data-testid="SearchIcon" size={16} />
                 </InputAdornment>
               ),
             },
