@@ -17,11 +17,13 @@ import {
   UsersFormData,
   usersFormValidationsSchema,
 } from "./validations/usersFormValidationsSchema";
-import { useUsersFormStore } from "./store/useUsersFormStore";
+import { useUsersFormStore } from "./store";
 import { useCreateNewUserMutation } from "./hooks";
+import { User } from "../../shared/interfaces";
 
 interface UsersFormModuleProps {
   mode: BasicDrawerMode;
+  user: User | null;
   onSubmit?: () => void;
   onDecline?: () => void;
   onSuccess?: () => void;

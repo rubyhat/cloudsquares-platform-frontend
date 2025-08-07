@@ -15,6 +15,9 @@ export interface User extends UserSlim {
   is_active: boolean;
   email: string;
   agency: AgencySlim | null;
+  created_at: string;
+  updated_at: string;
+  deleted_at?: string;
 }
 
 export interface PostNewUserResponseData {

@@ -10,4 +10,7 @@ export const apiUsersModule = {
         throw error;
       });
   },
+  deleteUserById(id: string) {
+    return axiosBaseWrap.delete("/users/" + id);
+  },
 };

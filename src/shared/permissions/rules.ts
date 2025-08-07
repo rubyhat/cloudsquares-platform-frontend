@@ -21,6 +21,7 @@ export const sameAgency = [
 ];
 
 export const admins = [UserRole.admin, UserRole.admin_manager];
+export const adminsAndAgencyAdmin = [...admins, UserRole.agent_admin];
 
 export const sameAgencyAndAdmins = [...sameAgency, ...admins];
 
@@ -35,4 +36,5 @@ export const accessRules = {
   viewPropertyUpdate: sameAgencyAndAdmins,
   viewAgencyUsers: sameAgencyAndAdmins,
   viewAgencyCustomers: sameAgencyAndAdmins,
+  deleteUsers: adminsAndAgencyAdmin,
 };

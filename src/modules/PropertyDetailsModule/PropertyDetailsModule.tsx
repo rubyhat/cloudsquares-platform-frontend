@@ -33,7 +33,10 @@ export const PropertyDetailsModule = () => {
   return (
     <React.Fragment>
       <BasicPageHeader title="Детали недвижимости" shownBackArrowButton />
-      <Container maxWidth={false} sx={{ pb: { xs: "100px", md: 0 } }}>
+      <Container
+        maxWidth={false}
+        sx={{ pb: { xs: "100px", md: 0 }, py: { xs: 2, md: 0 } }}
+      >
         <Grid container spacing={2}>
           {error && !isLoading && (
             <Grid size={{ xs: 12, md: 6, lg: 4 }}>

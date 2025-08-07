@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { BasicDrawerMode } from "../../../shared/interfaces/Shared";
+import { User } from "../../../shared/interfaces";
 
 interface UsersStore {
   showUserFormDrawer: boolean;
@@ -7,6 +8,8 @@ interface UsersStore {
   mode: BasicDrawerMode;
   setMode: (v: BasicDrawerMode) => void;
   openDrawerWithMode: (v: BasicDrawerMode) => void;
+  editableUser: User | null;
+  setEditableUser: (v: User | null) => void;
 }
 
 export const useUsersStore = create<UsersStore>((set) => ({
@@ -15,4 +18,6 @@ export const useUsersStore = create<UsersStore>((set) => ({
   mode: BasicDrawerMode.create,
   setMode: (v) => set({ mode: v }),
   openDrawerWithMode: (v) => set({ showUserFormDrawer: true, mode: v }),
+  editableUser: null,
+  setEditableUser: (v) => set({ editableUser: v }),
 }));
