@@ -7,6 +7,7 @@ import { useUsersStore } from "../../store";
 import { UsersDeleteForm } from "../UsersDeleteForm";
 import { UsersFormModule } from "../../../UsersFormModule";
 
+// TODO: При редактировании пользователя, пароль не валидируется!
 export const UsersFormDrawer = () => {
   const formMode = useUsersStore((state) => state.mode);
   const showUserFormDrawer = useUsersStore((state) => state.showUserFormDrawer);
@@ -30,7 +31,12 @@ export const UsersFormDrawer = () => {
         />
       )}
       {formMode === BasicDrawerMode.edit && editableUser && (
-        <UsersFormModule user={editableUser} mode={formMode} />
+        <UsersFormModule
+          user={editableUser}
+          mode={formMode}
+          onSuccess={() => setShowUserFormDrawer(false)}
+          onDecline={() => setShowUserFormDrawer(false)}
+        />
       )}
       {formMode === BasicDrawerMode.delete && editableUser && (
         <UsersDeleteForm

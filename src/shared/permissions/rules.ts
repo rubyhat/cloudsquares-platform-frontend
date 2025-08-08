@@ -36,5 +36,8 @@ export const accessRules = {
   viewPropertyUpdate: sameAgencyAndAdmins,
   viewAgencyUsers: sameAgencyAndAdmins,
   viewAgencyCustomers: sameAgencyAndAdmins,
+
+  // Users
+  canEditUserPassword: adminsAndAgencyAdmin,
   deleteUsers: adminsAndAgencyAdmin,
 };

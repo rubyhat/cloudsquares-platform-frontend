@@ -1,3 +1,4 @@
+import React from "react";
 import toast from "react-hot-toast";
 import { Box, Button } from "@mui/material";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,11 +16,14 @@ import { BasicFormSelectField } from "../../shared/components/BasicFormSelectFie
 
 import {
   UsersFormData,
-  usersFormValidationsSchema,
+  createUsersFormSchema,
 } from "./validations/usersFormValidationsSchema";
 import { useUsersFormStore } from "./store";
-import { useCreateNewUserMutation } from "./hooks";
+import { useCreateNewUserMutation, usePatchUserMutation } from "./hooks";
 import { User } from "../../shared/interfaces";
+import { useUsersStore } from "../UsersModule/store";
+import { normalizeEditableUserData } from "./utils";
+import { useCanAccess } from "../../shared/permissions/canAccess";
 
 interface UsersFormModuleProps {
   mode: BasicDrawerMode;
@@ -38,17 +42,25 @@ export const UsersFormModule = ({
   onSuccess,
 }: UsersFormModuleProps) => {
   const initialState = useUsersFormStore((state) => state.initialState);
+  const editableUser = useUsersStore((state) => state.editableUser);
+  const canEditUserPassword = useCanAccess("canEditUserPassword");
 
   const methods = useForm<UsersFormData>({
-    resolver: zodResolver(usersFormValidationsSchema),
-    defaultValues: initialState,
+    resolver: zodResolver(createUsersFormSchema(mode)),
+    defaultValues:
+      editableUser && mode === BasicDrawerMode.edit
+        ? normalizeEditableUserData(editableUser)
+        : initialState,
   });
 
   const { handleSubmit, reset, watch, formState } = methods;
   const password = watch("password");
   const passwordStarted = formState.dirtyFields.password;
 
+  const patchUserMutation = usePatchUserMutation({ onSuccess, onError });
   const postNewUserMutation = useCreateNewUserMutation({ onSuccess, onError });
+  const disableInput =
+    postNewUserMutation.isPending || patchUserMutation.isPending;
 
   const onSubmitForm = (data: UsersFormData) => {
     if (onSubmit) onSubmit();
@@ -58,13 +70,21 @@ export const UsersFormModule = ({
       phone: data.phone.slice(1), // Удаляем +
     };
 
+    if (mode === BasicDrawerMode.edit && !normalizedData.password) {
+      delete normalizedData.password;
+      delete normalizedData.password_confirmation;
+    }
+
     switch (mode) {
       case BasicDrawerMode.create:
-        postNewUserMutation.mutate(normalizedData);
-        break;
+        return postNewUserMutation.mutate(normalizedData);
       case BasicDrawerMode.edit:
-        console.log("edit");
-        break;
+        if (editableUser)
+          return patchUserMutation.mutate({
+            data: normalizedData,
+            id: editableUser?.id,
+          });
+        return toast.error("Пользователь не определен", { duration: 5000 });
       default:
         toast.error("Ошибка формы");
     }
@@ -90,7 +110,7 @@ export const UsersFormModule = ({
               name="first_name"
               label="Имя"
               placeholder="Введите имя сотрудника"
-              // disabled={patchAgencyInfoMutation.isPending}
+              disabled={disableInput}
             />
           </Box>
           <Box pb={2}>
@@ -98,7 +118,7 @@ export const UsersFormModule = ({
               name="last_name"
               label="Фамилия"
               placeholder="Введите фамилию сотрудника"
-              // disabled={patchAgencyInfoMutation.isPending}
+              disabled={disableInput}
             />
           </Box>
           <Box pb={2}>
@@ -106,7 +126,7 @@ export const UsersFormModule = ({
               name="middle_name"
               label="Отчество"
               placeholder="Введите отчество сотрудника"
-              // disabled={patchAgencyInfoMutation.isPending}
+              disabled={disableInput}
             />
           </Box>
           <Box pb={2}>
@@ -114,7 +134,7 @@ export const UsersFormModule = ({
               name="email"
               label="Почта"
               placeholder="Введите почту сотрудника"
-              // disabled={patchAgencyInfoMutation.isPending}
+              disabled={disableInput}
             />
           </Box>
           <Box pb={2}>
@@ -122,42 +142,46 @@ export const UsersFormModule = ({
               name="phone"
               label="Телефон"
               placeholder="+7 705 123 45 67"
-              // disabled={patchAgencyInfoMutation.isPending}
+              disabled={disableInput}
             />
           </Box>
-          <Box pb={2}>
-            <BasicTextField<UsersFormData>
-              name="password"
-              label="Пароль"
-              placeholder="Введите пароль"
-              type="password"
-              inputName="new-password"
-              autoComplete="new-password"
-              // disabled={patchAgencyInfoMutation.isPending}
-            />
-            <PasswordRulesHint
-              password={password}
-              touched={!!passwordStarted}
-            />
-          </Box>
-          <Box pb={2}>
-            <BasicTextField<UsersFormData>
-              name="password_confirmation"
-              label="Повторите пароль"
-              placeholder="Введите пароль повторно"
-              type="password"
-              inputName="new-password"
-              autoComplete="new-password"
-              // disabled={patchAgencyInfoMutation.isPending}
-            />
-          </Box>
+          {canEditUserPassword && (
+            <React.Fragment>
+              <Box pb={2}>
+                <BasicTextField<UsersFormData>
+                  name="password"
+                  label="Пароль"
+                  placeholder="Введите пароль"
+                  type="password"
+                  inputName="new-password"
+                  autoComplete="new-password"
+                  disabled={disableInput}
+                />
+                <PasswordRulesHint
+                  password={password || ""}
+                  touched={!!passwordStarted}
+                />
+              </Box>
+              <Box pb={2}>
+                <BasicTextField<UsersFormData>
+                  name="password_confirmation"
+                  label="Повторите пароль"
+                  placeholder="Введите пароль повторно"
+                  type="password"
+                  inputName="new-password"
+                  autoComplete="new-password"
+                  disabled={disableInput}
+                />
+              </Box>
+            </React.Fragment>
+          )}
           <Box sx={{ pb: 2 }}>
             <BasicFormSelectField
               name="country_code"
               label="Страна:"
               placeholder="Выберите страну"
               data={countrySelectOptions()}
-              // disabled={patchAgencyInfoMutation.isPending}
+              disabled={disableInput}
             />
           </Box>
           <Box sx={{ pb: 2 }}>
@@ -166,7 +190,7 @@ export const UsersFormModule = ({
               label="Роль:"
               placeholder="Выберите роль"
               data={userRoleSelectOptions()}
-              // disabled={patchAgencyInfoMutation.isPending}
+              disabled={disableInput}
             />
           </Box>
         </Box>
@@ -176,7 +200,7 @@ export const UsersFormModule = ({
             color="secondary"
             size="large"
             onClick={handleResetForm}
-            // disabled={patchAgencyInfoMutation.isPending}
+            disabled={disableInput}
           >
             Закрыть
           </Button>
@@ -185,7 +209,7 @@ export const UsersFormModule = ({
             color="primary"
             type="submit"
             size="large"
-            // disabled={patchAgencyInfoMutation.isPending}
+            disabled={disableInput}
           >
             Сохранить
           </Button>
