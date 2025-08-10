@@ -1,0 +1,1 @@
+export { PropertyOwnersModule } from "./PropertyOwnersModule";

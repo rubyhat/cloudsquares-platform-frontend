@@ -23,6 +23,7 @@ export const HomeModule = () => {
   const propertiesLinks: BasicNavListToPageItem[] = [
     { label: "Каталог недвижимости", link: "/properties" },
     { label: "Добавить новую", link: "/properties/create" },
+    { label: "База собственников", link: "/properties/owners" },
   ];
   const requestsLinks: BasicNavListToPageItem[] = [
     { label: "Заявки на покупку", link: "/" },
