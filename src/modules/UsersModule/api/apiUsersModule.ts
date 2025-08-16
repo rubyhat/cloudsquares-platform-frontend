@@ -11,6 +11,11 @@ export const apiUsersModule = {
       });
   },
   deleteUserById(id: string) {
-    return axiosBaseWrap.delete("/users/" + id);
+    return axiosBaseWrap
+      .delete("/users/" + id)
+      .then((response) => response.data)
+      .catch((error) => {
+        throw error;
+      });
   },
 };

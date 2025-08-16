@@ -1,0 +1,1 @@
+export { PropertyOwnersTable } from "./PropertyOwnersTable";

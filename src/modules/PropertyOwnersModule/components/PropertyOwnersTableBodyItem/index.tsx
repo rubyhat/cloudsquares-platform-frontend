@@ -1,0 +1,1 @@
+export { PropertyOwnersTableBodyItem } from "./PropertyOwnersTableBodyItem";

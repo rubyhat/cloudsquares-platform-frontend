@@ -16,7 +16,7 @@ import {
 interface PropertyDetailsPhotoBlockProps {
   photos: PropertyPhoto[];
 }
-
+// TODO: Добавить заглушку для фото, когда фото нет
 export const PropertyDetailsPhotoBlock = ({
   photos,
 }: PropertyDetailsPhotoBlockProps) => {

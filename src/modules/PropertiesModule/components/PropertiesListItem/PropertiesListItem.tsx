@@ -29,7 +29,7 @@ export const PropertiesListItem = ({ property }: PropertiesListItemProps) => {
       <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
         <Box
           component="img"
-          src={property.property_photos[0].file_preview_url}
+          src={property.property_photos[0]?.file_preview_url} // TODO: Добавить заглушку для фото, когда фото нет
           alt="Фото недвижимости"
           sx={{ width: 1, borderRadius: 4, cursor: "pointer" }}
           onClick={() => navigate("/properties/" + property.id)}

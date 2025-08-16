@@ -80,17 +80,17 @@ export const ProfileDetailsEditUserForm = () => {
           </Box>
           <Box pb={2}>
             <BasicTextField<UserProfileFormData>
-              name="last_name"
-              label="Фамилия"
-              placeholder="Введите фамилию"
+              name="first_name"
+              label="Имя"
+              placeholder="Введите имя"
               disabled={patchUserProfileMutation.isPending}
             />
           </Box>
           <Box pb={2}>
             <BasicTextField<UserProfileFormData>
-              name="first_name"
-              label="Имя"
-              placeholder="Введите имя"
+              name="last_name"
+              label="Фамилия"
+              placeholder="Введите фамилию"
               disabled={patchUserProfileMutation.isPending}
             />
           </Box>

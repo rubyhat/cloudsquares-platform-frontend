@@ -5,6 +5,7 @@ import { PropertiesListItem } from "../PropertiesListItem";
 import { useGetAllPropertiesOfAgencyQuery } from "../../hooks";
 import { useUserProfile } from "../../../../shared/permissions/hooks";
 import { AxiosErrorAlertMessage } from "../../../../shared/components/AxiosErrorAlertMessage";
+import { PropertiesCreateCard } from "../PropertiesCreateCard";
 
 export const PropertiesList = () => {
   const profile = useUserProfile();
@@ -22,6 +23,16 @@ export const PropertiesList = () => {
       </Grid>
     );
 
+  if (propertiesIsSuccess && properties.length === 0)
+    return (
+      <Grid size={{ xs: 12, md: 6, lg: 4 }}>
+        <PropertiesCreateCard
+          title="Каталог пуст"
+          description="Добавьте объекты недвижимости в систему и они появятся здесь"
+        />
+      </Grid>
+    );
+
   return (
     <React.Fragment>
       {propertiesIsLoading && "Loading..."}
@@ -32,6 +43,14 @@ export const PropertiesList = () => {
             <PropertiesListItem property={property} />
           </Grid>
         ))}
+      {!propertiesIsLoading && !propertiesError && (
+        <Grid size={12}>
+          <PropertiesCreateCard
+            title="Новый объект"
+            description="Добавьте объекты недвижимости в систему и они появятся здесь"
+          />
+        </Grid>
+      )}
     </React.Fragment>
   );
 };

@@ -41,4 +41,5 @@ export const accessRules = {
   // Users
   canEditUserPassword: adminsAndAgencyAdmin,
   deleteUsers: adminsAndAgencyAdmin,
+  createNewUser: adminsAndAgencyAdmin,
 };

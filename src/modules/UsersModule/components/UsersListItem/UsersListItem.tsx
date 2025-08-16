@@ -35,7 +35,7 @@ export const UsersListItem = ({ user }: UsersListItemProps) => {
   };
 
   return (
-    <Box component={Paper} p={2}>
+    <Box component={Paper} p={2} height="100%">
       <Box sx={titleWrapperStyles}>
         <Chip
           size="small"

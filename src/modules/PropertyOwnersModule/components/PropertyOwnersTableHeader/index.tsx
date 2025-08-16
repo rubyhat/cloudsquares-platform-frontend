@@ -1,0 +1,1 @@
+export { PropertyOwnersTableHeader } from "./PropertyOwnersTableHeader";

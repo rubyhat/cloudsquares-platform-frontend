@@ -1,0 +1,1 @@
+export { PropertiesCreateCard } from "./PropertiesCreateCard";

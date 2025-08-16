@@ -22,7 +22,7 @@ export const apiUsersFormModule = {
    */
   patchUserById(data: UsersFormData, id: string): Promise<User> {
     return axiosBaseWrap
-      .patch("/users/" + id, data)
+      .patch("/users/" + id, { user: data })
       .then((response) => response.data)
       .catch((error) => {
         throw error;

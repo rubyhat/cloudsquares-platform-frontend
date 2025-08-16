@@ -6,9 +6,11 @@ import { UsersList } from "./components/UsersList";
 import { UsersFormDrawer } from "./components/UsersFormDrawer";
 import { BasicPageHeader } from "../../shared/components/Mobile/BasicPageHeader";
 import { BasicDrawerMode } from "../../shared/interfaces/Shared";
+import { useCanAccess } from "../../shared/permissions/canAccess";
 
 export const UsersModule = () => {
   const openDrawerWithMode = useUsersStore((state) => state.openDrawerWithMode);
+  const canCreateNewUser = useCanAccess("createNewUser");
 
   return (
     <React.Fragment>
@@ -20,13 +22,15 @@ export const UsersModule = () => {
               <Typography component="h1" variant="h2">
                 Сотрудники
               </Typography>
-              <Button
-                variant="contained"
-                color="success"
-                onClick={() => openDrawerWithMode(BasicDrawerMode.create)}
-              >
-                + Добавить
-              </Button>
+              {canCreateNewUser && (
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={() => openDrawerWithMode(BasicDrawerMode.create)}
+                >
+                  + Добавить
+                </Button>
+              )}
             </Box>
           </Grid>
           <UsersList />

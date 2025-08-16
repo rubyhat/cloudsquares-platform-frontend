@@ -59,7 +59,10 @@ const tempResponse = {
 };
 
 export const CustomersModule = () => {
-  const { page, rowsPerPage, setPage, setRowsPerPage } = useTablePagination(15);
+  const { page, rowsPerPage, setPage, setRowsPerPage } = useTablePagination(
+    15,
+    "allCustomersTable",
+  );
   return (
     <React.Fragment>
       <BasicPageHeader title="База клиентов" shownBackArrowButton />
