@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { useParams } from "react-router-dom";
 import { Box, Container, Grid, Typography } from "@mui/material";
 
@@ -14,21 +14,42 @@ import { PropertyDetailsApartmentHouseInfo } from "./components/PropertyDetailsA
 import { PropertyDetailsAdditionalOptions } from "./components/PropertyDetailsAdditionalOptions";
 import { PropertyDetailsDescriptionInfo } from "./components/PropertyDetailsDescriptionInfo";
 
+/**
+ * Модуль страницы деталей недвижимости.
+ *
+ * Поведение:
+ * - При смене `id` из URL сбрасывает `currentProperty` в Zustand → предотвращает
+ *   «мигание» старыми данными (старые фото) до прихода новых.
+ * - После успешной загрузки кладёт актуальные данные в `currentProperty`.
+ * - В блок фото передаёт `key` и `entityKey`, чтобы Embla пересоздавалась при смене объекта.
+ */
 export const PropertyDetailsModule = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
+
   const currentProperty = propertyDetailsStore(
     (state) => state.currentProperty,
   );
   const setCurrentProperty = propertyDetailsStore(
     (state) => state.setCurrentProperty,
   );
+
+  // Загружаем детали по id (важно, чтобы внутри хука queryKey включал id)
   const { data, isSuccess, isLoading, error } = useGetPropertyDetailsQuery(id);
 
+  // 1) КРИТИЧЕСКОЕ: при смене id мгновенно очищаем состояние,
+  // чтобы старая карточка/фото не оставались на экране.
+  React.useEffect(() => {
+    setCurrentProperty(null);
+  }, [id, setCurrentProperty]);
+
+  // 2) После успешной загрузки записываем новые данные в Zustand
   React.useEffect(() => {
     if (isSuccess && data) {
       setCurrentProperty(data);
     }
   }, [data, isSuccess, setCurrentProperty]);
+
+  const showContent = Boolean(currentProperty) && !isLoading;
 
   return (
     <React.Fragment>
@@ -43,12 +64,19 @@ export const PropertyDetailsModule = () => {
               <AxiosErrorAlertMessage error={error} />
             </Grid>
           )}
+
           {isLoading && <React.Fragment>loading..</React.Fragment>}
-          {currentProperty && (
+
+          {showContent && (
             <React.Fragment>
               <Grid size={{ xs: 12, md: 8 }}>
+                {/* key / entityKey гарантируют чистую инициализацию Embla при смене объекта */}
                 <PropertyDetailsPhotoBlock
-                  photos={currentProperty.property_photos}
+                  key={id}
+                  entityKey={id}
+                  photos={currentProperty!.property_photos ?? []}
+                  // Можно также передать loading, если внутри слайдера хочешь показывать плейсхолдер:
+                  // loading={isLoading}
                 />
                 <Grid size={12}>
                   <Box py={2.5}>
@@ -56,10 +84,11 @@ export const PropertyDetailsModule = () => {
                   </Box>
                   <Box pb={2.5}>
                     <Typography component="h1" variant="h4">
-                      {currentProperty.title}
+                      {currentProperty!.title}
                     </Typography>
                   </Box>
                 </Grid>
+
                 <Grid container spacing={2}>
                   <Grid size={{ xs: 12, md: 6 }}>
                     <PropertyDetailsApartmentInfo />
@@ -67,12 +96,15 @@ export const PropertyDetailsModule = () => {
                   <Grid size={{ xs: 12, md: 6 }}>
                     <PropertyDetailsApartmentHouseInfo />
                   </Grid>
+
                   <PropertyDetailsAdditionalOptions />
+
                   <Grid size={12}>
                     <PropertyDetailsDescriptionInfo />
                   </Grid>
                 </Grid>
               </Grid>
+
               <PropertyDetailsPriceBlock />
             </React.Fragment>
           )}

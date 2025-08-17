@@ -36,7 +36,7 @@ export const CustomersTableBody = ({ data }: CustomersTableBodyProps) => {
           <TableCell>
             <Button
               variant="contained"
-              size="small"
+              size="medium"
               onClick={handleClickButton}
             >
               {t("customers.table.body.show_relations")}

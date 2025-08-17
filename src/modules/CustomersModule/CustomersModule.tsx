@@ -66,7 +66,7 @@ export const CustomersModule = () => {
   return (
     <React.Fragment>
       <BasicPageHeader title="База клиентов" shownBackArrowButton />
-      <Container>
+      <Container maxWidth={false}>
         <Grid container spacing={2}>
           <Grid size={12}>
             <Typography component="h1" variant="h4">

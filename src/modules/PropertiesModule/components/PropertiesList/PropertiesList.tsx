@@ -44,7 +44,7 @@ export const PropertiesList = () => {
           </Grid>
         ))}
       {!propertiesIsLoading && !propertiesError && (
-        <Grid size={12}>
+        <Grid size={{ xs: 12, lg: 6 }}>
           <PropertiesCreateCard
             title="Новый объект"
             description="Добавьте объекты недвижимости в систему и они появятся здесь"
