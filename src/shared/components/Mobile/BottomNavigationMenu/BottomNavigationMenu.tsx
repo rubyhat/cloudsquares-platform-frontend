@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Box, Typography } from "@mui/material";
 import { NavLink, useLocation } from "react-router-dom";
 import { FaUserAlt, FaHome, FaSearch } from "react-icons/fa";
@@ -9,21 +10,26 @@ import {
   menuItemStyles,
   menuItemTextStyles,
 } from "./styles";
+import { shouldShowBottomNav } from "./utils";
 
 /**
  * Компонент нижнего меню навигации.
  *
- * - Отображает 4 кнопки: Главная, Каталог, Корзина, Профиль.
- * - Подсвечивает активную кнопку в зависимости от текущего маршрута.
- * - По умолчанию цвет иконок — #cccccc, активная — #000000.
- *
- * @returns React-компонент нижнего меню навигации.
+ * Особенности:
+ * - Показывается только на мобильных (display: { xs: "grid", md: "none" });
+ * - Не рендерится на страницах, соответствующих паттернам из BOTTOM_NAV_HIDDEN_PATTERNS;
+ * - Подсвечивает активный пункт по текущему пути.
  */
-export const BottomNavigationMenu = () => {
+export const BottomNavigationMenu: React.FC = () => {
   const location = useLocation();
+  const { pathname } = location;
 
-  // Функция для определения активного пути
-  const isActive = (path: string) => location.pathname === path;
+  // Если по правилам меню должно быть скрыто — вообще не рендерим его
+  const visible = shouldShowBottomNav(pathname);
+  if (!visible) return null;
+
+  // Активность для иконки/подписи (простая проверка равенства пути)
+  const isActive = (path: string) => pathname === path;
 
   return (
     <Box sx={bottomNavigationMenuStyles}>

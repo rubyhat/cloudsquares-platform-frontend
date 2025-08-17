@@ -21,13 +21,12 @@ import {
 import { useUsersFormStore } from "./store";
 import { useCreateNewUserMutation, usePatchUserMutation } from "./hooks";
 import { User } from "../../shared/interfaces";
-import { useUsersStore } from "../UsersModule/store";
 import { normalizeEditableUserData } from "./utils";
 import { useCanAccess } from "../../shared/permissions/canAccess";
 
 interface UsersFormModuleProps {
   mode: BasicDrawerMode;
-  user: User | null;
+  editableUser: User | null;
   onSubmit?: () => void;
   onDecline?: () => void;
   onSuccess?: () => void;
@@ -35,6 +34,7 @@ interface UsersFormModuleProps {
 }
 
 export const UsersFormModule = ({
+  editableUser,
   mode,
   onSubmit,
   onDecline,
@@ -42,7 +42,6 @@ export const UsersFormModule = ({
   onSuccess,
 }: UsersFormModuleProps) => {
   const initialState = useUsersFormStore((state) => state.initialState);
-  const editableUser = useUsersStore((state) => state.editableUser);
   const canEditUserPassword = useCanAccess("canEditUserPassword");
 
   const methods = useForm<UsersFormData>({

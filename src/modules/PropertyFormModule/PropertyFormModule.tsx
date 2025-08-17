@@ -1,54 +1,26 @@
-import { Box, Button } from "@mui/material";
-import { FormProvider, useForm } from "react-hook-form";
-import { devLogger } from "../../shared/utils";
+import { Box } from "@mui/material";
+import { PropertyBasicDataForm } from "./components/PropertyBasicDataForm";
+import { BasicDrawerMode } from "../../shared/interfaces/Shared";
+import { PropertyFormSteps, usePropertyFormStore } from "./store";
+import { PropertyFormStepCounter } from "./components/PropertyFormStepCounter";
+import { PropertyFormOwners } from "./components/PropertyFormOwners";
 
-export const PropertyFormModule = () => {
-  const methods = useForm({
-    defaultValues: {},
-  });
+interface PropertyFormModuleProps {
+  mode: BasicDrawerMode; // TODO: BasicDrawerMode переименовать, так как это уже и в модалке и в просто форме может быть.
+}
 
-  const { handleSubmit, reset, watch, formState } = methods;
-  const disableInput = false;
-
-  const onSubmitForm = (data: object) => {
-    console.log(data, watch, formState); // todo: temp
-  };
-
-  const handleResetForm = () => {
-    reset();
-  };
+export const PropertyFormModule = ({ mode }: PropertyFormModuleProps) => {
+  const step = usePropertyFormStore((state) => state.step);
 
   return (
-    <FormProvider {...methods}>
-      <Box
-        component="form"
-        onSubmit={handleSubmit(onSubmitForm, (errors) =>
-          devLogger.error("Ошибки валидации:", errors),
+    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      <PropertyFormStepCounter />
+      <Box flexGrow={1}>
+        {step === PropertyFormSteps.basic_data && (
+          <PropertyBasicDataForm mode={mode} editableProperty={null} />
         )}
-        sx={{ p: 2, display: "flex", flexDirection: "column", height: 1 }}
-      >
-        <Box flexGrow={1}></Box>
-        <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            onClick={handleResetForm}
-            disabled={disableInput}
-          >
-            Закрыть
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            size="large"
-            disabled={disableInput}
-          >
-            Сохранить
-          </Button>
-        </Box>
+        {step === PropertyFormSteps.property_owners && <PropertyFormOwners />}
       </Box>
-    </FormProvider>
+    </Box>
   );
 };

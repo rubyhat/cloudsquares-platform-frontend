@@ -1,12 +1,70 @@
 import { create } from "zustand";
 import { PropertyFormMode } from "../../../shared/interfaces/PropertyForm";
+import { PropertyBasicDataFormData } from "../validations";
+import {
+  ListingType,
+  PropertyStatus,
+} from "../../../shared/interfaces/Property";
 
-interface PropertyFormStore {
-  mode: PropertyFormMode;
-  setMode: (v: PropertyFormMode) => void;
+export enum PropertyFormSteps {
+  /** Базовые минимальные данные объекта недвижимости */
+  basic_data = "basic_data",
+  /** Данные собственников недвижимости */
+  property_owners = "property_owners",
+  /** Фотографии объекта недвижимости */
+  photos = "photos",
+  /** Адрес объекта недвижимости */
+  location = "location",
+  /** Кастомные характеристики объекта недвижимости */
+  custom_characteristics = "custom_characteristics",
 }
 
-export const usePropertyFormStore = create<PropertyFormStore>((set) => ({
+interface PropertyFormStore {
+  /** Режим формы (create/edit/view) */
+  mode: PropertyFormMode;
+  setMode: (v: PropertyFormMode) => void;
+
+  /** Начальное состояние базовых данных */
+  initialBasicDataState: PropertyBasicDataFormData;
+
+  /** Текущий шаг формы */
+  step: PropertyFormSteps;
+  setStep: (v: PropertyFormSteps) => void;
+
+  /**
+   * Единый порядок шагов формы — источник правды для всего приложения.
+   * По умолчанию берём порядок из enum (Object.values хранит порядок объявления string-enum).
+   * Можно переопределять динамически (например, отключить шаг «photos» для некоторых сценариев).
+   */
+  stepsOrder: PropertyFormSteps[];
+  setStepsOrder: (list: PropertyFormSteps[]) => void;
+
+  /** Индекс текущего шага в stepsOrder */
+  getCurrentStepIndex: () => number;
+}
+
+const initialBasicDataState: PropertyBasicDataFormData = {
+  title: "",
+  description: "",
+  price: 0,
+  discount: 0,
+  listing_type: ListingType.sale,
+  status: PropertyStatus.pending,
+  category_id: "",
+};
+
+export const usePropertyFormStore = create<PropertyFormStore>((set, get) => ({
   mode: PropertyFormMode.create,
   setMode: (v) => set({ mode: v }),
+  initialBasicDataState,
+
+  step: PropertyFormSteps.basic_data,
+  setStep: (v) => set({ step: v }),
+  stepsOrder: Object.values(PropertyFormSteps) as PropertyFormSteps[],
+  setStepsOrder: (list) => set({ stepsOrder: list }),
+  getCurrentStepIndex: () => {
+    const { stepsOrder, step } = get();
+    const idx = stepsOrder.indexOf(step);
+    return idx < 0 ? 0 : idx;
+  },
 }));

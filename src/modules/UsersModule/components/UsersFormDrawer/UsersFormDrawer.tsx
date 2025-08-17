@@ -24,7 +24,7 @@ export const UsersFormDrawer = () => {
     >
       {formMode === BasicDrawerMode.create && (
         <UsersFormModule
-          user={null}
+          editableUser={null}
           mode={formMode}
           onSuccess={() => setShowUserFormDrawer(false)}
           onDecline={() => setShowUserFormDrawer(false)}
@@ -32,7 +32,7 @@ export const UsersFormDrawer = () => {
       )}
       {formMode === BasicDrawerMode.edit && editableUser && (
         <UsersFormModule
-          user={editableUser}
+          editableUser={editableUser}
           mode={formMode}
           onSuccess={() => setShowUserFormDrawer(false)}
           onDecline={() => setShowUserFormDrawer(false)}

@@ -5,7 +5,7 @@ export const PropertyCreate = () => {
   return (
     <Box
       component="section"
-      className="section"
+      className="section section-property-create"
       data-testid="pagePropertyCreate"
     >
       <PropertyCreateModule />

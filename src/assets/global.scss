@@ -70,6 +70,7 @@ h6 {
 }
 
 .section {
+  height: 100%;
   padding: 32px 0;
   @media (max-width: 1200px) {
     padding: 0 0 24px;
@@ -77,5 +78,11 @@ h6 {
   @media (max-width: 600px) {
     padding-top: 0px;
     padding-bottom: 96px;
+  }
+}
+
+.section-property-create {
+  @media (max-width: 600px) {
+    padding-bottom: 0;
   }
 }
