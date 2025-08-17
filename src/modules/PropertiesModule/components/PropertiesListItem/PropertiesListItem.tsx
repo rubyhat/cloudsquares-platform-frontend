@@ -18,12 +18,17 @@ import {
   priceInfoWrapperStyles,
 } from "./styles";
 
+// TODO: перевести компонент в shared/components так как используется в нескольких модулях.
+
 /**
  * Свойства карточки элемента списка объектов недвижимости.
  */
 interface PropertiesListItemProps {
   /** Объект недвижимости */
   property: Property;
+
+  /** Отображение кнопок действий в карточке */
+  showActionButton?: boolean;
 }
 
 /**
@@ -34,7 +39,10 @@ interface PropertiesListItemProps {
  * Если у объекта нет фото, отображается заглушка с иконкой из `react-icons`.
  * Превью и заглушка кликабельны и ведут на страницу деталей объекта.
  */
-export const PropertiesListItem = ({ property }: PropertiesListItemProps) => {
+export const PropertiesListItem = ({
+  property,
+  showActionButton,
+}: PropertiesListItemProps) => {
   const navigate = useNavigate();
 
   const handleOpenDetails = React.useCallback(() => {
@@ -130,18 +138,23 @@ export const PropertiesListItem = ({ property }: PropertiesListItemProps) => {
             </Box>
           )}
 
-          <Box sx={cardButtonWrapperStyles}>
-            <Box component={Link} to={`/requests/buy?property=${property.id}`}>
-              <Button variant="outlined" size="large" fullWidth>
-                Открыть заявки
-              </Button>
+          {showActionButton && (
+            <Box sx={cardButtonWrapperStyles}>
+              <Box
+                component={Link}
+                to={`/requests/buy?property=${property.id}`}
+              >
+                <Button variant="outlined" size="large" fullWidth>
+                  Открыть заявки
+                </Button>
+              </Box>
+              <Box component={Link} to={`/properties/${property.id}`}>
+                <Button variant="contained" size="large" fullWidth>
+                  Открыть детали
+                </Button>
+              </Box>
             </Box>
-            <Box component={Link} to={`/properties/${property.id}`}>
-              <Button variant="contained" size="large" fullWidth>
-                Открыть детали
-              </Button>
-            </Box>
-          </Box>
+          )}
         </Box>
 
         <Box sx={priceInfoWrapperStyles}>

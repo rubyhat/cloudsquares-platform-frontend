@@ -40,7 +40,7 @@ export const PropertiesList = () => {
         propertiesIsSuccess &&
         properties.map((property) => (
           <Grid size={12} key={property.id}>
-            <PropertiesListItem property={property} />
+            <PropertiesListItem property={property} showActionButton />
           </Grid>
         ))}
       {!propertiesIsLoading && !propertiesError && (

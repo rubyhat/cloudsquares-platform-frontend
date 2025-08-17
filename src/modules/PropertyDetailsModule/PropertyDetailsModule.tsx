@@ -13,6 +13,7 @@ import { propertyDetailsStore } from "./store";
 import { PropertyDetailsApartmentHouseInfo } from "./components/PropertyDetailsApartmentHouseInfo";
 import { PropertyDetailsAdditionalOptions } from "./components/PropertyDetailsAdditionalOptions";
 import { PropertyDetailsDescriptionInfo } from "./components/PropertyDetailsDescriptionInfo";
+import { PropertyDetailsDeactivateDrawer } from "./components/PropertyDetailsDeactivateDrawer";
 
 /**
  * Модуль страницы деталей недвижимости.
@@ -110,6 +111,7 @@ export const PropertyDetailsModule = () => {
           )}
         </Grid>
       </Container>
+      <PropertyDetailsDeactivateDrawer />
     </React.Fragment>
   );
 };

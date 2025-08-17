@@ -1,0 +1,1 @@
+export { PropertyDetailsDeleteForm } from "./PropertyDetailsDeleteForm";

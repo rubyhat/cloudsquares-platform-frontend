@@ -11,6 +11,10 @@ import { AgentCompactCard } from "../../../../shared/components/AgentCompactCard
 import { propertyDetailsStore } from "../../store";
 
 export const PropertyDetailsPriceBlock = () => {
+  const setShowDeactivateDrawer = propertyDetailsStore(
+    (state) => state.setShowDeactivateDrawer,
+  );
+
   const currentProperty = propertyDetailsStore(
     (state) => state.currentProperty,
   );
@@ -66,6 +70,7 @@ export const PropertyDetailsPriceBlock = () => {
               color="error"
               size="large"
               startIcon={<MdDelete />}
+              onClick={() => setShowDeactivateDrawer(true)}
             >
               Удалить
             </Button>
