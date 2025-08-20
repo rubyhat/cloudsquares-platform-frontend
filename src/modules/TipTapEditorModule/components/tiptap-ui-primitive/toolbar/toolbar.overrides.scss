@@ -1,0 +1,38 @@
+/* Локальные переопределения для тулбара ТОЛЬКО внутри контейнера редактора */
+.tip-tap-editor-module {
+  /* Кастомный отступ, если сверху есть фиксированный AppBar и т.п. */
+  --cs-sticky-offset: 0px;
+}
+
+/* Всегда сверху, липкий, поверх контента редактора */
+.tip-tap-editor-module .tiptap-toolbar[data-variant="fixed"] {
+  position: sticky;
+  top: var(--cs-sticky-offset);
+  bottom: auto;
+  z-index: 50;
+
+  width: 100%;
+  min-height: var(--tt-toolbar-height);
+  background: var(--tt-toolbar-bg-color);
+  border-top: none;
+  border-bottom: 1px solid var(--tt-toolbar-border-color);
+  padding: 0 0.5rem;
+}
+
+/* Мобильная версия — такие же правила, как на десктопе */
+@media (max-width: 480px) {
+  .tip-tap-editor-module .tiptap-toolbar[data-variant="fixed"] {
+    position: sticky;
+    top: var(--cs-sticky-offset);
+    bottom: auto;
+
+    height: var(--tt-toolbar-height);
+    padding-bottom: 0;
+    border-top: none;
+    border-bottom: 1px solid var(--tt-toolbar-border-color);
+
+    /* поведение скролла и групп оставляем как в исходнике */
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+}

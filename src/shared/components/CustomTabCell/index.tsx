@@ -1,1 +1,1 @@
-export * from "./CustomTabCell";
+export { CustomTableCell } from "./CustomTabCell";

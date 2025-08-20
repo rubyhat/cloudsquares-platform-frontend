@@ -40,7 +40,7 @@ describe("BasicNavListToPage", () => {
     renderComponent();
 
     const icons = screen.getAllByTestId("fa-icon");
-    expect(icons.length).toBe(mockList.length);
+    expect(icons).toHaveLength(mockList.length);
   });
 
   it("позволяет навигировать по ссылке", async () => {

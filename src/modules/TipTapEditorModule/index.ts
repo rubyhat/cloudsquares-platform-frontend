@@ -1,0 +1,1 @@
+export { TipTapEditorModule } from "./TipTapEditorModule";

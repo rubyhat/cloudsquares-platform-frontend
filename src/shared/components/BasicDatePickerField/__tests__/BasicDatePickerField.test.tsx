@@ -50,7 +50,7 @@ describe("BasicDatePickerField", () => {
           type: "manual",
           message: "Поле обязательно",
         });
-      }, []);
+      }, [methods]);
 
       return (
         <TestProviders>

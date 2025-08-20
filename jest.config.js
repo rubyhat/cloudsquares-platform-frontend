@@ -13,6 +13,7 @@ const config = {
   moduleNameMapper: {
     "^.+\\.svg$": "<rootDir>/src/shared/__mocks__/svgrMock.js",
     "^.+\\.(css|scss)$": "identity-obj-proxy",
+    "^@/(.*)$": "<rootDir>/src/$1",
     "^.+/constants/envs$": "<rootDir>/src/constants/__mocks__/envs.ts",
   },
   coveragePathIgnorePatterns: [

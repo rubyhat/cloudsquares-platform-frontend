@@ -10,6 +10,7 @@ import {
   PropertyBasicDataFormData,
 } from "../../validations";
 import { PropertyFormSteps, usePropertyFormStore } from "../../store";
+import { TipTapEditorModule } from "@/modules/TipTapEditorModule";
 
 interface PropertyBasicDataFormProps {
   mode: BasicDrawerMode;
@@ -73,6 +74,9 @@ export const PropertyBasicDataForm = ({
               placeholder="Введите название объекта"
               disabled={disableInput}
             />
+          </Box>
+          <Box pb={2}>
+            <TipTapEditorModule />
           </Box>
         </Box>
         <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>

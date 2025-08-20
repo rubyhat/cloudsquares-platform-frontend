@@ -7,6 +7,10 @@
     "skipLibCheck": true,
     "types": ["node", "jest", "@testing-library/jest-dom"],
     "declaration": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",

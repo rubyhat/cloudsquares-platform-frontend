@@ -40,7 +40,7 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       eqeqeq: ["warn", "always"], // Использовать строгое сравнение (=== и !==)
-      indent: ["warn", 2, { SwitchCase: 1 }], // Используем 2 пробела
+      // indent: ["warn", 2, { SwitchCase: 1 }], // Используем 2 пробела. Выключил - ловим баги с зацикливанием и рекурсией при большой вложенности tsx, оставим форматирование Prettier'y
       semi: ["warn", "always"], // Всегда закрываем строки ;
       "prefer-const": "warn", // Для констант используем const, не let
       // "react-refresh/only-export-components": "off", // Отключение правила, которое запрещает экспортировать * из файлов компонентов
