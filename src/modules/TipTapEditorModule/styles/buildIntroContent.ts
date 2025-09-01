@@ -293,7 +293,7 @@ export function buildIntroContent(t: TFunction<"translation", undefined>) {
                       defaultValue: "Надстрочный и подстрочный индексы",
                     }),
                   },
-                  { type: "text", text: " (x" },
+                  { type: "text", text: " (m" },
                   { type: "text", marks: [{ type: "superscript" }], text: "2" },
                   { type: "text", text: ", H" },
                   { type: "text", marks: [{ type: "subscript" }], text: "2" },

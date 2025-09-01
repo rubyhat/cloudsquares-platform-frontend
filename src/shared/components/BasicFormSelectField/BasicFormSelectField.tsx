@@ -7,7 +7,7 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import { Controller, useFormContext } from "react-hook-form";
+import { Controller, FieldErrors, useFormContext, Path } from "react-hook-form";
 import { formControlStyles } from "../../styles";
 
 // todo: Сделать по размерам таким же, как <BasicTextField />
@@ -15,9 +15,9 @@ import { formControlStyles } from "../../styles";
 /**
  * Пропсы для компонента `BasicFormSelectField`.
  */
-interface BasicFormSelectFieldProps {
+interface BasicFormSelectFieldProps<T extends Record<string, unknown>> {
   /** Имя поля в форме (используется для `react-hook-form`) */
-  name: string;
+  name: Path<T>;
 
   /** Заголовок, отображаемая над полем */
   label?: string;
@@ -44,16 +44,17 @@ interface BasicFormSelectFieldProps {
  * @param {BasicFormSelectFieldProps} props Пропсы компонента
  * @returns React-компонент `Select` с `react-hook-form`
  */
-export const BasicFormSelectField = ({
+export const BasicFormSelectField = <T extends Record<string, unknown>>({
   name,
   label,
   placeholder,
   data,
   buttonOptions,
   disabled = false,
-}: BasicFormSelectFieldProps) => {
-  const { formState, control } = useFormContext();
+}: BasicFormSelectFieldProps<T>) => {
+  const { formState, control } = useFormContext<T>();
   const { errors } = formState;
+  const fieldError = (errors as FieldErrors<T>)[name];
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
@@ -101,9 +102,9 @@ export const BasicFormSelectField = ({
             </Select>
           )}
         />
-        {errors[name] && (
+        {fieldError && (
           <FormHelperText sx={{ color: "#d32f2f" }}>
-            {errors[name].message as string}
+            {fieldError?.message as string}
           </FormHelperText>
         )}
       </FormControl>

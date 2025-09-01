@@ -1,16 +1,18 @@
 import { Box, Button, Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
-import { devLogger } from "../../../../shared/utils";
-import { BasicTextField } from "../../../../shared/components/BasicTextField";
-import { BasicDrawerMode } from "../../../../shared/interfaces/Shared";
-import { Property } from "../../../../shared/interfaces/Property";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { TipTapEditorModule } from "@/modules/TipTapEditorModule";
+import { PropertyCategoriesSelectField } from "@/shared/components/PropertyCategoriesSelectField";
+import { BasicDrawerMode } from "@/shared/interfaces/Shared";
+import { Property } from "@/shared/interfaces/Property";
+import { devLogger } from "@/shared/utils";
+import { BasicTextField } from "@/shared/components/BasicTextField";
+
 import {
   createPropertyBasicDataFormSchema,
   PropertyBasicDataFormData,
 } from "../../validations";
 import { PropertyFormSteps, usePropertyFormStore } from "../../store";
-import { TipTapEditorModule } from "@/modules/TipTapEditorModule";
 
 interface PropertyBasicDataFormProps {
   mode: BasicDrawerMode;
@@ -34,6 +36,7 @@ export const PropertyBasicDataForm = ({
   const initialState = usePropertyFormStore(
     (state) => state.initialBasicDataState,
   );
+
   const methods = useForm<PropertyBasicDataFormData>({
     resolver: zodResolver(createPropertyBasicDataFormSchema(mode)),
     defaultValues: initialState,
@@ -74,6 +77,9 @@ export const PropertyBasicDataForm = ({
               placeholder="Введите название объекта"
               disabled={disableInput}
             />
+          </Box>
+          <Box pb={2}>
+            <PropertyCategoriesSelectField />
           </Box>
           <Box pb={2}>
             <TipTapEditorModule />
