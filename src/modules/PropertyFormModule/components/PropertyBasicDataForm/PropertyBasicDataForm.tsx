@@ -13,6 +13,8 @@ import {
   PropertyBasicDataFormData,
 } from "../../validations";
 import { PropertyFormSteps, usePropertyFormStore } from "../../store";
+import { BasicFormSelectField } from "@/shared/components/BasicFormSelectField";
+import { propertyListingTypeSelectOptions } from "@/shared/constants";
 
 interface PropertyBasicDataFormProps {
   mode: BasicDrawerMode;
@@ -40,6 +42,7 @@ export const PropertyBasicDataForm = ({
   const methods = useForm<PropertyBasicDataFormData>({
     resolver: zodResolver(createPropertyBasicDataFormSchema(mode)),
     defaultValues: initialState,
+    mode: "onSubmit",
   });
 
   const { handleSubmit, watch, formState } = methods;
@@ -76,6 +79,33 @@ export const PropertyBasicDataForm = ({
               label="Название"
               placeholder="Введите название объекта"
               disabled={disableInput}
+            />
+          </Box>
+          <Box pb={2}>
+            <BasicTextField<PropertyBasicDataFormData>
+              name="price"
+              label="Стоимость"
+              placeholder="Введите стоимость объекта"
+              disabled={disableInput}
+              type="number"
+              showCurrency
+            />
+          </Box>
+          <Box pb={2}>
+            <BasicTextField<PropertyBasicDataFormData>
+              name="discount"
+              label="Текущая скидка"
+              placeholder="Введите текущую скидку"
+              disabled={disableInput}
+              type="number"
+              showCurrency
+            />
+          </Box>
+          <Box pb={2}>
+            <BasicFormSelectField<PropertyBasicDataFormData>
+              name="listing_type"
+              placeholder="Выберите тип размещения"
+              data={propertyListingTypeSelectOptions()}
             />
           </Box>
           <Box pb={2}>

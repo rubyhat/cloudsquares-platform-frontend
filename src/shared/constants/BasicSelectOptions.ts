@@ -1,4 +1,5 @@
 import { CountryCode, CountryCodeDisplayText } from "../interfaces/Country";
+import { ListingType, ListingTypeText } from "../interfaces/Property";
 import { UserRole, UserRoleDisplayText } from "../permissions/roles";
 
 export const countrySelectOptions = (): {
@@ -35,4 +36,13 @@ export const userRoleSelectOptions = (): {
   ];
 
   return userRoleList;
+};
+
+export const propertyListingTypeSelectOptions = () => {
+  const listingTypeList = [
+    { value: ListingType.sale, label: ListingTypeText.sale },
+    { value: ListingType.rent, label: ListingTypeText.rent },
+  ];
+
+  return listingTypeList;
 };
