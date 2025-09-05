@@ -1,23 +1,25 @@
+import { useNavigate } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TipTapEditorModule } from "@/modules/TipTapEditorModule";
 import { PropertyCategoriesSelectField } from "@/shared/components/PropertyCategoriesSelectField";
-import { BasicDrawerMode } from "@/shared/interfaces/Shared";
+import { PropertyFormMode } from "@/shared/interfaces/PropertyForm";
 import { Property } from "@/shared/interfaces/Property";
 import { devLogger } from "@/shared/utils";
 import { BasicTextField } from "@/shared/components/BasicTextField";
+import { BasicFormSelectField } from "@/shared/components/BasicFormSelectField";
+import { propertyListingTypeSelectOptions } from "@/shared/constants";
 
 import {
   createPropertyBasicDataFormSchema,
   PropertyBasicDataFormData,
 } from "../../validations";
 import { PropertyFormSteps, usePropertyFormStore } from "../../store";
-import { BasicFormSelectField } from "@/shared/components/BasicFormSelectField";
-import { propertyListingTypeSelectOptions } from "@/shared/constants";
+import { useCreatePropertyMutation } from "../../hooks";
 
 interface PropertyBasicDataFormProps {
-  mode: BasicDrawerMode;
+  mode: PropertyFormMode;
   editableProperty: Property | null;
   onSubmit?: () => void;
   onDecline?: () => void;
@@ -33,6 +35,7 @@ export const PropertyBasicDataForm = ({
   // onError,
   // onSuccess,
 }: PropertyBasicDataFormProps) => {
+  const navigate = useNavigate();
   const setStep = usePropertyFormStore((state) => state.setStep);
 
   const initialState = usePropertyFormStore(
@@ -46,16 +49,20 @@ export const PropertyBasicDataForm = ({
   });
 
   const { handleSubmit, watch, formState } = methods;
+  const createPropertyMutation = useCreatePropertyMutation();
   const disableInput = false;
 
-  const onSubmitForm = (data: object) => {
+  const onSubmitForm = (data: PropertyBasicDataFormData) => {
     console.log(data, watch, formState); // todo: temp
-    // Если успешно создали объект, то переходим на следующий шаг
-    setStep(PropertyFormSteps.property_owners);
+    createPropertyMutation.mutate({
+      data,
+      onSuccess: () => setStep(PropertyFormSteps.property_owners),
+    });
   };
 
   const handleResetForm = () => {
-    setStep(PropertyFormSteps.property_owners);
+    setStep(PropertyFormSteps.basic_data);
+    navigate("/properties");
   };
 
   return (
@@ -126,7 +133,7 @@ export const PropertyBasicDataForm = ({
             onClick={handleResetForm}
             disabled={disableInput}
           >
-            Назад
+            Отменить
           </Button>
           <Button
             variant="contained"
@@ -135,7 +142,7 @@ export const PropertyBasicDataForm = ({
             size="large"
             disabled={disableInput}
           >
-            Сохранить
+            Дальше
           </Button>
         </Box>
       </Box>

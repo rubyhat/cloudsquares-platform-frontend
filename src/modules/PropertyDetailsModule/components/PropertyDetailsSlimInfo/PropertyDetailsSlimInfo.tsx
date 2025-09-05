@@ -12,7 +12,7 @@ export const PropertyDetailsSlimInfo = () => {
   const displayedData = (): PropertyDetailsInfoItem[] => {
     if (currentProperty)
       return [
-        { label: "Город", value: currentProperty.property_location.city },
+        { label: "Город", value: currentProperty?.property_location?.city },
         {
           label: "Услуга",
           value: ListingTypeText[currentProperty.listing_type],

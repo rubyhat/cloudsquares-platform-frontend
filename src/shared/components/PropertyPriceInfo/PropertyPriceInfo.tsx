@@ -13,10 +13,10 @@ export const PropertyPriceInfo = ({ property }: PropertyPriceInfoProps) => {
     <Box sx={{ display: "flex", flexDirection: "column", gap: 0.5 }}>
       <DiscountLabel price={property.price} discount={property.discount} />
       <Typography component="h6" variant="h4">
-        {(property.price - property.discount).toLocaleString("ru")}₽
+        {(property.price - property.discount).toLocaleString("ru")} ₽
       </Typography>
       <Typography component="p" variant="body1">
-        {calculatePricePerMeter(property.price, 42)}₽ за м²
+        {calculatePricePerMeter(property.price, 42)} ₽ за м²
       </Typography>
     </Box>
   );

@@ -9,8 +9,10 @@ import {
 import { DiscountLabel } from "../../../../shared/DiscountLabel";
 import { AgentCompactCard } from "../../../../shared/components/AgentCompactCard";
 import { propertyDetailsStore } from "../../store";
+import { useNavigate } from "react-router-dom";
 
 export const PropertyDetailsPriceBlock = () => {
+  const navigate = useNavigate();
   const setShowDeactivateDrawer = propertyDetailsStore(
     (state) => state.setShowDeactivateDrawer,
   );
@@ -52,7 +54,15 @@ export const PropertyDetailsPriceBlock = () => {
             <AgentCompactCard agent={currentProperty.agent} />
           </Box>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-            <Button variant="contained" size="large" startIcon={<MdEdit />}>
+            <Button
+              fullWidth
+              variant="contained"
+              size="large"
+              startIcon={<MdEdit />}
+              onClick={() =>
+                navigate(`/properties/${currentProperty.id}/update`)
+              }
+            >
               Редактировать
             </Button>
             <Button variant="outlined" size="large" startIcon={<MdPerson />}>

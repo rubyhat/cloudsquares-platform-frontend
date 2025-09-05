@@ -7,10 +7,14 @@ import {
   ListingTypeText,
   Property,
   PropertyStatusText,
-} from "../../../../shared/interfaces/Property";
-import { propertyAddress, propertyTitle } from "../../../../shared/utils";
-import { PropertyPriceInfo } from "../../../../shared/components/PropertyPriceInfo";
-import { AgentCompactCard } from "../../../../shared/components/AgentCompactCard";
+} from "@/shared/interfaces/Property";
+import {
+  htmlToShortText,
+  propertyAddress,
+  propertyTitle,
+} from "@/shared/utils";
+import { PropertyPriceInfo } from "@/shared/components/PropertyPriceInfo";
+import { AgentCompactCard } from "@/shared/components/AgentCompactCard";
 import {
   cardButtonWrapperStyles,
   cardStyles,
@@ -44,6 +48,10 @@ export const PropertiesListItem = ({
   showActionButton,
 }: PropertiesListItemProps) => {
   const navigate = useNavigate();
+  const shortDescription = React.useMemo(
+    () => htmlToShortText(property.description, 300, "..."),
+    [property.description],
+  );
 
   const handleOpenDetails = React.useCallback(() => {
     navigate("/properties/" + property.id);
@@ -98,7 +106,10 @@ export const PropertiesListItem = ({
 
       <Box sx={contentStyles}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <Typography component="h6" variant="subtitle1">
+          <Typography component="h5" variant="h5">
+            {property.title}
+          </Typography>
+          <Typography component="p" variant="subtitle1">
             {propertyTitle(property)}
           </Typography>
 
@@ -115,21 +126,25 @@ export const PropertiesListItem = ({
           </Box>
 
           <Box>
-            <Typography
-              component="p"
-              variant="body1"
-              color="customColors.grey600"
-              my={1}
-            >
-              {propertyAddress(property).fullAddress}
-            </Typography>
-            <Typography
-              component="p"
-              variant="body1"
-              color="customColors.grey600"
-            >
-              {property.description}
-            </Typography>
+            {property.property_location && (
+              <Typography
+                component="p"
+                variant="body1"
+                color="customColors.grey600"
+                my={1}
+              >
+                {propertyAddress(property).fullAddress}
+              </Typography>
+            )}
+            {shortDescription && (
+              <Typography
+                component="p"
+                variant="body1"
+                color="customColors.grey600"
+              >
+                {shortDescription}
+              </Typography>
+            )}
           </Box>
 
           {property.agent && (

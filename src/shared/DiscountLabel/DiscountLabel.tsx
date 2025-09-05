@@ -23,7 +23,7 @@ export const DiscountLabel = ({ price, discount }: DiscountLabelProps) => {
         color="customColors.grey400"
         sx={{ textDecoration: "line-through" }}
       >
-        {price.toLocaleString("ru")}₽
+        {price.toLocaleString("ru")} ₽
       </Typography>
     </Box>
   );

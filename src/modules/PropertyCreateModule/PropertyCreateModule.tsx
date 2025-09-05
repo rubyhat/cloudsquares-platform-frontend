@@ -1,8 +1,8 @@
 import React from "react";
-import { BasicPageHeader } from "../../shared/components/Mobile/BasicPageHeader";
 import { Container, Grid } from "@mui/material";
+import { BasicPageHeader } from "@/shared/components/Mobile/BasicPageHeader";
+import { PropertyFormMode } from "@/shared/interfaces/PropertyForm";
 import { PropertyFormModule } from "../PropertyFormModule";
-import { BasicDrawerMode } from "../../shared/interfaces/Shared";
 
 export const PropertyCreateModule = () => {
   return (
@@ -14,7 +14,7 @@ export const PropertyCreateModule = () => {
       >
         <Grid container spacing={2} sx={{ height: 1 }}>
           <Grid size={12} sx={{ height: 1 }}>
-            <PropertyFormModule mode={BasicDrawerMode.create} />
+            <PropertyFormModule mode={PropertyFormMode.create} />
           </Grid>
         </Grid>
       </Container>

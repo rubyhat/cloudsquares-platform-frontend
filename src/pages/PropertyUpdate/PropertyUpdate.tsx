@@ -5,7 +5,7 @@ export const PropertyUpdate = () => {
   return (
     <Box
       component="section"
-      className="section"
+      className="section section-property-edit"
       data-testid="pagePropertyUpdate"
     >
       <PropertyUpdateModule />
