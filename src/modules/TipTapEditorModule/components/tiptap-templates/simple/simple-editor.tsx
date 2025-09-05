@@ -75,11 +75,7 @@ import {
 
 // --- Styles ---
 import "@/modules/TipTapEditorModule/components/tiptap-templates/simple/simple-editor.scss";
-import { buildIntroContent } from "@/modules/TipTapEditorModule/styles/buildIntroContent";
 import { devLogger } from "@/shared/utils";
-
-// ⛔️ Старую заглушку из JSON больше не используем, но оставляем импорт закомментированным.
-// import content from "@/modules/TipTapEditorModule/components/tiptap-templates/simple/data/content.json";
 
 /**
  * Контент основной панели инструментов (desktop + mobile main).
@@ -217,11 +213,21 @@ const MobileToolbarContent = ({
   </>
 );
 
+// 👇 Добавлено: пропсы для двухсторонней связи с формой
+type SimpleEditorProps = {
+  /** HTML-контент из формы (RHF Controller field.value) */
+  value?: object | string;
+  /** Колбэк для записи HTML обратно в форму (RHF Controller field.onChange) */
+  onChange?: (html: string) => void;
+  /** Отключение редактирования */
+  disabled?: boolean;
+};
+
 /**
  * SimpleEditor — локализуемый редактор с панелью инструментов.
  * Добавлена кнопка «Очистить всё» для мгновенной очистки содержимого.
  */
-export function SimpleEditor() {
+export function SimpleEditor({ value, onChange, disabled }: SimpleEditorProps) {
   const isMobile = useIsMobile();
   const { height } = useWindowSize();
   const { t } = useTranslation();
@@ -230,9 +236,6 @@ export function SimpleEditor() {
     "main" | "highlighter" | "link"
   >("main");
   const toolbarRef = React.useRef<HTMLDivElement>(null);
-
-  // Генерируем локализованную заглушку один раз для текущего языка.
-  const initialContent = React.useMemo(() => buildIntroContent(t), [t]);
 
   const editor = useEditor({
     immediatelyRender: false,
@@ -274,16 +277,26 @@ export function SimpleEditor() {
         onError: (error) => devLogger.error("Upload failed:", error),
       }),
     ],
-    // ⛔️ Старый JSON контент заменён на локализованную заглушку:
-    content: initialContent,
+    // Инициализация контента из формы (или интро, если пусто)
+    content: value,
+
+    // 👇 Каждое обновление отправляем обратно в форму
+    onUpdate: (state) => {
+      onChange?.(state.editor.getHTML());
+    },
+
+    // Редактор можно заблокировать снаружи
+    editable: !disabled,
   });
 
   // 👇 Обработчик «Очистить всё»
   const handleClearAll = React.useCallback(() => {
     if (!editor) return;
     editor.chain().focus().clearContent(true).run();
-  }, [editor]);
+    onChange?.(""); // синхронизируем с формой
+  }, [editor, onChange]);
 
+  // Слежение за видимостью курсора (как и было)
   const rect = useCursorVisibility({
     editor,
     overlayHeight: toolbarRef.current?.getBoundingClientRect().height ?? 0,
@@ -294,6 +307,33 @@ export function SimpleEditor() {
       setMobileView("main");
     }
   }, [isMobile, mobileView]);
+
+  // 👇 Если disabled меняется снаружи — обновляем редактор
+  React.useEffect(() => {
+    if (!editor) return;
+    editor.setEditable(!disabled);
+  }, [editor, disabled]);
+
+  // 👇 Если значение в форме сброшено/изменено (reset, setValue) — подтянуть его в редактор.
+  // Важно: когда value === undefined, не трогаем (даём показать интро при первом монтировании).
+  React.useEffect(() => {
+    if (!editor) return;
+    if (value === undefined) return;
+
+    const current = editor.getHTML();
+    const next = value;
+
+    // Пустое значение из формы очищает редактор
+    if (next === "" && current !== "") {
+      editor.commands.clearContent(true);
+      return;
+    }
+
+    // Непустое — заменяем, если отличается
+    if (typeof next === "string" && next.length > 0 && next !== current) {
+      editor.commands.setContent(next);
+    }
+  }, [editor, value]);
 
   return (
     <div className="simple-editor-wrapper">

@@ -112,7 +112,10 @@ export const PropertyBasicDataForm = ({
             <PropertyCategoriesSelectField />
           </Box>
           <Box pb={2}>
-            <TipTapEditorModule />
+            <TipTapEditorModule<PropertyBasicDataFormData>
+              name="description"
+              disabled={disableInput}
+            />
           </Box>
         </Box>
         <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
