@@ -28,6 +28,10 @@ export const PropertyCategoriesSelectField = () => {
         <BasicFormSelectField<{ category_id: string }>
           name="category_id"
           placeholder="Выберите категорию"
+          buttonOptions={{
+            buttonLabel: "+ Добавить категорию",
+            onButtonClick: () => console.log("Add category"),
+          }}
           data={propertyCategoriesData.map((category) => ({
             value: category.id,
             label: category.title,

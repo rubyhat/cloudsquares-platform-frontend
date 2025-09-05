@@ -30,11 +30,15 @@ export const accessRules = {
   manageUsers: [UserRole.admin],
   viewProfile: sameAgencyAndAdmins,
   viewProfileDetails: sameAgencyAndAdmins,
+
+  // Properties
   viewPropertyList: sameAgencyAndAdmins,
   viewPropertyDetails: sameAgencyAndAdmins,
   viewPropertyCreate: sameAgencyAndAdmins,
   viewPropertyUpdate: sameAgencyAndAdmins,
   viewPropertyOwners: sameAgencyAndAdmins,
+  viewPropertyCategories: sameAgencyAndAdmins,
+
   viewAgencyUsers: sameAgencyAndAdmins,
   viewAgencyCustomers: sameAgencyAndAdmins,
 

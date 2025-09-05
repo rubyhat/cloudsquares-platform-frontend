@@ -35,6 +35,14 @@ interface BasicFormSelectFieldProps<T extends Record<string, unknown>> {
   buttonOptions?: {
     buttonLabel: string;
     onButtonClick: () => void;
+    buttonColor?:
+      | "inherit"
+      | "primary"
+      | "secondary"
+      | "success"
+      | "error"
+      | "info"
+      | "warning";
   };
 }
 
@@ -88,12 +96,11 @@ export const BasicFormSelectField = <T extends Record<string, unknown>>({
                 </MenuItem>
               ))}
               {buttonOptions && (
-                <MenuItem>
+                <MenuItem onClick={buttonOptions.onButtonClick}>
                   <Button
                     variant="outlined"
-                    color="success"
-                    onClick={buttonOptions.onButtonClick}
-                    fullWidth
+                    color={buttonOptions.buttonColor || "primary"}
+                    sx={{ width: { xs: 1, md: "fit-content" } }}
                   >
                     {buttonOptions.buttonLabel}
                   </Button>
