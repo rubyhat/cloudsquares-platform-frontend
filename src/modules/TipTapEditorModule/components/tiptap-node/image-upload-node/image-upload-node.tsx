@@ -27,12 +27,10 @@ export interface FileItem {
 
   /**
    * URL to the uploaded file, available after successful upload
-   * @optional
    */
   url?: string;
   /**
    * Controller that can be used to abort the upload process
-   * @optional
    */
   abortController?: AbortController;
 }
@@ -66,13 +64,11 @@ export interface UploadOptions {
   /**
    * Callback triggered when a file is uploaded successfully
    * @param {string} url - URL of the successfully uploaded file
-   * @optional
    */
   onSuccess?: (url: string) => void;
   /**
    * Callback triggered when an error occurs during upload
    * @param {Error} error - The error that occurred
-   * @optional
    */
   onError?: (error: Error) => void;
 }
@@ -273,7 +269,6 @@ interface ImageUploadDragAreaProps {
   onFile: (files: File[]) => void;
   /**
    * Optional child elements to render inside the drag area
-   * @optional
    * @default undefined
    */
   children?: React.ReactNode;

@@ -41,7 +41,7 @@ export function isMac(): boolean {
 /**
  * Formats a shortcut key based on the platform (Mac or non-Mac)
  * @param key - The key to format (e.g., "ctrl", "alt", "shift")
- * @param isMac - Boolean indicating if the platform is Mac
+ * @param isMacOs - Boolean indicating if the platform is Mac
  * @param capitalize - Whether to capitalize the key (default: true)
  * @returns Formatted shortcut key symbol
  */
@@ -60,9 +60,10 @@ export const formatShortcutKey = (
 
 /**
  * Parses a shortcut key string into an array of formatted key symbols
- * @param shortcutKeys - The string of shortcut keys (e.g., "ctrl-alt-shift")
- * @param delimiter - The delimiter used to split the keys (default: "-")
- * @param capitalize - Whether to capitalize the keys (default: true)
+ * @param props - Object containing shortcutKeys, delimiter, and capitalize
+ * @param props.shortcutKeys - The string of shortcut keys (e.g., "ctrl-alt-shift")
+ * @param props.delimiter - The delimiter used to split the keys (default: "-")
+ * @param props.capitalize - Whether to capitalize the keys (default: true)
  * @returns Array of formatted shortcut key symbols
  */
 export const parseShortcutKeys = (props: {
@@ -113,8 +114,10 @@ export const isNodeInSchema = (
  * @param value - The value to check
  * @returns boolean indicating if the value is a valid number
  */
-export function isValidPosition(pos: number | null | undefined): pos is number {
-  return typeof pos === "number" && pos >= 0;
+export function isValidPosition(
+  value: number | null | undefined,
+): value is number {
+  return typeof value === "number" && value >= 0;
 }
 
 /**
