@@ -38,11 +38,13 @@ export const accessRules = {
   viewPropertyUpdate: sameAgencyAndAdmins,
   viewPropertyOwners: sameAgencyAndAdmins,
   viewPropertyCategories: sameAgencyAndAdmins,
+  createNewPropertyCategory: adminsAndAgencyAdmin,
 
-  viewAgencyUsers: sameAgencyAndAdmins,
+  // Customers
   viewAgencyCustomers: sameAgencyAndAdmins,
 
   // Users
+  viewAgencyUsers: sameAgencyAndAdmins,
   canEditUserPassword: adminsAndAgencyAdmin,
   deleteUsers: adminsAndAgencyAdmin,
   createNewUser: adminsAndAgencyAdmin,

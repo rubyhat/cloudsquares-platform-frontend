@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import { PropertyCategoriesList } from "../PropertyCategoriesList";
 
 export const PropertyCategoriesContent = () => {
@@ -6,13 +6,17 @@ export const PropertyCategoriesContent = () => {
     <Container maxWidth={false}>
       <Grid container spacing={2}>
         <Grid size={12}>
-          <Typography
-            component="h1"
-            variant="h3"
-            sx={{ display: { xs: "none", lg: "block" } }}
+          <Box
+            sx={{
+              display: { xs: "none", lg: "flex" },
+              alignItems: "center",
+              gap: 2,
+            }}
           >
-            Категории недвижимости
-          </Typography>
+            <Typography component="h1" variant="h3">
+              Категории недвижимости
+            </Typography>
+          </Box>
         </Grid>
         <Grid size={12}>
           <PropertyCategoriesList />
