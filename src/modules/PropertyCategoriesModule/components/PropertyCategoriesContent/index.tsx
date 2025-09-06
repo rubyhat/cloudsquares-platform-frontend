@@ -1,0 +1,1 @@
+export { PropertyCategoriesContent } from "./PropertyCategoriesContent";

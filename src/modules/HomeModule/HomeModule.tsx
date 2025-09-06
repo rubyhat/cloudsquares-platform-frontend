@@ -21,8 +21,8 @@ export const HomeModule = () => {
     { label: "Сотрудники", onClick: () => navigate("/agency/users") },
   ];
   const propertiesLinks: BasicNavListToPageItem[] = [
-    { label: "Каталог недвижимости", link: "/properties" },
     { label: "Добавить объект", link: "/properties/create" },
+    { label: "Каталог недвижимости", link: "/properties" },
     { label: "Категории недвижимости", link: "/properties/categories" },
     { label: "База собственников", link: "/properties/owners" },
   ];

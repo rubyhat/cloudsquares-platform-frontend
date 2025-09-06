@@ -1,0 +1,1 @@
+export { PropertyCategoriesList } from "./PropertyCategoriesList";

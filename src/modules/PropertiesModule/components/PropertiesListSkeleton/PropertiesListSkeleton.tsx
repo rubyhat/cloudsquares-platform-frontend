@@ -4,7 +4,7 @@ import {
   cardStyles,
   contentStyles,
   imageThumbnailStyles,
-} from "./PropertiesListItem/styles";
+} from "../PropertiesListItem/styles";
 
 export const PropertiesListSkeleton = () => {
   return (
