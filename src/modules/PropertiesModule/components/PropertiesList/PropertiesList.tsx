@@ -6,6 +6,7 @@ import { useGetAllPropertiesOfAgencyQuery } from "../../hooks";
 import { useUserProfile } from "../../../../shared/permissions/hooks";
 import { AxiosErrorAlertMessage } from "../../../../shared/components/AxiosErrorAlertMessage";
 import { PropertiesCreateCard } from "../PropertiesCreateCard";
+import { PropertiesListSkeleton } from "../PropertiesListSkeleton";
 
 export const PropertiesList = () => {
   const profile = useUserProfile();
@@ -35,7 +36,7 @@ export const PropertiesList = () => {
 
   return (
     <React.Fragment>
-      {propertiesIsLoading && "Loading..."}
+      {propertiesIsLoading && <PropertiesListSkeleton />}
       {properties &&
         propertiesIsSuccess &&
         properties.map((property) => (

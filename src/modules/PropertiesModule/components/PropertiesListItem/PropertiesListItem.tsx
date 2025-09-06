@@ -19,6 +19,7 @@ import {
   cardButtonWrapperStyles,
   cardStyles,
   contentStyles,
+  imageThumbnailStyles,
   priceInfoWrapperStyles,
 } from "./styles";
 
@@ -85,20 +86,8 @@ export const PropertiesListItem = ({
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") handleOpenDetails();
             }}
-            sx={{
-              width: 1,
-              aspectRatio: "16 / 9",
-              borderRadius: 4,
-              bgcolor: "action.hover",
-              color: "text.secondary",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              border: (theme) => `1px dashed ${theme.palette.divider}`,
-            }}
+            sx={imageThumbnailStyles}
           >
-            {/* Заглушка-иконка, когда нет фото */}
             <MdPhoto size={64} />
           </Box>
         )}

@@ -1,0 +1,1 @@
+export { PropertiesListSkeleton } from "./PropertiesListSkeleton";

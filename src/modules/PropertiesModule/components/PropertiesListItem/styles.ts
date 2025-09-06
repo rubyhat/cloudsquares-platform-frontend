@@ -28,3 +28,17 @@ export const priceInfoWrapperStyles = {
   display: { xs: "none", sm: "flex" },
   justifyContent: "flex-end",
 };
+
+export const imageThumbnailStyles: SxProps<Theme> = {
+  width: 1,
+  aspectRatio: "16 / 9",
+  borderRadius: 4,
+  backgroundColor: "action.hover",
+  color: "text.secondary",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  cursor: "pointer",
+  border: "1px dashed",
+  borderColor: "customColors.grey300",
+};
