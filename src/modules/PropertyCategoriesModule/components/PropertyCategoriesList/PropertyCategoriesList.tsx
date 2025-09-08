@@ -9,7 +9,9 @@ import { PropertyCategoriesCreateButton } from "../PropertyCategoriesCreateButto
 
 // TODO: айди агентства брать не из профиля пользователя, а из ???
 export const PropertyCategoriesList = () => {
-  const canCreateNewUser = useCanAccess("createNewPropertyCategory");
+  const canCreateNewPropertyCategory = useCanAccess(
+    "createNewPropertyCategory",
+  );
   const userProfile = useUserProfile();
   const {
     data: propertyCategoriesData,
@@ -27,10 +29,10 @@ export const PropertyCategoriesList = () => {
         <PropertyCategoriesListSkeleton />
       )}
       {propertyCategoriesData?.map((category) => (
-        <PropertyCategoriesListItem category={category} />
+        <PropertyCategoriesListItem category={category} key={category.id} />
       ))}
 
-      {canCreateNewUser && <PropertyCategoriesCreateButton />}
+      {canCreateNewPropertyCategory && <PropertyCategoriesCreateButton />}
     </Box>
   );
 };

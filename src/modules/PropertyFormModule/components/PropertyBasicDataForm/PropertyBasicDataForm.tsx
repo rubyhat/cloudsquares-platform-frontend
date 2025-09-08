@@ -50,7 +50,7 @@ export const PropertyBasicDataForm = ({
 
   const { handleSubmit, watch, formState } = methods;
   const createPropertyMutation = useCreatePropertyMutation();
-  const disableInput = false;
+  const disableInput = createPropertyMutation.isPending;
 
   const onSubmitForm = (data: PropertyBasicDataFormData) => {
     console.log(data, watch, formState); // todo: temp
@@ -116,7 +116,7 @@ export const PropertyBasicDataForm = ({
             />
           </Box>
           <Box pb={2}>
-            <PropertyCategoriesSelectField />
+            <PropertyCategoriesSelectField<PropertyBasicDataFormData> name="category_id" />
           </Box>
           <Box pb={2}>
             <TipTapEditorModule<PropertyBasicDataFormData>
