@@ -39,6 +39,7 @@ export const accessRules = {
   viewPropertyOwners: sameAgencyAndAdmins,
   viewPropertyCategories: sameAgencyAndAdmins,
   createNewPropertyCategory: adminsAndAgencyAdmin,
+  updatePropertyCategory: adminsAndAgencyAdmin,
 
   // Customers
   viewAgencyCustomers: sameAgencyAndAdmins,

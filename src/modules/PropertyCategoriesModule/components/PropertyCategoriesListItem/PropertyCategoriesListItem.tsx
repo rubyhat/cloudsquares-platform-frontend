@@ -1,7 +1,9 @@
 import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import { MdDelete, MdDragIndicator, MdEdit } from "react-icons/md";
 import { PropertyCategory } from "@/shared/interfaces/PropertyCategory";
+import { BasicDrawerMode } from "@/shared/interfaces/Shared";
 import { cardStyles } from "./styles";
+import { usePropertyCategoriesStore } from "../../store";
 
 interface PropertyCategoriesListItemProps {
   category: PropertyCategory;
@@ -10,6 +12,23 @@ interface PropertyCategoriesListItemProps {
 export const PropertyCategoriesListItem = ({
   category,
 }: PropertyCategoriesListItemProps) => {
+  const setEditablePropertyCategory = usePropertyCategoriesStore(
+    (state) => state.setEditablePropertyCategory,
+  );
+  const openDrawerWithMode = usePropertyCategoriesStore(
+    (state) => state.openDrawerWithMode,
+  );
+
+  const handleUpdateButtonClick = () => {
+    setEditablePropertyCategory(category);
+    openDrawerWithMode(BasicDrawerMode.edit);
+  };
+
+  const handleDeleteButtonClick = () => {
+    setEditablePropertyCategory(category);
+    openDrawerWithMode(BasicDrawerMode.delete);
+  };
+
   return (
     <Box sx={cardStyles}>
       <IconButton>
@@ -25,12 +44,12 @@ export const PropertyCategoriesListItem = ({
       </Box>
       <Box sx={{ display: "flex", gap: 1 }}>
         <Tooltip title="Редактировать">
-          <IconButton color="primary">
+          <IconButton color="primary" onClick={handleUpdateButtonClick}>
             <MdEdit size={24} />
           </IconButton>
         </Tooltip>
         <Tooltip title="Удалить">
-          <IconButton color="error">
+          <IconButton color="error" onClick={handleDeleteButtonClick}>
             <MdDelete size={24} />
           </IconButton>
         </Tooltip>

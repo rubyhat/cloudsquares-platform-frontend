@@ -15,6 +15,10 @@ export const PropertyCategoriesFormDrawer = () => {
   const setShowPropertyCategoriesFormDrawer = usePropertyCategoriesStore(
     (state) => state.setShowPropertyCategoriesFormDrawer,
   );
+  const editablePropertyCategory = usePropertyCategoriesStore(
+    (state) => state.editablePropertyCategory,
+  );
+
   return (
     <BasicDrawer
       title={DisplayTextBasicDrawerMode[formMode] + " сотрудника"}
@@ -33,6 +37,7 @@ export const PropertyCategoriesFormDrawer = () => {
           mode={formMode}
           onSuccess={() => setShowPropertyCategoriesFormDrawer(false)}
           onDecline={() => setShowPropertyCategoriesFormDrawer(false)}
+          editablePropertyCategory={editablePropertyCategory}
         />
       )}
     </BasicDrawer>

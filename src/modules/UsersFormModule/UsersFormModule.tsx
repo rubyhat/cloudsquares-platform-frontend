@@ -32,7 +32,7 @@ interface UsersFormModuleProps {
   onSuccess?: () => void;
   onError?: () => void;
 }
-
+// TODO: добавить проверки кто может создавать/редактировать пользователей
 export const UsersFormModule = ({
   editableUser,
   mode,

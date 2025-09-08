@@ -3,6 +3,7 @@ import { ENVIRONMENT } from "../../constants/envs";
 
 const isDev = ENVIRONMENT === "development";
 
+// TODO: в будущем добавить Sentry
 export const devLogger = {
   log: (...args: unknown[]) => {
     if (isDev) console.log(...args);
