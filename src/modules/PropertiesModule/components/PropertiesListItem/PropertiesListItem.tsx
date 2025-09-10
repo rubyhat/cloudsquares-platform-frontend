@@ -56,8 +56,8 @@ export const PropertiesListItem = ({
   );
 
   const handleOpenDetails = React.useCallback(() => {
-    navigate("/properties/" + property.id);
-  }, [navigate, property.id]);
+    navigate("/properties/" + property.slug);
+  }, [navigate, property.slug]);
 
   // Берём превью, при его отсутствии попробуем основную ссылку на файл,
   // иначе отрисуем заглушку.
@@ -153,7 +153,7 @@ export const PropertiesListItem = ({
                   Открыть заявки
                 </Button>
               </Box>
-              <Box component={Link} to={`/properties/${property.id}`}>
+              <Box component={Link} to={`/properties/${property.slug}`}>
                 <Button variant="contained" size="large" fullWidth>
                   Открыть детали
                 </Button>

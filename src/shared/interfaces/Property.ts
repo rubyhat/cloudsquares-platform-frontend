@@ -31,6 +31,7 @@ export enum PropertyStatusText {
 export interface Property {
   id: string;
   title: string;
+  slug: string;
   status: PropertyStatus;
   description: string;
   discount: number;

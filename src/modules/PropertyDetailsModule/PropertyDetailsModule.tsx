@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Box, Container, Grid, Typography } from "@mui/material";
 
 import { BasicPageHeader } from "../../shared/components/Mobile/BasicPageHeader";
@@ -25,7 +25,8 @@ import { PropertyDetailsDeactivateDrawer } from "./components/PropertyDetailsDea
  * - В блок фото передаёт `key` и `entityKey`, чтобы Embla пересоздавалась при смене объекта.
  */
 export const PropertyDetailsModule = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id: idOrSlug } = useParams<{ id: string }>();
+  const navigate = useNavigate();
 
   const currentProperty = propertyDetailsStore(
     (state) => state.currentProperty,
@@ -34,14 +35,20 @@ export const PropertyDetailsModule = () => {
     (state) => state.setCurrentProperty,
   );
 
-  // Загружаем детали по id (важно, чтобы внутри хука queryKey включал id)
-  const { data, isSuccess, isLoading, error } = useGetPropertyDetailsQuery(id);
+  const { data, isSuccess, isLoading, error } =
+    useGetPropertyDetailsQuery(idOrSlug);
 
-  // 1) КРИТИЧЕСКОЕ: при смене id мгновенно очищаем состояние,
+  React.useEffect(() => {
+    if (isSuccess && data && idOrSlug && idOrSlug !== data.slug) {
+      navigate(`/properties/${data.slug}`, { replace: true });
+    }
+  }, [isSuccess, data, idOrSlug, navigate]);
+
+  // 1) при смене id мгновенно очищаем состояние,
   // чтобы старая карточка/фото не оставались на экране.
   React.useEffect(() => {
     setCurrentProperty(null);
-  }, [id, setCurrentProperty]);
+  }, [idOrSlug, setCurrentProperty]);
 
   // 2) После успешной загрузки записываем новые данные в Zustand
   React.useEffect(() => {
@@ -71,13 +78,10 @@ export const PropertyDetailsModule = () => {
           {showContent && (
             <React.Fragment>
               <Grid size={{ xs: 12, md: 8 }}>
-                {/* key / entityKey гарантируют чистую инициализацию Embla при смене объекта */}
                 <PropertyDetailsPhotoBlock
-                  key={id}
-                  entityKey={id}
+                  key={idOrSlug}
+                  entityKey={idOrSlug}
                   photos={currentProperty!.property_photos ?? []}
-                  // Можно также передать loading, если внутри слайдера хочешь показывать плейсхолдер:
-                  // loading={isLoading}
                 />
                 <Grid size={12}>
                   <Box py={2.5}>
