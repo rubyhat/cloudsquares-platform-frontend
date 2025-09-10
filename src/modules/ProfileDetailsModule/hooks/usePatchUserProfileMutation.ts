@@ -23,6 +23,7 @@ export const usePatchUserProfileMutation = () => {
     },
     onError: (error) => {
       showApiError(error);
+      return error;
     },
   });
 };

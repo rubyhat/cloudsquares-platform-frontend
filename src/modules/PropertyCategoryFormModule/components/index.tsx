@@ -1,0 +1,1 @@
+export { PropertyCategoriesDeleteForm } from "./PropertyCategoriesDeleteForm";

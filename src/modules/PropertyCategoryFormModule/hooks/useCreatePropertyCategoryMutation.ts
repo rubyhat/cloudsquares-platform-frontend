@@ -26,6 +26,7 @@ export const useCreatePropertyCategoryMutation = ({
     },
     onError: (error) => {
       showApiError(error);
+      return error;
     },
   });
 };

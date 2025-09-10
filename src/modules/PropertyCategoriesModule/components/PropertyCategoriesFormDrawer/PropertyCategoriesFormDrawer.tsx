@@ -1,11 +1,11 @@
-import { BasicDrawer } from "@/shared/components/BasicDrawer";
 import {
   BasicDrawerMode,
   DisplayTextBasicDrawerMode,
 } from "@/shared/interfaces/Shared";
+import { BasicDrawer } from "@/shared/components/BasicDrawer";
+import { PropertyCategoryFormModule } from "@/modules/PropertyCategoryFormModule";
 
 import { usePropertyCategoriesStore } from "../../store";
-import { PropertyCategoryFormModule } from "@/modules/PropertyCategoryFormModule";
 
 export const PropertyCategoriesFormDrawer = () => {
   const formMode = usePropertyCategoriesStore((state) => state.mode);
@@ -21,7 +21,7 @@ export const PropertyCategoriesFormDrawer = () => {
 
   return (
     <BasicDrawer
-      title={DisplayTextBasicDrawerMode[formMode] + " сотрудника"}
+      title={DisplayTextBasicDrawerMode[formMode] + " категории"}
       isOpen={showPropertyCategoriesFormDrawer}
       setIsOpen={setShowPropertyCategoriesFormDrawer}
     >
@@ -32,7 +32,8 @@ export const PropertyCategoriesFormDrawer = () => {
           onDecline={() => setShowPropertyCategoriesFormDrawer(false)}
         />
       )}
-      {formMode === BasicDrawerMode.edit && (
+      {(formMode === BasicDrawerMode.edit ||
+        formMode === BasicDrawerMode.delete) && (
         <PropertyCategoryFormModule
           mode={formMode}
           onSuccess={() => setShowPropertyCategoriesFormDrawer(false)}

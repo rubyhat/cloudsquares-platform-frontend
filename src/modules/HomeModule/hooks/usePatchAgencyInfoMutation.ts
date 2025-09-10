@@ -32,6 +32,7 @@ export const usePatchAgencyInfoMutation = ({
     },
     onError: (error) => {
       showApiError(error);
+      return error;
     },
   });
 };

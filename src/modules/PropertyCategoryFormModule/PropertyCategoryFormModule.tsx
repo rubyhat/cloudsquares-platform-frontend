@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BasicDrawerMode } from "@/shared/interfaces/Shared";
@@ -17,6 +17,8 @@ import {
   useCreatePropertyCategoryMutation,
   useUpdatePropertyCategoryMutation,
 } from "./hooks";
+import { PropertyCategoriesDeleteForm } from "./components";
+import { useDeletePropertyCategoryMutation } from "./hooks/useDeletePropertyCategoryMutation";
 
 interface PropertyCategoryFormModuleProps {
   mode: BasicDrawerMode;
@@ -42,7 +44,7 @@ export const PropertyCategoryFormModule = ({
   );
 
   const setInitialState = () => {
-    if (mode === BasicDrawerMode.edit && editablePropertyCategory) {
+    if (mode !== BasicDrawerMode.create && editablePropertyCategory) {
       return {
         title: editablePropertyCategory.title,
         parent_id: editablePropertyCategory.parent_id || "",
@@ -69,9 +71,16 @@ export const PropertyCategoryFormModule = ({
       reset();
     },
   });
+  const deletePropertyCategoryMutation = useDeletePropertyCategoryMutation({
+    onSuccess: () => {
+      onSuccess?.();
+      reset();
+    },
+  });
   const disableInput =
     createPropertyCategoryMutation.isPending ||
-    updatePropertyCategoryMutation.isPending;
+    updatePropertyCategoryMutation.isPending ||
+    deletePropertyCategoryMutation.isPending;
 
   const onSubmitForm = (data: PropertyCategoriesDataFormData) => {
     switch (mode) {
@@ -103,8 +112,19 @@ export const PropertyCategoryFormModule = ({
           id: editablePropertyCategory.id,
           data,
         });
+      case BasicDrawerMode.delete:
+        if (!editablePropertyCategory) {
+          toast.error("Категория недвижимости не определена", {
+            duration: 5000,
+          });
+          devLogger.error("editablePropertyCategory is null");
+          return;
+        }
+        return deletePropertyCategoryMutation.mutate({
+          id: editablePropertyCategory.id,
+        });
       default:
-        toast.error("Ошибка формы");
+        return toast.error("Ошибка формы"); // TODO: обработать ошибку
     }
   };
 
@@ -122,28 +142,30 @@ export const PropertyCategoryFormModule = ({
         )}
         sx={{ p: 2, display: "flex", flexDirection: "column", height: 1 }}
       >
-        <Box flexGrow={1}>
-          <Box pb={2}>
-            <Typography component="h4" variant="h4">
-              Новая категория недвижимости
-            </Typography>
+        {mode === BasicDrawerMode.delete ? (
+          <PropertyCategoriesDeleteForm
+            editablePropertyCategory={editablePropertyCategory}
+          />
+        ) : (
+          <Box flexGrow={1}>
+            <Box pb={2}>
+              <BasicTextField<PropertyCategoriesDataFormData>
+                name="title"
+                label="Название"
+                placeholder="Введите название категории"
+                disabled={disableInput}
+              />
+            </Box>
+            <Box pb={2}>
+              <PropertyCategoriesSelectField<PropertyCategoriesDataFormData>
+                isOptional
+                name="parent_id"
+                placeholder="Выберите родительскую категорию"
+              />
+            </Box>
           </Box>
-          <Box pb={2}>
-            <BasicTextField<PropertyCategoriesDataFormData>
-              name="title"
-              label="Название"
-              placeholder="Введите название категории"
-              disabled={disableInput}
-            />
-          </Box>
-          <Box pb={2}>
-            <PropertyCategoriesSelectField<PropertyCategoriesDataFormData>
-              isOptional
-              name="parent_id"
-              placeholder="Выберите родительскую категорию"
-            />
-          </Box>
-        </Box>
+        )}
+
         <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
           <Button
             variant="contained"
@@ -161,7 +183,7 @@ export const PropertyCategoryFormModule = ({
             size="large"
             disabled={disableInput}
           >
-            Сохранить
+            {mode === BasicDrawerMode.delete ? "Удалить" : "Сохранить"}
           </Button>
         </Box>
       </Box>
