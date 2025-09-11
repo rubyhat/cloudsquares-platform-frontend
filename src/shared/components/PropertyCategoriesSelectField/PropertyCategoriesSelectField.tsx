@@ -10,8 +10,11 @@ import { FieldValues, Path } from "react-hook-form";
 interface PropertyCategoriesSelectFieldProps<TFieldValues extends FieldValues> {
   name: Path<TFieldValues>;
   isOptional?: boolean;
-  showButtonToAddNewCategory?: boolean;
   placeholder?: string;
+  buttonToAddNewCategory?: {
+    buttonLabel: string;
+    onButtonClick: () => void;
+  };
 }
 
 // TODO: айди агентства брать не из профиля пользователя, а из ???
@@ -20,7 +23,7 @@ export const PropertyCategoriesSelectField = <
 >({
   name,
   isOptional = false,
-  showButtonToAddNewCategory = false,
+  buttonToAddNewCategory = undefined,
   placeholder = "Выберите категорию",
 }: PropertyCategoriesSelectFieldProps<TFieldValues>) => {
   const userProfile = useUserProfile();
@@ -59,10 +62,10 @@ export const PropertyCategoriesSelectField = <
           name={name}
           placeholder={placeholder}
           buttonOptions={
-            showButtonToAddNewCategory
+            buttonToAddNewCategory
               ? {
-                  buttonLabel: "+ Добавить категорию",
-                  onButtonClick: () => console.log("Add category"),
+                  buttonLabel: buttonToAddNewCategory.buttonLabel,
+                  onButtonClick: buttonToAddNewCategory.onButtonClick,
                 }
               : undefined
           }

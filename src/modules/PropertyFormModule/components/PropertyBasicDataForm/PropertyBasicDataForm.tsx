@@ -17,6 +17,7 @@ import {
 } from "../../validations";
 import { PropertyFormSteps, usePropertyFormStore } from "../../store";
 import { useCreatePropertyMutation } from "../../hooks";
+import { PropertyCategoryDrawer } from "../PropertyCategoryDrawer";
 
 interface PropertyBasicDataFormProps {
   mode: PropertyFormMode;
@@ -37,6 +38,9 @@ export const PropertyBasicDataForm = ({
 }: PropertyBasicDataFormProps) => {
   const navigate = useNavigate();
   const setStep = usePropertyFormStore((state) => state.setStep);
+  const setShowPropertyCategoryDrawer = usePropertyFormStore(
+    (state) => state.setShowPropertyCategoryDrawer,
+  );
 
   const initialState = usePropertyFormStore(
     (state) => state.initialBasicDataState,
@@ -66,86 +70,95 @@ export const PropertyBasicDataForm = ({
   };
 
   return (
-    <FormProvider {...methods}>
-      <Box
-        component="form"
-        onSubmit={handleSubmit(onSubmitForm, (errors) =>
-          devLogger.error("Ошибки валидации:", errors),
-        )}
-        sx={{ py: 2, display: "flex", flexDirection: "column", height: 1 }}
-      >
-        <Box flexGrow={1}>
-          <Box pb={2}>
-            <Typography component="h4" variant="h4">
-              Основные данные
-            </Typography>
+    <>
+      <FormProvider {...methods}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit(onSubmitForm, (errors) =>
+            devLogger.error("Ошибки валидации:", errors),
+          )}
+          sx={{ py: 2, display: "flex", flexDirection: "column", height: 1 }}
+        >
+          <Box flexGrow={1}>
+            <Box pb={2}>
+              <Typography component="h4" variant="h4">
+                Основные данные
+              </Typography>
+            </Box>
+            <Box pb={2}>
+              <BasicTextField<PropertyBasicDataFormData>
+                name="title"
+                label="Название"
+                placeholder="Введите название объекта"
+                disabled={disableInput}
+              />
+            </Box>
+            <Box pb={2}>
+              <BasicTextField<PropertyBasicDataFormData>
+                name="price"
+                label="Стоимость"
+                placeholder="Введите стоимость объекта"
+                disabled={disableInput}
+                type="number"
+                showCurrency
+              />
+            </Box>
+            <Box pb={2}>
+              <BasicTextField<PropertyBasicDataFormData>
+                name="discount"
+                label="Текущая скидка"
+                placeholder="Введите текущую скидку"
+                disabled={disableInput}
+                type="number"
+                showCurrency
+              />
+            </Box>
+            <Box pb={2}>
+              <BasicFormSelectField<PropertyBasicDataFormData>
+                name="listing_type"
+                placeholder="Выберите тип размещения"
+                data={propertyListingTypeSelectOptions()}
+              />
+            </Box>
+            <Box pb={2}>
+              <PropertyCategoriesSelectField<PropertyBasicDataFormData>
+                name="category_id"
+                buttonToAddNewCategory={{
+                  buttonLabel: "+ Добавить категорию",
+                  onButtonClick: () => setShowPropertyCategoryDrawer(true),
+                }}
+              />
+            </Box>
+            <Box pb={2}>
+              <TipTapEditorModule<PropertyBasicDataFormData>
+                name="description"
+                disabled={disableInput}
+              />
+            </Box>
           </Box>
-          <Box pb={2}>
-            <BasicTextField<PropertyBasicDataFormData>
-              name="title"
-              label="Название"
-              placeholder="Введите название объекта"
+          <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              onClick={handleResetForm}
               disabled={disableInput}
-            />
-          </Box>
-          <Box pb={2}>
-            <BasicTextField<PropertyBasicDataFormData>
-              name="price"
-              label="Стоимость"
-              placeholder="Введите стоимость объекта"
+            >
+              Отменить
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              size="large"
               disabled={disableInput}
-              type="number"
-              showCurrency
-            />
-          </Box>
-          <Box pb={2}>
-            <BasicTextField<PropertyBasicDataFormData>
-              name="discount"
-              label="Текущая скидка"
-              placeholder="Введите текущую скидку"
-              disabled={disableInput}
-              type="number"
-              showCurrency
-            />
-          </Box>
-          <Box pb={2}>
-            <BasicFormSelectField<PropertyBasicDataFormData>
-              name="listing_type"
-              placeholder="Выберите тип размещения"
-              data={propertyListingTypeSelectOptions()}
-            />
-          </Box>
-          <Box pb={2}>
-            <PropertyCategoriesSelectField<PropertyBasicDataFormData> name="category_id" />
-          </Box>
-          <Box pb={2}>
-            <TipTapEditorModule<PropertyBasicDataFormData>
-              name="description"
-              disabled={disableInput}
-            />
+            >
+              Дальше
+            </Button>
           </Box>
         </Box>
-        <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            onClick={handleResetForm}
-            disabled={disableInput}
-          >
-            Отменить
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            size="large"
-            disabled={disableInput}
-          >
-            Дальше
-          </Button>
-        </Box>
-      </Box>
-    </FormProvider>
+      </FormProvider>
+      <PropertyCategoryDrawer />
+    </>
   );
 };

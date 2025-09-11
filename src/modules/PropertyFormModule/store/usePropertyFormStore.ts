@@ -41,6 +41,10 @@ interface PropertyFormStore {
 
   /** Индекс текущего шага в stepsOrder */
   getCurrentStepIndex: () => number;
+
+  /** Управление открытием/закрытием drawer для создания категории */
+  showPropertyCategoryDrawer: boolean;
+  setShowPropertyCategoryDrawer: (v: boolean) => void;
 }
 
 const initialBasicDataState: PropertyBasicDataFormData = {
@@ -67,4 +71,6 @@ export const usePropertyFormStore = create<PropertyFormStore>((set, get) => ({
     const idx = stepsOrder.indexOf(step);
     return idx < 0 ? 0 : idx;
   },
+  showPropertyCategoryDrawer: false,
+  setShowPropertyCategoryDrawer: (v) => set({ showPropertyCategoryDrawer: v }),
 }));
