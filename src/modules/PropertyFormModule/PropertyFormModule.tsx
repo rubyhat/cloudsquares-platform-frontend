@@ -3,8 +3,8 @@ import { PropertyFormMode } from "@/shared/interfaces/PropertyForm";
 import { PropertyBasicDataForm } from "./components/PropertyBasicDataForm";
 import { PropertyFormSteps, usePropertyFormStore } from "./store";
 import { PropertyFormStepCounter } from "./components/PropertyFormStepCounter";
-import { PropertyFormOwners } from "./components/PropertyFormOwners";
 import { usePropertyFormStepSync } from "./hooks";
+import { PropertyFormOwners } from "./components/PropertyFormOwners";
 
 interface PropertyFormModuleProps {
   mode: PropertyFormMode;
@@ -22,7 +22,9 @@ export const PropertyFormModule = ({ mode }: PropertyFormModuleProps) => {
         {step === PropertyFormSteps.basic_data && (
           <PropertyBasicDataForm mode={mode} editableProperty={null} />
         )}
-        {step === PropertyFormSteps.property_owners && <PropertyFormOwners />}
+        {step === PropertyFormSteps.property_owners && (
+          <PropertyFormOwners mode={mode} />
+        )}
       </Box>
     </Box>
   );

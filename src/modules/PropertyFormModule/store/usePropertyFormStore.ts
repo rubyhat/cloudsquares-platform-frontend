@@ -1,6 +1,9 @@
 import { create } from "zustand";
 import { PropertyFormMode } from "../../../shared/interfaces/PropertyForm";
-import { PropertyBasicDataFormData } from "../validations";
+import {
+  PropertyBasicDataFormData,
+  PropertyOwnersDataFormData,
+} from "../validations";
 import {
   ListingType,
   PropertyStatus,
@@ -26,6 +29,9 @@ interface PropertyFormStore {
 
   /** Начальное состояние базовых данных */
   initialBasicDataState: PropertyBasicDataFormData;
+
+  /** Начальное состояние данных владельцев */
+  initialOwnersDataState: PropertyOwnersDataFormData;
 
   /** Текущий шаг формы */
   step: PropertyFormSteps;
@@ -57,12 +63,24 @@ const initialBasicDataState: PropertyBasicDataFormData = {
   category_id: "",
 };
 
+const initialOwnersDataState: PropertyOwnersDataFormData = {
+  first_name: "",
+  last_name: "",
+  middle_name: "",
+  phone: "",
+  email: "",
+  notes: "",
+  role: 0, // 0 - Основной владелец, 1 - Совладелец, 2 - Родственник, 3 - Другое
+  user_id: "",
+};
+
 export const usePropertyFormStore = create<PropertyFormStore>((set, get) => ({
   mode: PropertyFormMode.create,
   setMode: (v) => set({ mode: v }),
   initialBasicDataState,
+  initialOwnersDataState,
 
-  step: PropertyFormSteps.basic_data,
+  step: PropertyFormSteps.property_owners,
   setStep: (v) => set({ step: v }),
   stepsOrder: Object.values(PropertyFormSteps) as PropertyFormSteps[],
   setStepsOrder: (list) => set({ stepsOrder: list }),

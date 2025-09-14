@@ -1,0 +1,1 @@
+export { PropertyOwnerCard } from "./PropertyOwnerCard";

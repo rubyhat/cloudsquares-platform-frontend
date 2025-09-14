@@ -81,7 +81,7 @@ const routes: RouteConfig[] = [
   { path: "/", element: <Home /> },
   { path: "/login", element: <Login /> },
 
-  { path: "/profile", element: <Profile />, permission: "viewProfile" },
+  { path: "/profile", element: <Profile /> },
   {
     path: "/profile/details",
     element: <ProfileDetails />,

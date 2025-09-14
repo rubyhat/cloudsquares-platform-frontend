@@ -21,6 +21,9 @@ export interface PropertyOwner {
   email: string;
   notes: string;
   role: PropertyOwnerRole;
+  contact_id: string;
+  person_id: string;
+  property_id: string;
   is_deleted: boolean;
   deleted_at: string | null;
   created_at: string;

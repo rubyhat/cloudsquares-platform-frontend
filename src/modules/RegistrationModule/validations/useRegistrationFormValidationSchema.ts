@@ -35,9 +35,8 @@ export const useRegistrationFormValidationSchema = z
     role: z.string(), // TODO: роль зависит от места и способы регистрации, обновить это в будущем
 
     email: z
-      .string()
-      .max(255, { message: "Слишком длинное значение" })
-      .email({ message: "Некорректный формат email" }),
+      .email({ message: "Некорректный формат email" })
+      .max(255, { message: "Слишком длинное значение" }),
 
     password: z
       .string()

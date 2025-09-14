@@ -52,12 +52,12 @@ export const PropertyBasicDataForm = ({
     mode: "onSubmit",
   });
 
-  const { handleSubmit, watch, formState } = methods;
+  const { handleSubmit } = methods;
   const createPropertyMutation = useCreatePropertyMutation();
   const disableInput = createPropertyMutation.isPending;
 
   const onSubmitForm = (data: PropertyBasicDataFormData) => {
-    console.log(data, watch, formState); // todo: temp
+    // TODO: Add edit mode handling
     createPropertyMutation.mutate({
       data,
       onSuccess: () => setStep(PropertyFormSteps.property_owners),
