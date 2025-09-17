@@ -34,6 +34,7 @@ export const PropertyCategoryFormModule = ({
   editablePropertyCategory = null,
   onSuccess,
   onDecline,
+  onError,
 }: PropertyCategoryFormModuleProps) => {
   const canCreateNewPropertyCategory = useCanAccess(
     "createNewPropertyCategory",
@@ -124,7 +125,12 @@ export const PropertyCategoryFormModule = ({
           id: editablePropertyCategory.id,
         });
       default:
-        return toast.error("Ошибка формы"); // TODO: обработать ошибку
+        toast.error("Ошибка формы", { duration: 5000 });
+        devLogger.error("PropertyCategoryFormModule: unexpected form mode", {
+          mode,
+        });
+        onError?.();
+        return;
     }
   };
 

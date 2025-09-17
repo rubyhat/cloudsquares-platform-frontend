@@ -1,5 +1,9 @@
 import { CountryCode, CountryCodeDisplayText } from "../interfaces/Country";
 import { ListingType, ListingTypeText } from "../interfaces/Property";
+import {
+  DisplayTextPropertyOwnerRole,
+  PropertyOwnerRole,
+} from "../interfaces/PropertyOwner";
 import { UserRole, UserRoleDisplayText } from "../permissions/roles";
 
 export const countrySelectOptions = (): {
@@ -45,4 +49,30 @@ export const propertyListingTypeSelectOptions = () => {
   ];
 
   return listingTypeList;
+};
+
+export const propertyOwnerRoleSelectOptions = (): {
+  value: PropertyOwnerRole;
+  label: DisplayTextPropertyOwnerRole;
+}[] => {
+  const propertyOwnerRoleList = [
+    {
+      value: PropertyOwnerRole.primary,
+      label: DisplayTextPropertyOwnerRole[PropertyOwnerRole.primary],
+    },
+    {
+      value: PropertyOwnerRole.relative,
+      label: DisplayTextPropertyOwnerRole[PropertyOwnerRole.relative],
+    },
+    {
+      value: PropertyOwnerRole.partner,
+      label: DisplayTextPropertyOwnerRole[PropertyOwnerRole.partner],
+    },
+    {
+      value: PropertyOwnerRole.other,
+      label: DisplayTextPropertyOwnerRole[PropertyOwnerRole.other],
+    },
+  ];
+
+  return propertyOwnerRoleList;
 };

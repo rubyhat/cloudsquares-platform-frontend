@@ -1,13 +1,11 @@
 import { create } from "zustand";
-import { PropertyFormMode } from "../../../shared/interfaces/PropertyForm";
+import { PropertyFormMode } from "@/shared/interfaces/PropertyForm";
+import { ListingType, PropertyStatus } from "@/shared/interfaces/Property";
+import { PropertyOwnerRole } from "@/shared/interfaces/PropertyOwner";
 import {
   PropertyBasicDataFormData,
   PropertyOwnersDataFormData,
 } from "../validations";
-import {
-  ListingType,
-  PropertyStatus,
-} from "../../../shared/interfaces/Property";
 
 export enum PropertyFormSteps {
   /** Базовые минимальные данные объекта недвижимости */
@@ -70,7 +68,7 @@ const initialOwnersDataState: PropertyOwnersDataFormData = {
   phone: "",
   email: "",
   notes: "",
-  role: 0, // 0 - Основной владелец, 1 - Совладелец, 2 - Родственник, 3 - Другое
+  role: PropertyOwnerRole.primary,
   user_id: "",
 };
 

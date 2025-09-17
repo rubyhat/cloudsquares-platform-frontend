@@ -1,11 +1,12 @@
-import { Box, Skeleton, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { Alert, Box, Skeleton, Typography } from "@mui/material";
 
 import { PropertyFormMode } from "@/shared/interfaces/PropertyForm";
-import { useGetAllPropertyOwnersByPropertyID } from "@/shared/hooks/propertyOwners";
+import { useGetAllPropertyOwnersByPropertyIDQuery } from "@/shared/hooks/propertyOwners";
 import { AxiosErrorAlertMessage } from "@/shared/components/AxiosErrorAlertMessage";
 import { PropertyOwnerCard } from "@/shared/components/PropertyOwnerCard";
 import { PropertyOwnersForm } from "../PropertyOwnersForm";
+import { skeletonWrapperStyles } from "./styles";
 
 interface PropertyFormOwnersProps {
   mode: PropertyFormMode;
@@ -16,24 +17,22 @@ export const PropertyFormOwners = ({ mode }: PropertyFormOwnersProps) => {
   const propertyId = id ?? "";
 
   const { data, isLoading, error } =
-    useGetAllPropertyOwnersByPropertyID(propertyId);
+    useGetAllPropertyOwnersByPropertyIDQuery(propertyId);
   const owners = data?.data ?? [];
+  const isEditMode = mode === PropertyFormMode.edit;
 
   return (
     <Box display="grid" gap={2}>
       <Box>
-        <Typography component="h3" variant="h6" mb={1.5}>
-          Владельцы {owners.length ? `(${owners.length})` : ""}
-        </Typography>
+        {isEditMode && (
+          <Typography component="h4" variant="h4" mb={1.5}>
+            Собственники {owners.length ? `(${owners.length})` : ""}
+          </Typography>
+        )}
 
         {isLoading && (
-          <Box
-            sx={{
-              display: "grid",
-              gap: 1.5,
-              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-            }}
-          >
+          <Box sx={skeletonWrapperStyles}>
+            <Skeleton variant="rounded" height={150} />
             <Skeleton variant="rounded" height={150} />
             <Skeleton variant="rounded" height={150} />
           </Box>
@@ -41,14 +40,11 @@ export const PropertyFormOwners = ({ mode }: PropertyFormOwnersProps) => {
 
         {error && <AxiosErrorAlertMessage error={error} />}
 
-        {mode === PropertyFormMode.edit &&
-          !isLoading &&
-          !error &&
-          owners.length === 0 && (
-            <Typography variant="body2" color="text.secondary">
-              Владельцев пока нет.
-            </Typography>
-          )}
+        {isEditMode && !isLoading && !error && owners.length === 0 && (
+          <Alert severity="info">
+            Собственников пока нет, Вы можете добавить их при помощи формы ниже
+          </Alert>
+        )}
 
         {owners.length > 0 && (
           <Box
@@ -69,7 +65,11 @@ export const PropertyFormOwners = ({ mode }: PropertyFormOwnersProps) => {
           </Box>
         )}
       </Box>
-      <PropertyOwnersForm mode={mode} />
+      {!id && isEditMode ? (
+        <Alert severity="error">ID недвижимости не определен!</Alert>
+      ) : (
+        <PropertyOwnersForm mode={mode} property_id={id} onSuccess={() => {}} />
+      )}
     </Box>
   );
 };

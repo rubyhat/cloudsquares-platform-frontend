@@ -1,7 +1,7 @@
 import { useAxiosQuery } from "@/configs/useAxiosQuery";
 import { apiSharedPropertyOwners } from "@/shared/api";
 
-export const useGetAllPropertyOwnersByPropertyID = (
+export const useGetAllPropertyOwnersByPropertyIDQuery = (
   property_id: string,
   page?: number,
   per_page?: number,

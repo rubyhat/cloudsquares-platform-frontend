@@ -1,1 +1,2 @@
-export * from "./useGetAllPropertyOwnersByPropertyID";
+export * from "./useGetAllPropertyOwnersByPropertyIDQuery";
+export * from "./useCreatePropertyOwnerMutation";

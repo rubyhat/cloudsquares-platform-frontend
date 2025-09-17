@@ -5,7 +5,10 @@ import { phoneRegex } from "@/shared/constants";
 export const createPropertyOwnersDataFormSchema = (mode: PropertyFormMode) => {
   console.log("Validation Property Owners form mode: ", mode); // temp
   return z.object({
-    first_name: z.string().min(2).max(255),
+    first_name: z
+      .string()
+      .min(2, { error: "Пожалуйста, укажите имя" })
+      .max(255),
     last_name: z.string().max(255).optional().or(z.literal("")),
     middle_name: z.string().max(255).optional().or(z.literal("")),
     phone: z
@@ -20,9 +23,11 @@ export const createPropertyOwnersDataFormSchema = (mode: PropertyFormMode) => {
       .max(12, { message: "Слишком длинный номер телефона" }),
     email: z
       .email({ message: "Некорректный формат email" })
-      .max(255, { message: "Слишком длинное значение" }),
+      .max(255, { message: "Слишком длинное значение" })
+      .optional()
+      .or(z.literal("")),
     notes: z.string().max(1000).optional().or(z.literal("")),
-    role: z.number().min(0).max(255),
+    role: z.string().min(1).max(255),
     user_id: z.uuid().optional().or(z.literal("")),
   });
 };
