@@ -7,14 +7,15 @@ import {
   Typography,
 } from "@mui/material";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { Property } from "../../../../shared/interfaces/Property";
-import { devLogger } from "../../../../shared/utils";
+import { devLogger } from "@/shared/utils";
+import { Property } from "@/shared/interfaces/Property";
+import { PropertiesListItem } from "@/modules/PropertiesModule/components/PropertiesListItem";
+
 import { propertyDetailsStore } from "../../store";
-import { PropertiesListItem } from "../../../PropertiesModule/components/PropertiesListItem";
 import { useDeactivatePropertyMutation } from "../../hooks";
-import { useNavigate } from "react-router-dom";
 
 interface PropertyDetailsDeleteFormProps {
   property: Property;
@@ -45,7 +46,10 @@ export const PropertyDetailsDeleteForm = ({
       deactivatePropertyMutation.mutate({
         property_id: property.id,
         agency_id: property.agency.id,
-        onSuccess: () => navigate("/properties"),
+        onSuccess: () => {
+          setShowDeactivateDrawer(false);
+          navigate("/properties");
+        },
       });
     } else {
       toast.error("Объект недвижимости не определен!");

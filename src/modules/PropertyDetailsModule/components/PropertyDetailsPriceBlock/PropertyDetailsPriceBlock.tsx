@@ -46,8 +46,14 @@ export const PropertyDetailsPriceBlock = () => {
             <Typography component="p" variant="subtitle2">
               42,5м². 2-комн. квартира
             </Typography>
-            <Typography component="p" variant="body1">
-              {propertyAddress(currentProperty).fullAddress}
+            <Typography
+              component="p"
+              variant="body1"
+              color={currentProperty.property_location ? "inherit" : "error"}
+            >
+              {currentProperty.property_location
+                ? propertyAddress(currentProperty).fullAddress
+                : "Адрес не указан"}
             </Typography>
           </Box>
           <Box py={2}>
