@@ -3,36 +3,16 @@ import { useSearchParams } from "react-router-dom";
 import { PropertyFormMode } from "@/shared/interfaces/PropertyForm";
 import { PropertyFormSteps, usePropertyFormStore } from "../store";
 
-/**
- * Проверяет, что строка является допустимым шагом формы.
- */
 function isPropertyFormStep(
   value: string | null | undefined,
 ): value is PropertyFormSteps {
-  if (!value) return false;
-  return (Object.values(PropertyFormSteps) as string[]).includes(value);
+  return (
+    !!value && (Object.values(PropertyFormSteps) as string[]).includes(value)
+  );
 }
 
-/**
- * Достаёт шаг из URLSearchParams с валидацией.
- */
-function getStepFromSearchParams(
-  searchParams: URLSearchParams,
-): PropertyFormSteps | null {
-  const raw = searchParams.get("step");
-  return isPropertyFormStep(raw) ? (raw as PropertyFormSteps) : null;
-}
-
-/**
- * Синхронизация шага мастера с URL `?step=...`.
- *
- * Правила:
- * - Создание (mode === "create"): один раз ставим basic_data. URL не меняем вообще.
- * - Редактирование (mode === "edit"): если `?step=` валиден — открываем его,
- *   иначе — fallback basic_data и подставляем его в URL (replace).
- * - При смене шага из стора в режиме редактирования — записываем его в URL (push),
- *   но только если реально поменялось значение (дедупликация).
- */
+// TODO: добавить защиту от ручного изменения URL/ссылки в кнопках на открытие формы на шаге, который не предусмотрен.
+// Например открытие сразу последнего шага при редактировании/создании
 export function usePropertyFormStepSync(mode: PropertyFormMode) {
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -40,15 +20,12 @@ export function usePropertyFormStepSync(mode: PropertyFormMode) {
   const setStep = usePropertyFormStore((s) => s.setStep);
   const setMode = usePropertyFormStore((s) => s.setMode);
 
-  // Флаг, чтобы в режиме create не запускать установку шага повторно под StrictMode
-  const didInitCreateRef = React.useRef(false);
-
-  // Всегда держим mode в сторе актуальным
   React.useEffect(() => {
     setMode(mode);
   }, [mode, setMode]);
 
-  // === CREATE MODE: один раз на маунт ставим basic_data. URL не трогаем. ===
+  // CREATE: один раз ставим basic_data, URL не трогаем.
+  const didInitCreateRef = React.useRef(false);
   React.useEffect(() => {
     if (mode !== PropertyFormMode.create) return;
     if (didInitCreateRef.current) return;
@@ -57,40 +34,39 @@ export function usePropertyFormStepSync(mode: PropertyFormMode) {
     if (step !== PropertyFormSteps.basic_data) {
       setStep(PropertyFormSteps.basic_data);
     }
-    // НИЧЕГО не делаем с ?step=..., просто игнорируем его.
-  }, [mode, setStep, step]);
+  }, [mode, step, setStep]);
 
-  // === EDIT MODE: читаем ?step и синхронизируем стор ← URL ===
+  // EDIT: URL — источник истины.
   React.useEffect(() => {
     if (mode !== PropertyFormMode.edit) return;
 
-    const fromUrl = getStepFromSearchParams(searchParams);
-    const desired = fromUrl ?? PropertyFormSteps.basic_data;
+    const raw = searchParams.get("step");
+    const urlStep = isPropertyFormStep(raw) ? (raw as PropertyFormSteps) : null;
 
-    // Ставим шаг из URL (или basic_data по умолчанию)
-    if (step !== desired) {
-      setStep(desired);
+    // 1) Если URL валиден и отличается — применяем его в store.
+    if (urlStep && urlStep !== step) {
+      setStep(urlStep);
+      return;
     }
 
-    // Если шага в URL не было — дозапишем его, но только если реально меняем
-    if (!fromUrl) {
-      if (searchParams.get("step") !== desired) {
-        const next = new URLSearchParams(searchParams);
-        next.set("step", desired);
-        setSearchParams(next, { replace: true });
+    // 2) Если URL пуст — дозапишем его.
+    if (!urlStep) {
+      const desired = isPropertyFormStep(step)
+        ? step
+        : PropertyFormSteps.basic_data;
+
+      // сначала подровняем store (на случай «левого» значения)
+      if (step !== desired) {
+        setStep(desired);
       }
+
+      const next = new URLSearchParams(searchParams);
+      next.set("step", desired);
+      // replace, чтобы не замусоривать историю
+      setSearchParams(next, { replace: true });
+      return;
     }
-  }, [mode, searchParams, setSearchParams, setStep, step]);
 
-  // === EDIT MODE: при смене шага в сторе — обновляем URL (push), с дедупликацией ===
-  React.useEffect(() => {
-    if (mode !== PropertyFormMode.edit) return;
-
-    const currentInUrl = searchParams.get("step");
-    if (currentInUrl === step) return; // уже синхронизировано
-
-    const next = new URLSearchParams(searchParams);
-    next.set("step", step);
-    setSearchParams(next, { replace: false }); // пушим, чтобы работал Back/Forward
-  }, [mode, step, searchParams, setSearchParams]);
+    // 3) Если URL валиден и уже равен store — ничего не делаем.
+  }, [mode, searchParams, step, setSearchParams, setStep]);
 }

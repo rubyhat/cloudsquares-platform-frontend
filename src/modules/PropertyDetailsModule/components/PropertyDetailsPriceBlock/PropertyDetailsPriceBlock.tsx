@@ -60,7 +60,9 @@ export const PropertyDetailsPriceBlock = () => {
               size="large"
               startIcon={<MdEdit />}
               onClick={() =>
-                navigate(`/properties/${currentProperty.id}/update`)
+                navigate(
+                  `/properties/${currentProperty.id}/update?step=basic_data`,
+                )
               }
             >
               Редактировать

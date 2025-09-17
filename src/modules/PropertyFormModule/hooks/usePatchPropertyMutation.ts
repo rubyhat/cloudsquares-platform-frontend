@@ -1,8 +1,8 @@
 import { useAxiosMutation } from "@/configs/useAxiosMutation";
 import { useQueryClient } from "@tanstack/react-query";
+import { showApiError } from "@/shared/utils";
 import { PropertyBasicDataFormData } from "../validations";
 import { apiPropertyFormModule } from "../api";
-import { showApiError } from "@/shared/utils";
 
 interface PatchPropertyMutationFnProps {
   id: string;
@@ -20,7 +20,6 @@ export const usePatchPropertyMutation = () => {
         queryKey: ["get-all-properties-of-agency", id],
       });
       onSuccess();
-      // return navigate(`/properties/${response.id}/update?step=property_owners`);
     },
     onError: (error) => {
       showApiError(error);

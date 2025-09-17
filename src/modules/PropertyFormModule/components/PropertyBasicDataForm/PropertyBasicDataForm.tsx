@@ -79,7 +79,15 @@ export const PropertyBasicDataForm = ({
         return patchPropertyMutation.mutate({
           id: editableProperty.id,
           data,
-          onSuccess: () => setStep(PropertyFormSteps.property_owners),
+          onSuccess: () => {
+            // Переключаем шаг через URL (источник истины)
+            const next = new URLSearchParams(location.search);
+            next.set("step", "property_owners");
+            navigate(
+              { pathname: location.pathname, search: next.toString() },
+              { replace: false },
+            );
+          },
         });
       default:
         toast.error("Неизвестный режим формы", { duration: 5000 });
