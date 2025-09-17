@@ -3,7 +3,7 @@ import { ENVIRONMENT } from "../../constants/envs";
 
 const isDev = ENVIRONMENT === "development";
 
-// TODO: в будущем добавить Sentry
+// TODO: в будущем добавить Sentry, вывод ошибки пользователю через toast при необходимости
 export const devLogger = {
   log: (...args: unknown[]) => {
     if (isDev) console.log(...args);

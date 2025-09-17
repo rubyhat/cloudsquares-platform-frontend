@@ -2,10 +2,11 @@ import * as React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Box, Container, Grid, Typography } from "@mui/material";
 
-import { BasicPageHeader } from "../../shared/components/Mobile/BasicPageHeader";
-import { useGetPropertyDetailsQuery } from "./hooks";
+import { useGetPropertyDetailsQuery } from "@/shared/hooks/propertyDetails";
+import { BasicPageHeader } from "@/shared/components/Mobile/BasicPageHeader";
+import { AxiosErrorAlertMessage } from "@/shared/components/AxiosErrorAlertMessage";
+
 import { PropertyDetailsPriceBlock } from "./components/PropertyDetailsPriceBlock";
-import { AxiosErrorAlertMessage } from "../../shared/components/AxiosErrorAlertMessage";
 import { PropertyDetailsPhotoBlock } from "./components/PropertyDetailsPhotoBlock";
 import { PropertyDetailsSlimInfo } from "./components/PropertyDetailsSlimInfo";
 import { PropertyDetailsApartmentInfo } from "./components/PropertyDetailsApartmentInfo";

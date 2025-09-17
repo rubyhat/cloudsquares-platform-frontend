@@ -11,4 +11,15 @@ export const apiPropertyFormModule = {
         throw err;
       });
   },
+  patchProperty(
+    id: string,
+    data: PropertyBasicDataFormData,
+  ): Promise<Property> {
+    return axiosBaseWrap
+      .patch("/properties/" + id, { property: data })
+      .then((res) => res.data)
+      .catch((err) => {
+        throw err;
+      });
+  },
 };

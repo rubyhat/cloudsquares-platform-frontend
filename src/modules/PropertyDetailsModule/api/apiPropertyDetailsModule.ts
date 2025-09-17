@@ -1,15 +1,6 @@
 import { axiosBaseWrap } from "../../../configs/api";
-import { Property } from "../../../shared/interfaces/Property";
 
 export const apiPropertyDetailsModule = {
-  getPropertyDetailsById(idOrSlug: string): Promise<Property> {
-    return axiosBaseWrap
-      .get("/properties/" + idOrSlug)
-      .then((response) => response.data)
-      .catch((error) => {
-        throw error;
-      });
-  },
   deactivatePropertyById(property_id: string) {
     return axiosBaseWrap
       .delete("/properties/" + property_id)

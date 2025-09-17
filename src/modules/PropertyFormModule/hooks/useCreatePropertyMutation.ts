@@ -13,13 +13,13 @@ export const useCreatePropertyMutation = () => {
       data,
     }: {
       data: PropertyBasicDataFormData;
-      onSuccess: () => void;
+      onSuccess?: () => void;
     }) => apiPropertyFormModule.createProperty(data),
     onSuccess: (response, { onSuccess }) => {
       queryClient.invalidateQueries({
         queryKey: ["get-all-properties-of-agency"],
       });
-      onSuccess();
+      onSuccess?.();
       return navigate(`/properties/${response.id}/update?step=property_owners`);
     },
     onError: (error) => {

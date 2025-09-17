@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
@@ -16,12 +17,16 @@ import {
   PropertyBasicDataFormData,
 } from "../../validations";
 import { PropertyFormSteps, usePropertyFormStore } from "../../store";
-import { useCreatePropertyMutation } from "../../hooks";
+import {
+  useCreatePropertyMutation,
+  usePatchPropertyMutation,
+} from "../../hooks";
+import { normalizePropertyBasicData } from "../../utils";
 import { PropertyCategoryDrawer } from "../PropertyCategoryDrawer";
 
 interface PropertyBasicDataFormProps {
   mode: PropertyFormMode;
-  editableProperty: Property | null;
+  editableProperty?: Property;
   onSubmit?: () => void;
   onDecline?: () => void;
   onSuccess?: () => void;
@@ -29,7 +34,7 @@ interface PropertyBasicDataFormProps {
 }
 
 export const PropertyBasicDataForm = ({
-  // editableProperty,
+  editableProperty,
   mode,
   // onSubmit,
   // onDecline,
@@ -48,20 +53,39 @@ export const PropertyBasicDataForm = ({
 
   const methods = useForm<PropertyBasicDataFormData>({
     resolver: zodResolver(createPropertyBasicDataFormSchema(mode)),
-    defaultValues: initialState,
+    defaultValues: editableProperty
+      ? normalizePropertyBasicData(editableProperty)
+      : initialState,
     mode: "onSubmit",
   });
 
   const { handleSubmit } = methods;
   const createPropertyMutation = useCreatePropertyMutation();
-  const disableInput = createPropertyMutation.isPending;
+  const patchPropertyMutation = usePatchPropertyMutation();
+  const disableInput =
+    createPropertyMutation.isPending || patchPropertyMutation.isPending;
 
   const onSubmitForm = (data: PropertyBasicDataFormData) => {
-    // TODO: Add edit mode handling
-    createPropertyMutation.mutate({
-      data,
-      onSuccess: () => setStep(PropertyFormSteps.property_owners),
-    });
+    switch (mode) {
+      case PropertyFormMode.create:
+        return createPropertyMutation.mutate({
+          data,
+        });
+      case PropertyFormMode.edit:
+        if (!editableProperty?.id) {
+          return toast.error("ID объекта не определен!");
+        }
+
+        return patchPropertyMutation.mutate({
+          id: editableProperty.id,
+          data,
+          onSuccess: () => setStep(PropertyFormSteps.property_owners),
+        });
+      default:
+        toast.error("Неизвестный режим формы", { duration: 5000 });
+        devLogger.error("PropertyBasicDataForm: unexpected form mode", mode);
+        return;
+    }
   };
 
   const handleResetForm = () => {

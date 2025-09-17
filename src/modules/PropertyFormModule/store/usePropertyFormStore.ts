@@ -78,7 +78,7 @@ export const usePropertyFormStore = create<PropertyFormStore>((set, get) => ({
   initialBasicDataState,
   initialOwnersDataState,
 
-  step: PropertyFormSteps.property_owners,
+  step: PropertyFormSteps.basic_data,
   setStep: (v) => set({ step: v }),
   stepsOrder: Object.values(PropertyFormSteps) as PropertyFormSteps[],
   setStepsOrder: (list) => set({ stepsOrder: list }),

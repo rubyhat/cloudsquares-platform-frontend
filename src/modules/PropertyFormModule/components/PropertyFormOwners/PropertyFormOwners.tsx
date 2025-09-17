@@ -5,11 +5,14 @@ import { PropertyFormMode } from "@/shared/interfaces/PropertyForm";
 import { useGetAllPropertyOwnersByPropertyIDQuery } from "@/shared/hooks/propertyOwners";
 import { AxiosErrorAlertMessage } from "@/shared/components/AxiosErrorAlertMessage";
 import { PropertyOwnerCard } from "@/shared/components/PropertyOwnerCard";
+import { Property } from "@/shared/interfaces/Property";
+
 import { PropertyOwnersForm } from "../PropertyOwnersForm";
 import { skeletonWrapperStyles } from "./styles";
 
 interface PropertyFormOwnersProps {
   mode: PropertyFormMode;
+  editableProperty?: Property;
 }
 
 export const PropertyFormOwners = ({ mode }: PropertyFormOwnersProps) => {
