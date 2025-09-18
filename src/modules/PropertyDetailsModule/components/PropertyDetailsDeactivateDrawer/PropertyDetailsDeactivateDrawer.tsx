@@ -1,15 +1,15 @@
 import { BasicDrawer } from "../../../../shared/components/BasicDrawer";
-import { propertyDetailsStore } from "../../store";
+import { usePropertyDetailsStore } from "../../store";
 import { PropertyDetailsDeleteForm } from "../PropertyDetailsDeleteForm";
 
 export const PropertyDetailsDeactivateDrawer = () => {
-  const currentProperty = propertyDetailsStore(
+  const currentProperty = usePropertyDetailsStore(
     (state) => state.currentProperty,
   );
-  const showDeactivateDrawer = propertyDetailsStore(
+  const showDeactivateDrawer = usePropertyDetailsStore(
     (state) => state.showDeactivateDrawer,
   );
-  const setShowDeactivateDrawer = propertyDetailsStore(
+  const setShowDeactivateDrawer = usePropertyDetailsStore(
     (state) => state.setShowDeactivateDrawer,
   );
 

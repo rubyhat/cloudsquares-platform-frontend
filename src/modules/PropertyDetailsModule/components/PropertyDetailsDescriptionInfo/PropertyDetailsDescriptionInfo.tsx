@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
-import { propertyDetailsStore } from "../../store";
+import { usePropertyDetailsStore } from "../../store";
 
 export const PropertyDetailsDescriptionInfo = () => {
-  const currentProperty = propertyDetailsStore(
+  const currentProperty = usePropertyDetailsStore(
     (state) => state.currentProperty,
   );
 

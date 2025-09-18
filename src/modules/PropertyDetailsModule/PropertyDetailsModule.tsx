@@ -10,7 +10,7 @@ import { PropertyDetailsPriceBlock } from "./components/PropertyDetailsPriceBloc
 import { PropertyDetailsPhotoBlock } from "./components/PropertyDetailsPhotoBlock";
 import { PropertyDetailsSlimInfo } from "./components/PropertyDetailsSlimInfo";
 import { PropertyDetailsApartmentInfo } from "./components/PropertyDetailsApartmentInfo";
-import { propertyDetailsStore } from "./store";
+import { usePropertyDetailsStore } from "./store";
 import { PropertyDetailsApartmentHouseInfo } from "./components/PropertyDetailsApartmentHouseInfo";
 import { PropertyDetailsAdditionalOptions } from "./components/PropertyDetailsAdditionalOptions";
 import { PropertyDetailsDescriptionInfo } from "./components/PropertyDetailsDescriptionInfo";
@@ -29,10 +29,10 @@ export const PropertyDetailsModule = () => {
   const { id: idOrSlug } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const currentProperty = propertyDetailsStore(
+  const currentProperty = usePropertyDetailsStore(
     (state) => state.currentProperty,
   );
-  const setCurrentProperty = propertyDetailsStore(
+  const setCurrentProperty = usePropertyDetailsStore(
     (state) => state.setCurrentProperty,
   );
 

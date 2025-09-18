@@ -1,5 +1,6 @@
 import { AgencySlim } from "./Agency";
 import { PropertyCategory } from "./PropertyCategory";
+import { PropertyOwner } from "./PropertyOwner";
 import { UserSlim } from "./User";
 
 export enum ListingType {
@@ -44,7 +45,7 @@ export interface Property {
   property_location: PropertyLocation;
   property_photos: PropertyPhoto[];
   characteristics: []; // todo: add types
-  property_owners: []; // todo: add types
+  property_owners: PropertyOwner[];
   created_at: string; // "2025-06-25T20:05:47.427Z";
   updated_at: string; // "2025-06-25T20:05:47.427Z";
 }

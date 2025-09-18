@@ -1,11 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import { ListingTypeText } from "../../../../shared/interfaces/Property";
 import { contentStyles } from "./styles";
-import { propertyDetailsStore } from "../../store";
+import { usePropertyDetailsStore } from "../../store";
 import { PropertyDetailsInfoItem } from "../../../../shared/interfaces/PropertyDetails";
 
 export const PropertyDetailsSlimInfo = () => {
-  const currentProperty = propertyDetailsStore(
+  const currentProperty = usePropertyDetailsStore(
     (state) => state.currentProperty,
   );
 

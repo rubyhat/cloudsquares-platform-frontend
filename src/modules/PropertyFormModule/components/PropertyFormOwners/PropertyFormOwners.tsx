@@ -38,6 +38,7 @@ export const PropertyFormOwners = ({ mode }: PropertyFormOwnersProps) => {
             <Skeleton variant="rounded" height={150} />
             <Skeleton variant="rounded" height={150} />
             <Skeleton variant="rounded" height={150} />
+            <Skeleton variant="rounded" height={150} />
           </Box>
         )}
 
@@ -49,7 +50,7 @@ export const PropertyFormOwners = ({ mode }: PropertyFormOwnersProps) => {
           </Alert>
         )}
 
-        {owners.length > 0 && (
+        {owners?.length > 0 && (
           <Box
             display="grid"
             gap={1.5}

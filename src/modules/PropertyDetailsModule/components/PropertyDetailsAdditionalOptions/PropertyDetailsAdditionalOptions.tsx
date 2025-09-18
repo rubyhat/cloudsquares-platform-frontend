@@ -1,11 +1,11 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import { PropertyDetailsInfoList } from "../PropertyDetailsInfoList";
-import { propertyDetailsStore } from "../../store";
+import { usePropertyDetailsStore } from "../../store";
 import { PropertyDetailsInfoItem } from "../../../../shared/interfaces/PropertyDetails";
 
 export const PropertyDetailsAdditionalOptions = () => {
-  const currentProperty = propertyDetailsStore(
+  const currentProperty = usePropertyDetailsStore(
     (state) => state.currentProperty,
   );
 

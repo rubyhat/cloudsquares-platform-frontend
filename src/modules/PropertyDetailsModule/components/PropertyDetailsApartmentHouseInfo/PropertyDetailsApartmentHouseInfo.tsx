@@ -1,10 +1,10 @@
 import { Box, Typography } from "@mui/material";
-import { propertyDetailsStore } from "../../store";
+import { usePropertyDetailsStore } from "../../store";
 import { PropertyDetailsInfoItem } from "../../../../shared/interfaces/PropertyDetails";
 import { PropertyDetailsInfoList } from "../PropertyDetailsInfoList";
 
 export const PropertyDetailsApartmentHouseInfo = () => {
-  const currentProperty = propertyDetailsStore(
+  const currentProperty = usePropertyDetailsStore(
     (state) => state.currentProperty,
   );
 

@@ -1,23 +1,26 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { MdPerson, MdEdit, MdDelete } from "react-icons/md";
 import { IoMdDocument } from "react-icons/io";
-
-import {
-  calculatePricePerMeter,
-  propertyAddress,
-} from "../../../../shared/utils";
-import { DiscountLabel } from "../../../../shared/DiscountLabel";
-import { AgentCompactCard } from "../../../../shared/components/AgentCompactCard";
-import { propertyDetailsStore } from "../../store";
 import { useNavigate } from "react-router-dom";
 
+import { calculatePricePerMeter, propertyAddress } from "@/shared/utils";
+import { DiscountLabel } from "@/shared/DiscountLabel";
+import { AgentCompactCard } from "@/shared/components/AgentCompactCard";
+import { usePropertyDetailsStore } from "../../store";
+import { PropertyDetailsOwnersDrawer } from "../PropertyDetailsOwnersDrawer";
+
+// TODO: При клике на "Данные владельца" открыть модалку с карточками всех владельцев и кнопку "Редактировать",
+// при клике на кнопку открывать страницу редактирования с параметром ?step=property_owners
 export const PropertyDetailsPriceBlock = () => {
   const navigate = useNavigate();
-  const setShowDeactivateDrawer = propertyDetailsStore(
+  const setShowDeactivateDrawer = usePropertyDetailsStore(
     (state) => state.setShowDeactivateDrawer,
   );
+  const setShowOwnersDrawer = usePropertyDetailsStore(
+    (state) => state.setShowOwnersDrawer,
+  );
 
-  const currentProperty = propertyDetailsStore(
+  const currentProperty = usePropertyDetailsStore(
     (state) => state.currentProperty,
   );
 
@@ -73,8 +76,13 @@ export const PropertyDetailsPriceBlock = () => {
             >
               Редактировать
             </Button>
-            <Button variant="outlined" size="large" startIcon={<MdPerson />}>
-              Данные владельца
+            <Button
+              variant="outlined"
+              size="large"
+              startIcon={<MdPerson />}
+              onClick={() => setShowOwnersDrawer(true)}
+            >
+              Данные собственников
             </Button>
             <Button
               variant="outlined"
@@ -94,6 +102,7 @@ export const PropertyDetailsPriceBlock = () => {
             </Button>
           </Box>
         </Box>
+        <PropertyDetailsOwnersDrawer />
       </Grid>
     );
 

@@ -14,7 +14,7 @@ import { devLogger } from "@/shared/utils";
 import { Property } from "@/shared/interfaces/Property";
 import { PropertiesListItem } from "@/modules/PropertiesModule/components/PropertiesListItem";
 
-import { propertyDetailsStore } from "../../store";
+import { usePropertyDetailsStore } from "../../store";
 import { useDeactivatePropertyMutation } from "../../hooks";
 
 interface PropertyDetailsDeleteFormProps {
@@ -29,7 +29,7 @@ export const PropertyDetailsDeleteForm = ({
   property,
 }: PropertyDetailsDeleteFormProps) => {
   const navigate = useNavigate();
-  const setShowDeactivateDrawer = propertyDetailsStore(
+  const setShowDeactivateDrawer = usePropertyDetailsStore(
     (state) => state.setShowDeactivateDrawer,
   );
 
