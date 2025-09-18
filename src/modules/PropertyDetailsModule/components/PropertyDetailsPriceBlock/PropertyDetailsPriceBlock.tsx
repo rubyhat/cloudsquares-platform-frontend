@@ -1,11 +1,11 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
-import { MdPerson, MdEdit, MdDelete } from "react-icons/md";
 import { IoMdDocument } from "react-icons/io";
+import { MdDelete, MdEdit, MdPerson } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-import { calculatePricePerMeter, propertyAddress } from "@/shared/utils";
-import { DiscountLabel } from "@/shared/DiscountLabel";
 import { AgentCompactCard } from "@/shared/components/AgentCompactCard";
+import { DiscountLabel } from "@/shared/components/DiscountLabel";
+import { calculatePricePerMeter, propertyAddress } from "@/shared/utils";
 import { usePropertyDetailsStore } from "../../store";
 import { PropertyDetailsOwnersDrawer } from "../PropertyDetailsOwnersDrawer";
 

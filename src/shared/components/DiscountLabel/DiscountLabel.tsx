@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { calculateDiscountInPercent } from "../utils";
+import { calculateDiscountInPercent } from "../../utils";
 import { discountWrapperStyles } from "./styles";
 
 interface DiscountLabelProps {

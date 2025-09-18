@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { Property } from "../../interfaces/Property";
 import { calculatePricePerMeter } from "../../utils";
-import { DiscountLabel } from "../../DiscountLabel";
+import { DiscountLabel } from "../DiscountLabel";
 
 interface PropertyPriceInfoProps {
   property: Property;

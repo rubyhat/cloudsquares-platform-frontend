@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { CustomTableCell } from "../CustomTabCell";
 import { TestProviders } from "../../../../providers";
 
@@ -47,7 +42,9 @@ describe("CustomTableCell", () => {
     expect(button).toHaveAttribute("aria-expanded", "true");
     expect(screen.getByRole("menu")).toBeInTheDocument();
     expect(screen.getAllByRole("menuitem")).toHaveLength(2);
-    expect(screen.getByRole("menuitem", { name: "Просмотр" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("menuitem", { name: "Просмотр" }),
+    ).toBeInTheDocument();
   });
 
   it("вызывает обработчик и закрывает меню после выбора опции", async () => {
