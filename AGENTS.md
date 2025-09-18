@@ -30,7 +30,7 @@ Source lives in `src/`:
 
 ### Inside a feature
 
-```
+```plaintext
 src/modules/<Feature>/
   api/                 // API calls built on top of src/configs axios
   components/          // presentational/container components
