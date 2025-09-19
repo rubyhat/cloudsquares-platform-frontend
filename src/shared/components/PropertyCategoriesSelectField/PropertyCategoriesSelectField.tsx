@@ -1,11 +1,11 @@
-import React from "react";
-import { Skeleton } from "@mui/material";
-import { useUserProfile } from "@/shared/permissions/hooks";
-import { PropertyCategory } from "@/shared/interfaces/PropertyCategory";
 import { useGetAllPropertyCategoriesQuery } from "@/shared/hooks/propertyCategories";
-import { BasicFormSelectField } from "../BasicFormSelectField";
-import { AxiosErrorAlertMessage } from "../AxiosErrorAlertMessage";
+import { PropertyCategory } from "@/shared/interfaces/PropertyCategory";
+import { useUserProfile } from "@/shared/permissions/hooks";
+import { Skeleton } from "@mui/material";
+import React from "react";
 import { FieldValues, Path } from "react-hook-form";
+import { AxiosErrorAlertMessage } from "../AxiosErrorAlertMessage";
+import { BasicFormSelectField } from "../BasicFormSelectField";
 
 interface PropertyCategoriesSelectFieldProps<TFieldValues extends FieldValues> {
   name: Path<TFieldValues>;

@@ -5,7 +5,9 @@ import {
   PropertyStatus,
 } from "@/shared/interfaces/Property";
 
-const createProperty = (overrides: Partial<Property["property_location"]>): Property => ({
+const createProperty = (
+  overrides: Partial<Property["property_location"]>,
+): Property => ({
   id: "1",
   title: "Test",
   slug: "test",

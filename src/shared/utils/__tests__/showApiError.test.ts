@@ -30,7 +30,7 @@ describe("showApiError", () => {
           },
         },
       },
-    } as AxiosError<ApiErrorResponse>);
+    }) as AxiosError<ApiErrorResponse>;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -74,9 +74,8 @@ describe("showApiError", () => {
 
     showApiError(error, "Ошибка");
 
-    expect(toast.error).toHaveBeenCalledWith(
-      "Ошибка: Неизвестная ошибка",
-      { duration: 10000 },
-    );
+    expect(toast.error).toHaveBeenCalledWith("Ошибка: Неизвестная ошибка", {
+      duration: 10000,
+    });
   });
 });

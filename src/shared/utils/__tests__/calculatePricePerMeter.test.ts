@@ -1,4 +1,7 @@
-import { calculatePricePerMeter, formatPrice } from "@/shared/utils/calculatePricePerMeter";
+import {
+  calculatePricePerMeter,
+  formatPrice,
+} from "@/shared/utils/calculatePricePerMeter";
 
 describe("formatPrice", () => {
   it("форматирует сумму без дробной части по умолчанию", () => {
